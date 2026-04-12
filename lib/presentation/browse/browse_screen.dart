@@ -28,11 +28,37 @@ class BrowseScreen extends ConsumerWidget {
                 children: [
                   Text('Browse', style: theme.textTheme.headlineLarge),
                   const SizedBox(height: 4),
-                  Text(
-                    'All programming topics',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'All programming topics',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                        ),
+                      ),
+                      topicsAsync.when(
+                        data: (topics) {
+                          final total = topics.fold<int>(0, (sum, t) => sum + t.snippetCount);
+                          return Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: (isDark ? AppColors.darkAccent : AppColors.lightAccent).withOpacity(0.15),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              '$total Snippets',
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                color: isDark ? AppColors.darkAccent : AppColors.lightAccent,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        },
+                        loading: () => const SizedBox.shrink(),
+                        error: (_, __) => const SizedBox.shrink(),
+                      ),
+                    ],
                   ),
                 ],
               ),

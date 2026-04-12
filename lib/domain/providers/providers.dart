@@ -87,3 +87,17 @@ final snippetCountProvider = FutureProvider<int>((ref) async {
 });
 
 // No legacy theme provider needed
+
+// ── Sections ──
+final topicSectionsProvider =
+    FutureProvider.autoDispose.family<List<String>, String>((ref, topicId) async {
+  return ref.watch(snippetRepositoryProvider).getSectionsByTopic(topicId);
+});
+
+final sectionSnippetsProvider = FutureProvider.autoDispose
+    .family<List<Snippet>, ({String topicId, String section})>(
+        (ref, params) async {
+  return ref
+      .watch(snippetRepositoryProvider)
+      .getSnippetsBySection(params.topicId, params.section);
+});

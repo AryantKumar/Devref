@@ -2,12 +2,12 @@ import '../models/snippet.dart';
 
 List<Snippet> getJavaSnippets() {
   return [
-    // ── Very Easy (10) ──
+    // â”€â”€ Very Easy (10) â”€â”€
     Snippet()..snippetId='java_001'..topicId='java'..title='Hello World'..description='The simplest Java program. Every Java app needs a main method inside a class.'..code='''public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Introduction to Java'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_002'..topicId='java'..title='Variables and Data Types'..description='Java is statically typed. Primitive types include int, double, boolean, char, and their wrapper classes.'..code='''public class Main {
     public static void main(String[] args) {
         int age = 25;
@@ -21,7 +21,7 @@ List<Snippet> getJavaSnippets() {
         System.out.printf("Price: %.2f%n", price);
         System.out.println("Active: " + isActive);
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_003'..topicId='java'..title='Arrays'..description='Arrays are fixed-size containers that store elements of the same type with zero-based indexing.'..code='''import java.util.Arrays;
 
 public class Main {
@@ -40,7 +40,7 @@ public class Main {
         int index = Arrays.binarySearch(numbers, 8);
         System.out.println("Found 8 at index: " + index);
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_004'..topicId='java'..title='If-Else and Switch'..description='Conditional control flow using if-else chains and the enhanced switch expression (Java 14+).'..code='''public class Main {
     public static void main(String[] args) {
         int score = 85;
@@ -63,7 +63,7 @@ public class Main {
         };
         System.out.println(day + " is a " + type);
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_005'..topicId='java'..title='For Loops'..description='Java supports traditional for loops, enhanced for-each loops, and while/do-while loops.'..code='''import java.util.List;
 
 public class Main {
@@ -87,7 +87,7 @@ public class Main {
             count--;
         }
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_006'..topicId='java'..title='Methods'..description='Methods define reusable blocks of code with parameters, return types, and optional overloading.'..code='''public class Main {
     static int add(int a, int b) {
         return a + b;
@@ -112,7 +112,7 @@ public class Main {
         System.out.println(add(2.5, 3.5));   // 6.0
         System.out.println(repeat("Ha", 3)); // HaHaHa
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Methods'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_007'..topicId='java'..title='Classes and Objects'..description='Java classes encapsulate data and behavior. Objects are instances of classes with state and methods.'..code='''public class Person {
     private String name;
     private int age;
@@ -136,7 +136,7 @@ public class Main {
         System.out.println(p1);
         System.out.println(p2.getName() + " is " + p2.getAge());
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_008'..topicId='java'..title='ArrayList and HashMap'..description='ArrayList is a resizable array; HashMap stores key-value pairs. Both are part of java.util collections.'..code='''import java.util.*;
 
 public class Main {
@@ -161,7 +161,7 @@ public class Main {
 
         System.out.println("Bob's score: " + scores.getOrDefault("Bob", 0));
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_009'..topicId='java'..title='String Methods'..description='Java String class provides many utility methods for manipulation, searching, and transformation.'..code='''public class Main {
     public static void main(String[] args) {
         String s = "Hello, World!";
@@ -185,7 +185,7 @@ public class Main {
         for (int i = 0; i < 5; i++) sb.append(i).append(" ");
         System.out.println(sb.toString().trim());
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_010'..topicId='java'..title='Exception Handling'..description='Java exception handling with try-catch-finally blocks for robust error management.'..code='''public class Main {
     static int divide(int a, int b) {
         if (b == 0) throw new ArithmeticException("Division by zero");
@@ -214,9 +214,9 @@ public class Main {
         System.out.println(parseNumber("42"));   // 42
         System.out.println(parseNumber("abc"));   // 0
     }
-}'''..language='java'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
 
-    // ── Medium (10) ──
+    // â”€â”€ Medium (10) â”€â”€
     Snippet()..snippetId='java_011'..topicId='java'..title='Streams API'..description='Java Streams provide functional-style operations on collections: map, filter, reduce, collect.'..code='''import java.util.*;
 import java.util.stream.*;
 
@@ -250,7 +250,7 @@ public class Main {
         System.out.println("By city: " + byCity);
         System.out.printf("Avg age: %.1f%n", avgAge);
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_012'..topicId='java'..title='Generics'..description='Generics enable type-safe reusable code with type parameters for classes, interfaces, and methods.'..code='''public class Pair<A, B> {
     private final A first;
     private final B second;
@@ -284,7 +284,7 @@ public class Main {
         System.out.println(max(10, 20));
         System.out.println(sum(List.of(1, 2.5, 3)));
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_013'..topicId='java'..title='Interfaces and Abstract Classes'..description='Interfaces define contracts with default methods; abstract classes provide partial implementations.'..code='''interface Drawable {
     void draw();
     default String getType() { return "Shape"; }
@@ -318,7 +318,7 @@ class Circle extends Shape {
     }
     @Override public void resize(double factor) { radius *= factor; }
     @Override public double area() { return Math.PI * radius * radius; }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_014'..topicId='java'..title='Records (Java 16+)'..description='Records are immutable data carriers that auto-generate constructor, getters, equals, hashCode, toString.'..code='''import java.util.List;
 
 public class Main {
@@ -354,7 +354,7 @@ public class Main {
         Range r = new Range(1, 10);
         System.out.println("Contains 5: " + r.contains(5));
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_015'..topicId='java'..title='Lambda Expressions'..description='Lambdas provide concise syntax for implementing functional interfaces like Predicate, Function, Consumer.'..code='''import java.util.*;
 import java.util.function.*;
 
@@ -383,7 +383,7 @@ public class Main {
         words.sort(Comparator.comparingInt(String::length).thenComparing(Comparator.naturalOrder()));
         System.out.println(words);
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_016'..topicId='java'..title='Optional'..description='Optional prevents NullPointerException by wrapping nullable values with safe access methods.'..code='''import java.util.Optional;
 
 public class Main {
@@ -414,7 +414,7 @@ public class Main {
             .orElseThrow(() -> new RuntimeException("No valid user"));
         System.out.println("Result: " + result);
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_017'..topicId='java'..title='Enum with Methods'..description='Java enums can have fields, constructors, and methods making them powerful type-safe constants.'..code='''public enum Planet {
     MERCURY(3.303e+23, 2.4397e6),
     VENUS(4.869e+24, 6.0518e6),
@@ -446,7 +446,7 @@ public class Main {
                 p, p.surfaceWeight(mass));
         }
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_018'..topicId='java'..title='Iterator Pattern'..description='Implement Iterable interface to allow objects to be used in enhanced for loops.'..code='''import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -481,7 +481,7 @@ public class NumberRange implements Iterable<Integer> {
             System.out.print(n + " "); // 1 2 3 4 5
         }
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_019'..topicId='java'..title='Try-With-Resources'..description='Automatically closes resources implementing AutoCloseable when leaving the try block.'..code='''import java.io.*;
 import java.nio.file.*;
 import java.util.List;
@@ -518,7 +518,7 @@ public class Main {
             System.out.println(db.query("SELECT 1"));
         } // auto-closed here
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_020'..topicId='java'..title='Collections Utility Methods'..description='Collections class provides algorithms: sort, shuffle, min, max, frequency, unmodifiable wrappers.'..code='''import java.util.*;
 
 public class Main {
@@ -548,9 +548,9 @@ public class Main {
         List<String> syncList = Collections.synchronizedList(new ArrayList<>());
         syncList.add("thread-safe");
     }
-}'''..language='java'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
 
-    // ── Hard (10) ──
+    // â”€â”€ Hard (10) â”€â”€
     Snippet()..snippetId='java_021'..topicId='java'..title='CompletableFuture'..description='CompletableFuture enables non-blocking async programming with composable stages and combinators.'..code='''import java.util.concurrent.*;
 
 public class Main {
@@ -593,7 +593,7 @@ public class Main {
         futures.join();
         System.out.println("All fetched");
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_022'..topicId='java'..title='Concurrent Collections'..description='Thread-safe collections: ConcurrentHashMap, CopyOnWriteArrayList, BlockingQueue for concurrent access.'..code='''import java.util.concurrent.*;
 import java.util.*;
 
@@ -629,7 +629,7 @@ public class Main {
         producer.join();
         consumer.join();
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_023'..topicId='java'..title='Design Pattern: Builder'..description='Builder pattern constructs complex objects step-by-step with a fluent API.'..code='''public class HttpRequest {
     private final String method;
     private final String url;
@@ -674,7 +674,7 @@ public class Main {
             .build();
         System.out.println(req);
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Design Patterns'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_024'..topicId='java'..title='Sealed Classes (Java 17+)'..description='Sealed classes restrict which classes can extend them, enabling exhaustive pattern matching.'..code='''public sealed interface Shape permits Circle, Rectangle, Triangle {
     double area();
 }
@@ -708,7 +708,7 @@ public class Main {
             System.out.printf("%s -> area=%.2f%n", describe(s), s.area())
         );
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_025'..topicId='java'..title='Reflection'..description='Java Reflection API allows runtime inspection and manipulation of classes, methods, and fields.'..code='''import java.lang.reflect.*;
 
 public class Main {
@@ -741,7 +741,7 @@ public class Main {
         f.set(obj, "changed!");
         System.out.println("After change: " + m.invoke(obj));
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_026'..topicId='java'..title='Custom Annotations'..description='Define and process custom annotations at runtime using reflection for metadata-driven programming.'..code='''import java.lang.annotation.*;
 import java.lang.reflect.*;
 
@@ -780,7 +780,7 @@ class TestRunner {
             }
         }
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_027'..topicId='java'..title='Virtual Threads (Java 21)'..description='Virtual threads enable millions of lightweight threads for highly concurrent I/O-bound applications.'..code='''import java.util.concurrent.*;
 import java.time.*;
 
@@ -814,7 +814,7 @@ public class Main {
         System.out.println("Time: " + elapsed.toMillis() + "ms");
         // ~100ms for 1000 requests (not 100,000ms)
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_028'..topicId='java'..title='Pattern Matching (Java 21)'..description='Pattern matching with switch and instanceof for concise type-safe conditional logic.'..code='''public class Main {
     sealed interface Expr permits Num, Add, Mul {}
     record Num(int value) implements Expr {}
@@ -846,7 +846,7 @@ public class Main {
         System.out.println(format(42));
         System.out.println(format("Hi"));
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_029'..topicId='java'..title='ExecutorService & Thread Pool'..description='ExecutorService manages thread pools for submitting and executing tasks concurrently.'..code='''import java.util.concurrent.*;
 import java.util.*;
 
@@ -882,7 +882,7 @@ public class Main {
         pool.shutdown();
         scheduler.shutdown();
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Design Patterns'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_030'..topicId='java'..title='Proxy and InvocationHandler'..description='Dynamic proxies create interface implementations at runtime for AOP, logging, and caching.'..code='''import java.lang.reflect.*;
 
 interface UserService {
@@ -927,9 +927,9 @@ public class Main {
         System.out.println(proxy.findUser(42));
         proxy.deleteUser(1);
     }
-}'''..language='java'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
 
-    // ── Very Hard (10) ──
+    // â”€â”€ Very Hard (10) â”€â”€
     Snippet()..snippetId='java_031'..topicId='java'..title='Custom ClassLoader'..description='ClassLoaders control how classes are loaded. Custom loaders enable hot-reloading and sandboxing.'..code='''import java.io.*;
 
 public class HotReloadClassLoader extends ClassLoader {
@@ -964,7 +964,7 @@ public class HotReloadClassLoader extends ClassLoader {
         System.out.println("Loader1: " + loader1);
         System.out.println("Loader2: " + loader2);
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_032'..topicId='java'..title='Unsafe Memory Access'..description='sun.misc.Unsafe provides low-level memory operations bypassing JVM safety checks for performance-critical code.'..code='''import sun.misc.Unsafe;
 import java.lang.reflect.Field;
 
@@ -1003,7 +1003,7 @@ public class Main {
         System.out.println("Off-heap: " + unsafe.getLong(addr));
         unsafe.freeMemory(addr);
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_033'..topicId='java'..title='JVM Garbage Collection Tuning'..description='Understanding GC behavior with weak/soft/phantom references and finalization alternatives.'..code='''import java.lang.ref.*;
 import java.util.*;
 
@@ -1046,7 +1046,7 @@ public class Main {
         var obj = new Object();
         cleaner.register(obj, () -> System.out.println("Cleaned up!"));
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_034'..topicId='java'..title='Structured Concurrency (Java 21)'..description='Structured concurrency ensures child tasks complete before parent, preventing resource leaks.'..code='''import java.util.concurrent.*;
 
 public class Main {
@@ -1082,7 +1082,7 @@ public class Main {
         String result = buildResponse();
         System.out.println(result); // Alice ordered Laptop
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Design Patterns'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_035'..topicId='java'..title='MethodHandle vs Reflection'..description='MethodHandles are faster than reflection for dynamic method invocation with JIT optimization.'..code='''import java.lang.invoke.*;
 
 public class Main {
@@ -1126,7 +1126,7 @@ public class Main {
         System.out.println("MethodHandle: " +
             (System.nanoTime() - start) / 1_000_000 + "ms");
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_036'..topicId='java'..title='Annotation Processor Simulation'..description='Simulate compile-time annotation processing to generate code based on annotations.'..code='''import java.lang.annotation.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -1177,7 +1177,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(SqlGenerator.createTable(User.class));
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_037'..topicId='java'..title='Lock-Free Data Structure'..description='Implement a lock-free stack using AtomicReference and CAS for high-performance concurrent access.'..code='''import java.util.concurrent.atomic.AtomicReference;
 
 public class LockFreeStack<T> {
@@ -1228,7 +1228,7 @@ public class LockFreeStack<T> {
         while (stack.pop() != null) count++;
         System.out.println("Total popped: " + count); // 400
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_038'..topicId='java'..title='Memory-Mapped Files'..description='Use MappedByteBuffer for high-performance file I/O by mapping files directly into memory.'..code='''import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
@@ -1269,7 +1269,7 @@ public class Main {
 
         Files.delete(path);
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Design Patterns'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_039'..topicId='java'..title='Service Provider Interface (SPI)'..description='SPI enables plugin architectures via ServiceLoader for runtime discovery of implementations.'..code='''import java.util.*;
 
 // Define service interface
@@ -1309,7 +1309,7 @@ public class Main {
                 encoder.name(), message, encoder.encode(message));
         }
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='java_040'..topicId='java'..title='Foreign Function & Memory API (Java 21)'..description='The Foreign Function & Memory API provides safe, efficient access to native code and off-heap memory.'..code='''import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 
@@ -1351,6 +1351,6 @@ public class Main {
                 point.get(ValueLayout.JAVA_DOUBLE, 8));
         } // All off-heap memory freed here
     }
-}'''..language='java'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='java'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

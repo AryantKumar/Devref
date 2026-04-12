@@ -5,7 +5,7 @@ List<Snippet> getTypeScriptSnippets() {
     Snippet()..snippetId='ts_001'..topicId='typescript'..title='Hello World with Types'..description='TypeScript adds static types to JavaScript. Type annotations catch errors at compile time.'..code='''const greeting: string = "Hello, World!";
 const age: number = 25;
 const active: boolean = true;
-console.log(greeting, age, active);'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(greeting, age, active);'''..language='typescript'..difficulty='very_easy'..section='Introduction to TypeScript'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_002'..topicId='typescript'..title='Interfaces'..description='Interfaces define object shapes. They support optional properties, readonly, and extension.'..code='''interface User {
   readonly id: number;
   name: string;
@@ -18,7 +18,7 @@ function greet(user: User): string {
 }
 
 const user: User = { id: 1, name: "Alice", email: "a@b.com" };
-console.log(greet(user));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(greet(user));'''..language='typescript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_003'..topicId='typescript'..title='Type Aliases and Unions'..description='Type aliases name any type. Union types allow a value to be one of several types.'..code='''type ID = string | number;
 type Status = "active" | "inactive" | "banned";
 type Result<T> = { success: true; data: T } | { success: false; error: string };
@@ -36,7 +36,7 @@ function handleResult(r: Result<string>) {
 }
 
 console.log(processId("abc"));
-console.log(processId(123));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(processId(123));'''..language='typescript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_004'..topicId='typescript'..title='Arrays and Tuples'..description='TypeScript arrays are typed collections. Tuples are fixed-length arrays with specific types per position.'..code='''const nums: number[] = [1, 2, 3, 4, 5];
 const names: Array<string> = ["Alice", "Bob"];
 
@@ -53,7 +53,7 @@ const doubled = nums.map((n): number => n * 2);
 const evens = nums.filter((n): boolean => n % 2 === 0);
 const sum = nums.reduce((acc, n) => acc + n, 0);
 
-console.log(doubled, evens, sum);'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(doubled, evens, sum);'''..language='typescript'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_005'..topicId='typescript'..title='Functions with Types'..description='TypeScript functions have typed parameters, return types, optional params, and overloads.'..code='''function add(a: number, b: number): number {
   return a + b;
 }
@@ -75,7 +75,7 @@ const divide: MathFn = (a, b) => a / b;
 
 console.log(add(2, 3));
 console.log(greet("Alice"));
-console.log(sum(1, 2, 3, 4, 5));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(sum(1, 2, 3, 4, 5));'''..language='typescript'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_006'..topicId='typescript'..title='Classes'..description='TypeScript classes support access modifiers (public, private, protected), abstract classes, and implements.'..code='''abstract class Shape {
   abstract area(): number;
   describe(): string {
@@ -97,7 +97,7 @@ class Rectangle extends Shape {
 }
 
 const shapes: Shape[] = [new Circle(5), new Rectangle(4, 6)];
-shapes.forEach(s => console.log(s.describe()));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+shapes.forEach(s => console.log(s.describe()));'''..language='typescript'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_007'..topicId='typescript'..title='Enums'..description='TypeScript enums define named constants. Supports numeric, string, and const enums.'..code='''enum Direction {
   Up = "UP",
   Down = "DOWN",
@@ -120,7 +120,7 @@ function move(dir: Direction): string {
 }
 
 console.log(move(Direction.Up));
-console.log(HttpStatus.OK);'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(HttpStatus.OK);'''..language='typescript'..difficulty='very_easy'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_008'..topicId='typescript'..title='Generics Basics'..description='Generics create reusable components that work with multiple types while maintaining type safety.'..code='''function identity<T>(arg: T): T { return arg; }
 function first<T>(arr: T[]): T | undefined { return arr[0]; }
 
@@ -137,7 +137,7 @@ numStack.push(1); numStack.push(2); numStack.push(3);
 console.log(numStack.pop()); // 3
 
 console.log(identity<string>("hello"));
-console.log(first([10, 20, 30]));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(first([10, 20, 30]));'''..language='typescript'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_009'..topicId='typescript'..title='Type Guards'..description='Type guards narrow types at runtime using typeof, instanceof, in operator, and custom predicates.'..code='''interface Dog { bark(): void; breed: string; }
 interface Cat { meow(): void; color: string; }
 
@@ -164,7 +164,7 @@ function padLeft(value: string, padding: string | number): string {
 }
 
 console.log(padLeft("hello", 4));
-console.log(padLeft("hello", ">>> "));'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(padLeft("hello", ">>> "));'''..language='typescript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_010'..topicId='typescript'..title='Nullish Handling'..description='Optional chaining (?.), nullish coalescing (??), and non-null assertion (!) for null safety.'..code='''interface Config {
   db?: { host?: string; port?: number };
   cache?: { ttl?: number };
@@ -186,7 +186,7 @@ console.log(getDbHost({}));         // localhost
 // Nullish assignment
 let value: string | null = null;
 value ??= "default";
-console.log(value);'''..language='typescript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(value);'''..language='typescript'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_011'..topicId='typescript'..title='Mapped Types'..description='Mapped types transform existing types by iterating over keys. Built-in: Partial, Required, Readonly, Pick.'..code='''interface User {
   id: number;
   name: string;
@@ -209,7 +209,7 @@ const input: UserInput = { name: "Alice", email: null, age: null };
 type Scores = Record<string, number>;
 const scores: Scores = { Alice: 95, Bob: 87 };
 
-console.log(update, input, scores);'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(update, input, scores);'''..language='typescript'..difficulty='medium'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_012'..topicId='typescript'..title='Conditional Types'..description='Conditional types select from two types based on a condition, enabling advanced type-level programming.'..code='''type IsString<T> = T extends string ? "yes" : "no";
 type A = IsString<string>;   // "yes"
 type B = IsString<number>;   // "no"
@@ -232,7 +232,7 @@ type ApiResponse<T> = T extends "user"
   ? { id: number; title: string }
   : never;
 
-type UserResp = ApiResponse<"user">;'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+type UserResp = ApiResponse<"user">;'''..language='typescript'..difficulty='medium'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_013'..topicId='typescript'..title='Template Literal Types'..description='Template literal types construct string types by interpolating other types in template strings.'..code='''type Color = "red" | "green" | "blue";
 type Size = "sm" | "md" | "lg";
 type CssClass = \x60\${Color}-\${Size}\x60;  // "red-sm" | "red-md" | ...
@@ -254,7 +254,7 @@ type Endpoint = "/users" | "/posts";
 type Route = \x60\${Method} \${Endpoint}\x60;
 
 const route: Route = "GET /users";
-console.log(route);'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(route);'''..language='typescript'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_014'..topicId='typescript'..title='Decorators'..description='Decorators modify classes and methods at definition time. Used extensively in NestJS and Angular.'..code='''function Log(target: any, key: string, desc: PropertyDescriptor) {
   const original = desc.value;
   desc.value = function (...args: any[]) {
@@ -284,7 +284,7 @@ class Calculator {
 
 const calc = new Calculator();
 calc.add(2, 3);
-calc.multiply(4, 5);'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+calc.multiply(4, 5);'''..language='typescript'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_015'..topicId='typescript'..title='Promise and Async/Await'..description='Async functions return Promises with full type safety on resolved and rejected values.'..code='''interface ApiData {
   id: number;
   title: string;
@@ -314,7 +314,7 @@ async function safeFetch(url: string): Promise<Result<ApiData>> {
   } catch (e) {
     return { ok: false, error: e as Error };
   }
-}'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='typescript'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_016'..topicId='typescript'..title='Utility Types Deep Dive'..description='Advanced utility types: Extract, Exclude, Parameters, ConstructorParameters, InstanceType.'..code='''type EventMap = {
   click: { x: number; y: number };
   keydown: { key: string; code: number };
@@ -345,7 +345,7 @@ function on<K extends EventNames>(
   console.log(\x60Registered handler for \${event}\x60);
 }
 
-on("click", (data) => console.log(data.x, data.y));'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+on("click", (data) => console.log(data.x, data.y));'''..language='typescript'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_017'..topicId='typescript'..title='Generic Constraints'..description='Constrain generics with extends keyword to require specific properties or interfaces.'..code='''interface HasId { id: number; }
 interface HasName { name: string; }
 
@@ -374,7 +374,7 @@ const users = [
 ];
 
 console.log(getById(users, 2));
-console.log(sortByName(users));'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(sortByName(users));'''..language='typescript'..difficulty='medium'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_018'..topicId='typescript'..title='Discriminated Unions'..description='Tagged unions use a common literal property to discriminate between variants for type-safe handling.'..code='''interface Circle { kind: "circle"; radius: number; }
 interface Rectangle { kind: "rectangle"; width: number; height: number; }
 interface Triangle { kind: "triangle"; base: number; height: number; }
@@ -398,7 +398,7 @@ const shapes: Shape[] = [
   { kind: "circle", radius: 5 },
   { kind: "rectangle", width: 4, height: 6 },
 ];
-shapes.forEach(s => console.log(\x60\${s.kind}: \${area(s).toFixed(2)}\x60));'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+shapes.forEach(s => console.log(\x60\${s.kind}: \${area(s).toFixed(2)}\x60));'''..language='typescript'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_019'..topicId='typescript'..title='Module Patterns'..description='TypeScript modules with named exports, default exports, re-exports, and namespace patterns.'..code='''// math.ts
 export const PI = 3.14159;
 export function add(a: number, b: number): number { return a + b; }
@@ -426,7 +426,7 @@ namespace Validators {
   }
 }
 
-console.log(Validators.isEmail("test@example.com"));'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(Validators.isEmail("test@example.com"));'''..language='typescript'..difficulty='medium'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_020'..topicId='typescript'..title='Error Handling Patterns'..description='Type-safe error handling with Result types, custom error classes, and exhaustive error checking.'..code='''class AppError extends Error {
   constructor(
     message: string,
@@ -464,7 +464,7 @@ function handleError(error: AppError): void {
   }
 }
 
-handleError(new NotFoundError("User", 42));'''..language='typescript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+handleError(new NotFoundError("User", 42));'''..language='typescript'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_021'..topicId='typescript'..title='Advanced Generics - Recursive Types'..description='Recursive types model tree structures, nested objects, and JSON-like data with full type safety.'..code='''// JSON type
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
 
@@ -500,7 +500,7 @@ const tree: TreeNode<number> = {
     { value: 3, children: [] },
   ],
 };
-console.log(findInTree(tree, v => v === 4));'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log(findInTree(tree, v => v === 4));'''..language='typescript'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_022'..topicId='typescript'..title='Branded Types'..description='Branded types prevent mixing semantically different values that share the same primitive type.'..code='''type Brand<T, B> = T & { __brand: B };
 type USD = Brand<number, "USD">;
 type EUR = Brand<number, "EUR">;
@@ -524,7 +524,7 @@ function getUser(id: UserId): void {
 const userId = "user-123" as UserId;
 // const orderId = "order-456" as OrderId;
 // getUser(orderId); // Type error!
-getUser(userId);'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+getUser(userId);'''..language='typescript'..difficulty='hard'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_023'..topicId='typescript'..title='Type-Level Programming'..description='Compute types at compile time using recursive conditional types for string manipulation and math.'..code='''// String manipulation at type level
 type Split<S extends string, D extends string> =
   S extends \x60\${infer L}\${D}\${infer R}\x60
@@ -552,7 +552,7 @@ type Tail<T extends any[]> = T extends [any, ...infer R] ? R : never;
 type Last<T extends any[]> = T extends [...any[], infer L] ? L : never;
 
 type H = Head<[1, 2, 3]>;  // 1
-type L = Last<[1, 2, 3]>;  // 3'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+type L = Last<[1, 2, 3]>;  // 3'''..language='typescript'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_024'..topicId='typescript'..title='Pattern: Dependency Injection'..description='Type-safe DI container using interfaces and generics for testable, loosely coupled code.'..code='''interface Logger { log(msg: string): void; }
 interface Database { query(sql: string): Promise<any[]>; }
 
@@ -588,7 +588,7 @@ const container = new Container();
 container.register<Logger>("logger", new ConsoleLogger());
 const logger = container.resolve<Logger>("logger");
 const userService = new UserService(logger);
-console.log(userService.getUser(1));'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log(userService.getUser(1));'''..language='typescript'..difficulty='hard'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_025'..topicId='typescript'..title='Builder Pattern with Types'..description='Type-safe builder that tracks which properties have been set using mapped types.'..code='''type Builder<T, Set extends keyof T = never> = {
   [K in keyof T]-?: (value: T[K]) => Builder<T, Set | K>;
 } & {
@@ -620,7 +620,7 @@ const config = createBuilder<ServerConfig>()
   .port(8080)
   .ssl(true)
   .build();
-console.log(config);'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log(config);'''..language='typescript'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_026'..topicId='typescript'..title='Variadic Tuple Types'..description='Variadic tuple types enable typed spread operations and function composition at the type level.'..code='''// Typed concat
 type Concat<A extends any[], B extends any[]> = [...A, ...B];
 type AB = Concat<[1, 2], [3, 4]>;  // [1, 2, 3, 4]
@@ -646,7 +646,7 @@ function add(a: number, b: number, c: number): number {
 }
 
 const curriedAdd = curry(add);
-console.log(curriedAdd(1)(2)(3));  // 6'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log(curriedAdd(1)(2)(3));  // 6'''..language='typescript'..difficulty='hard'..section='Type System'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_027'..topicId='typescript'..title='Infer in Conditional Types'..description='The infer keyword extracts types from complex structures in conditional type expressions.'..code='''// Extract promise value
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 type A = UnwrapPromise<Promise<string>>;  // string
@@ -671,7 +671,7 @@ interface EventMap {
 type EventHandler<K extends keyof EventMap> =
   EventMap[K] extends (e: infer E) => void ? E : never;
 
-type ClickEvent = EventHandler<"click">;  // MouseEvent'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+type ClickEvent = EventHandler<"click">;  // MouseEvent'''..language='typescript'..difficulty='hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_028'..topicId='typescript'..title='Readonly Deep and Mutable'..description='Create deeply readonly types and convert back to mutable with mapped type manipulation.'..code='''type DeepReadonly<T> = T extends Function
   ? T
   : T extends object
@@ -710,7 +710,7 @@ const config: MutableConfig = {
   cache: { ttl: 60 },
 };
 updateConfig(config);
-console.log(config);'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log(config);'''..language='typescript'..difficulty='hard'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_029'..topicId='typescript'..title='Type-Safe Event Emitter'..description='Generic event emitter with strongly typed event names and payload types.'..code='''type EventMap = Record<string, any>;
 
 class TypedEmitter<Events extends EventMap> {
@@ -741,7 +741,7 @@ const emitter = new TypedEmitter<AppEvents>();
 emitter.on("login", (data) => {
   console.log(\x60User \${data.userId} logged in\x60);
 });
-emitter.emit("login", { userId: "123", timestamp: new Date() });'''..language='typescript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+emitter.emit("login", { userId: "123", timestamp: new Date() });'''..language='typescript'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_030'..topicId='typescript'..title='Satisfies Operator'..description='The satisfies operator validates that an expression matches a type without widening it.'..code='''type Colors = Record<string, [number, number, number] | string>;
 
 const palette = {
@@ -771,7 +771,7 @@ const routes = [
 ] satisfies Route[];
 
 console.log(palette.red[0]);  // 255
-console.log(palette.green.toUpperCase());'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(palette.green.toUpperCase());'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_031'..topicId='typescript'..title='Phantom Types'..description='Phantom types carry type information without runtime representation for compile-time safety.'..code='''declare const __brand: unique symbol;
 type Phantom<T, Brand extends string> = T & { [__brand]: Brand };
 
@@ -795,7 +795,7 @@ const raw = "test@example.com";
 const validated = validateEmail(raw);
 if (validated) {
   sendEmail(validated, "Hi there!");  // OK
-}'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_032'..topicId='typescript'..title='Type-Safe State Machine'..description='Model state machines in the type system so invalid transitions are compile-time errors.'..code='''type States = "idle" | "loading" | "success" | "error";
 
 type Transitions = {
@@ -824,7 +824,7 @@ const success = loading.transition("success");
 const back = success.transition("idle");
 // loading.transition("idle"); // Type error!
 
-console.log(back.getState());'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(back.getState());'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_033'..topicId='typescript'..title='HKT Encoding'..description='Simulate Higher-Kinded Types in TypeScript for functors, monads, and other abstract patterns.'..code='''// HKT encoding using interface merging
 interface URItoKind<A> {
   Array: A[];
@@ -853,7 +853,7 @@ const doubled = arrayFunctor.map([1, 2, 3], x => x * 2);
 const upper = optionFunctor.map("hello" as string | null, s => s.toUpperCase());
 
 console.log(doubled);  // [2, 4, 6]
-console.log(upper);    // "HELLO"'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(upper);    // "HELLO"'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_034'..topicId='typescript'..title='Type-Safe SQL Query Builder'..description='Build SQL queries with compile-time checking of table names, column names, and types.'..code='''interface Schema {
   users: { id: number; name: string; email: string; age: number };
   posts: { id: number; title: string; userId: number };
@@ -902,7 +902,7 @@ const query = from("users")
   .where("age", ">", 18)
   .limit(10)
   .toSQL();
-console.log(query);'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(query);'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_035'..topicId='typescript'..title='Opaque Types with Symbols'..description='Use unique symbols to create truly opaque types that prevent any implicit type conversion.'..code='''declare const UserIdSymbol: unique symbol;
 declare const PostIdSymbol: unique symbol;
 
@@ -921,7 +921,7 @@ const postId = createPostId(1);
 getUser(userId);  // OK
 getPost(postId);  // OK
 // getUser(postId);  // Type error!
-// getUser(1);       // Type error!'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+// getUser(1);       // Type error!'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_036'..topicId='typescript'..title='Module Augmentation'..description='Extend existing modules and interfaces with declaration merging for adding custom properties.'..code='''// Augment Express Request
 declare global {
   namespace Express {
@@ -964,7 +964,7 @@ Array.prototype.groupBy = function<T>(
   }, {} as Record<string, T[]>);
 };
 
-console.log([1, 2, 2, 3, 3].unique());'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log([1, 2, 2, 3, 3].unique());'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_037'..topicId='typescript'..title='Readonly Tuple Inference'..description='Use const assertions and readonly tuples for precise literal type inference.'..code='''// as const for literal types
 const routes = [
   { path: "/", component: "Home" },
@@ -990,7 +990,7 @@ const config = defineConfig([
 type ConfigName = typeof config[number]["name"];
 // "debug" | "port" | "host"
 
-console.log(config[0].name);  // type is "debug"'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(config[0].name);  // type is "debug"'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_038'..topicId='typescript'..title='Covariance and Contravariance'..description='Understanding type variance for safe assignment of generic types with inheritance.'..code='''class Animal { name = "animal"; }
 class Dog extends Animal { breed = "lab"; }
 class Cat extends Animal { color = "black"; }
@@ -1014,7 +1014,7 @@ type ReadonlyBox<out T> = { readonly value: T };
 type WriteBox<in T> = { set(value: T): void };
 
 const dogBox: ReadonlyBox<Dog> = { value: new Dog() };
-const animalBox: ReadonlyBox<Animal> = dogBox; // OK covariant'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+const animalBox: ReadonlyBox<Animal> = dogBox; // OK covariant'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_039'..topicId='typescript'..title='Type-Safe Middleware Chain'..description='Build composable middleware with accumulating context types for request processing pipelines.'..code='''type Context = Record<string, any>;
 type Next = () => Promise<void>;
 type Middleware<In extends Context, Out extends Context> =
@@ -1055,7 +1055,7 @@ const result = new Pipeline()
   })
   .run();
 
-result.then(ctx => console.log(ctx));'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+result.then(ctx => console.log(ctx));'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='ts_040'..topicId='typescript'..title='Nominal Types via Classes'..description='Use private class fields to create nominal types that prevent accidental structural compatibility.'..code='''class Email {
   private readonly __brand = "Email" as const;
   private constructor(public readonly value: string) {}
@@ -1087,6 +1087,6 @@ function sendEmail(to: Email, link: URL): void {
 const email = Email.create("alice@test.com");
 const url = URL.create("https://example.com");
 sendEmail(email, url);
-// sendEmail(url, email);  // Type error!'''..language='typescript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+// sendEmail(url, email);  // Type error!'''..language='typescript'..difficulty='very_hard'..section='Advanced Types'..isSaved=false..lastViewedAt=null,
   ];
 }

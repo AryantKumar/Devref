@@ -21,6 +21,7 @@ import 'snippets_php.dart';
 import 'snippets_csharp.dart';
 import 'package:flutter/foundation.dart';
 import 'snippets_ruby.dart';
+import 'snippets_ml.dart';
 
 List<dynamic> _gatherSnippets(dynamic _) {
   return <dynamic>[
@@ -41,11 +42,12 @@ List<dynamic> _gatherSnippets(dynamic _) {
     ...getPhpSnippets(),
     ...getCsharpSnippets(),
     ...getRubySnippets(),
+    ...getMlSnippets(),
   ];
 }
 
 class SeedManager {
-  static const _seedKey = 'seeded_v5';
+  static const String _seedKey = 'seeded_v6';
 
   static Future<void> seedIfNeeded() async {
     final prefs = await SharedPreferences.getInstance();
@@ -53,7 +55,7 @@ class SeedManager {
 
     final isar = await IsarDatasource.instance;
 
-    // Clear existing data before re-seeding (handles version upgrades)
+    // Clear existing data before re-seeding (handles version 3.0 upgrades)
     await isar.writeTxn(() async {
       await isar.snippets.clear();
       await isar.topics.clear();

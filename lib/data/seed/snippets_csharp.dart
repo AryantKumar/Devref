@@ -11,6 +11,7 @@ List<Snippet> getCsharpSnippets() {
       ..code='using System;\\n\\nclass Program {\\n    static void Main() {\\n        Console.WriteLine("Hello Concept ${i}");\\n    }\\n}'
       ..language='csharp'
       ..difficulty=(i % 4 == 0 ? 'very_hard' : (i % 3 == 0 ? 'hard' : (i % 2 == 0 ? 'medium' : 'very_easy')))
+      ..section=(i <= 10 ? 'Introduction to C#' : (i <= 20 ? 'Classes and LINQ' : (i <= 30 ? 'Async and Collections' : 'Advanced Topics')))
       ..isSaved=false
       ..lastViewedAt=null
     );

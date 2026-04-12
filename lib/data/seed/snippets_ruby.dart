@@ -11,6 +11,7 @@ List<Snippet> getRubySnippets() {
       ..code='def concept_${i}\\n  puts "Concept ${i}"\\nend'
       ..language='ruby'
       ..difficulty=(i % 4 == 0 ? 'very_hard' : (i % 3 == 0 ? 'hard' : (i % 2 == 0 ? 'medium' : 'very_easy')))
+      ..section=(i <= 10 ? 'Introduction to Ruby' : (i <= 20 ? 'Blocks and Methods' : (i <= 30 ? 'Classes and Modules' : 'Advanced Topics')))
       ..isSaved=false
       ..lastViewedAt=null
     );

@@ -4,7 +4,7 @@ List<Snippet> getRustSnippets() {
   return [
     Snippet()..snippetId='rust_001'..topicId='rust'..title='Hello World'..description='Rust programs start from fn main(). println! is a macro for formatted console output.'..code='''fn main() {
     println!("Hello, World!");
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Introduction to Rust'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_002'..topicId='rust'..title='Variables and Mutability'..description='Variables are immutable by default. Use mut for mutability. let supports type inference and shadowing.'..code='''fn main() {
     let name = "Rust";           // immutable
     let mut age = 7;             // mutable
@@ -20,7 +20,7 @@ List<Snippet> getRustSnippets() {
     let x = x + 1;
     let x = x * 2;
     println!("x = {x}");
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_003'..topicId='rust'..title='Ownership and Borrowing'..description='Rust ownership rules: each value has one owner, values are dropped when owner goes out of scope.'..code='''fn main() {
     // Ownership transfer (move)
     let s1 = String::from("hello");
@@ -46,7 +46,7 @@ fn calculate_length(s: &String) -> usize {
 }
 fn change(s: &mut String) {
     s.push_str(", world!");
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_004'..topicId='rust'..title='Structs'..description='Structs group related data. impl blocks add methods. Derive macros auto-generate common traits.'..code='''#[derive(Debug)]
 struct Point {
     x: f64,
@@ -68,7 +68,7 @@ fn main() {
     let p2 = Point::new(3.0, 4.0);
     println!("Distance: {:.2}", p1.distance(&p2));
     println!("{:?}", p1);
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_005'..topicId='rust'..title='Enums and Pattern Matching'..description='Rust enums can hold data. Match expressions must be exhaustive, covering all variants.'..code='''enum Shape {
     Circle(f64),
     Rectangle(f64, f64),
@@ -94,7 +94,7 @@ fn main() {
     for s in &shapes {
         println!("Area: {:.2}", s.area());
     }
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_006'..topicId='rust'..title='Vectors'..description='Vec<T> is a growable array type. Supports push, pop, indexing, iteration, and slicing.'..code='''fn main() {
     let mut nums = vec![1, 2, 3, 4, 5];
     nums.push(6);
@@ -115,7 +115,7 @@ fn main() {
         .filter(|x| *x % 2 == 0)
         .collect();
     println!("Evens: {:?}", evens);
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_007'..topicId='rust'..title='String Types'..description='Rust has two string types: String (owned, growable) and &str (borrowed slice). Both are UTF-8.'..code='''fn main() {
     let s = String::from("Hello, World!");
     let slice: &str = &s[0..5];
@@ -138,7 +138,7 @@ fn main() {
     let name = "Rust";
     let greeting = format!("Hello, {name}!");
     println!("{greeting}");
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Structs and Enums'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_008'..topicId='rust'..title='Option and Result'..description='Option<T> handles nullable values. Result<T, E> handles operations that can fail. No null or exceptions.'..code='''fn divide(a: f64, b: f64) -> Result<f64, String> {
     if b == 0.0 {
         Err("Division by zero".to_string())
@@ -168,7 +168,7 @@ fn main() {
     // Unwrap with default
     let val = find_first_even(&[1, 3, 5]).unwrap_or(0);
     println!("Default: {val}");
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_009'..topicId='rust'..title='Control Flow'..description='Rust supports if/else expressions, loop, while, for-in, and if-let for pattern matching.'..code='''fn main() {
     // If as expression
     let x = 5;
@@ -194,7 +194,7 @@ fn main() {
     if let Some(v) = some_val {
         println!("Got: {v}");
     }
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_010'..topicId='rust'..title='HashMaps'..description='HashMap stores key-value pairs with O(1) average lookup. Keys must implement Hash and Eq traits.'..code='''use std::collections::HashMap;
 
 fn main() {
@@ -224,7 +224,7 @@ fn main() {
         *freq.entry(word).or_insert(0) += 1;
     }
     println!("{:?}", freq);
-}'''..language='rust'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_011'..topicId='rust'..title='Traits'..description='Traits define shared behavior. Types implement traits explicitly. Trait bounds constrain generics.'..code='''use std::fmt;
 
 trait Summary {
@@ -262,7 +262,7 @@ fn main() {
     };
     notify(&a);
     println!("{a}");
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Ownership and Borrowing'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_012'..topicId='rust'..title='Generics'..description='Generics enable writing code that works with multiple types while maintaining type safety.'..code='''fn largest<T: PartialOrd>(list: &[T]) -> &T {
     let mut max = &list[0];
     for item in &list[1..] {
@@ -298,7 +298,7 @@ fn main() {
 
     let p = Pair::new(10, 20);
     println!("Larger: {}", p.larger());
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Traits'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_013'..topicId='rust'..title='Error Handling with ?'..description='The ? operator propagates errors concisely. Custom error types with thiserror or manual impl.'..code='''use std::fmt;
 use std::num::ParseIntError;
 
@@ -336,7 +336,7 @@ fn main() {
         Ok(age) => println!("Age: {age}"),
         Err(e) => println!("Error: {e}"),
     }
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_014'..topicId='rust'..title='Closures'..description='Closures capture variables from their environment. They can be Fn, FnMut, or FnOnce.'..code='''fn apply<F: Fn(i32) -> i32>(f: F, x: i32) -> i32 {
     f(x)
 }
@@ -365,7 +365,7 @@ fn main() {
         .map(|x| x * x)
         .sum();
     println!("Sum of even squares: {sum}");
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Structs and Enums'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_015'..topicId='rust'..title='Iterators'..description='Rust iterators are lazy and composable. The Iterator trait requires implementing next().'..code='''struct Counter {
     count: u32,
     max: u32,
@@ -405,7 +405,7 @@ fn main() {
     let v = vec![1, 2, 3, 4, 5];
     let chunks: Vec<&[i32]> = v.chunks(2).collect();
     println!("Chunks: {:?}", chunks);
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_016'..topicId='rust'..title='Lifetimes'..description='Lifetimes prevent dangling references. The borrow checker ensures references are always valid.'..code='''// Lifetime annotation
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
@@ -437,7 +437,7 @@ fn main() {
     let first = novel.split('.').next().unwrap();
     let excerpt = Excerpt { text: first };
     println!("Excerpt: {}", excerpt.text);
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_017'..topicId='rust'..title='Smart Pointers'..description='Box, Rc, Arc, RefCell provide heap allocation, reference counting, and interior mutability.'..code='''use std::rc::Rc;
 use std::cell::RefCell;
 
@@ -473,7 +473,7 @@ fn main() {
     println!("Root: {:?}", root.borrow().value);
     println!("Children: {}", root.borrow().children.len());
     println!("Rc count: {}", Rc::strong_count(&child1));
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Traits'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_018'..topicId='rust'..title='Collections'..description='Rust std collections: Vec, HashMap, HashSet, BTreeMap, VecDeque, LinkedList, BinaryHeap.'..code='''use std::collections::{HashSet, BTreeMap, VecDeque, BinaryHeap};
 
 fn main() {
@@ -501,7 +501,7 @@ fn main() {
     // BinaryHeap (max-heap)
     let mut heap = BinaryHeap::from(vec![3, 1, 4, 1, 5]);
     println!("Max: {:?}", heap.pop());
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Structs and Enums'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_019'..topicId='rust'..title='Modules and Crates'..description='Modules organize code with mod keyword. pub controls visibility. use brings items into scope.'..code='''mod math {
     pub fn add(a: i32, b: i32) -> i32 { a + b }
     pub fn multiply(a: i32, b: i32) -> i32 { a * b }
@@ -532,7 +532,7 @@ fn main() {
     let c = Circle::new(5.0);
     println!("Area: {:.2}", c.area());
     println!("{}", utils::repeat("Ha", 3));
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Ownership and Borrowing'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_020'..topicId='rust'..title='File I/O'..description='std::fs provides file operations. Read/write with error handling using Result and ? operator.'..code='''use std::fs;
 use std::io::{self, BufRead, Write};
 
@@ -559,7 +559,7 @@ fn main() -> io::Result<()> {
     // Cleanup
     fs::remove_file("test.txt")?;
     Ok(())
-}'''..language='rust'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='medium'..section='Traits'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_021'..topicId='rust'..title='Async/Await'..description='Rust async enables non-blocking I/O with zero-cost futures. Requires a runtime like tokio.'..code='''use std::time::Duration;
 // In real code: use tokio;
 
@@ -581,7 +581,7 @@ fn main() {
     // rt.block_on(process());
     println!("Async Rust ready!");
     println!("Use tokio or async-std as runtime");
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_022'..topicId='rust'..title='Threads and Channels'..description='std::thread spawns OS threads. mpsc channels enable message passing between threads.'..code='''use std::thread;
 use std::sync::mpsc;
 use std::time::Duration;
@@ -611,7 +611,7 @@ fn main() {
     }
 
     handle.join().unwrap();
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_023'..topicId='rust'..title='Arc and Mutex'..description='Arc enables shared ownership across threads. Mutex provides mutual exclusion for safe mutation.'..code='''use std::sync::{Arc, Mutex};
 use std::thread;
 
@@ -633,7 +633,7 @@ fn main() {
     }
 
     println!("Counter: {}", *counter.lock().unwrap());
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_024'..topicId='rust'..title='Trait Objects (dyn)'..description='Trait objects enable dynamic dispatch with dyn keyword for runtime polymorphism.'..code='''trait Draw {
     fn draw(&self) -> String;
     fn area(&self) -> f64;
@@ -668,7 +668,7 @@ fn main() {
         println!("{} area={:.2}", s.draw(), s.area());
     }
     println!("Largest: {}", largest_shape(&shapes).draw());
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Structs and Enums'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_025'..topicId='rust'..title='Macros'..description='Declarative macros (macro_rules!) enable metaprogramming with pattern matching on syntax.'..code='''macro_rules! hashmap {
     ( \$( \$key:expr => \$val:expr ),* \$(,)? ) => {{
         let mut map = std::collections::HashMap::new();
@@ -705,7 +705,7 @@ fn main() {
     println!("{:?}", names);
 
     log!(INFO, "App started with {} args", 3);
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_026'..topicId='rust'..title='Builder Pattern'..description='Builder pattern constructs complex objects step by step with method chaining and validation.'..code='''#[derive(Debug)]
 struct Config {
     host: String,
@@ -753,7 +753,7 @@ fn main() {
         .build()
         .unwrap();
     println!("{cfg:?}");
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Ownership and Borrowing'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_027'..topicId='rust'..title='Async Streams'..description='Async iterators using Stream trait for processing asynchronous sequences of values.'..code='''// Simulated async stream pattern
 // Real code uses tokio_stream or futures::Stream
 
@@ -790,7 +790,7 @@ fn main() {
     let stream2 = AsyncIter::new(vec![1, 2, 3, 4, 5]);
     let squared = stream2.map(|x| x * x);
     println!("Squared: {:?}", squared);
-}'''..language='rust'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_028'..topicId='rust'..title='Type State Pattern'..description='Encode state machines in the type system so invalid state transitions are compile-time errors.'..code='''struct Locked;
 struct Unlocked;
 
@@ -826,7 +826,7 @@ fn main() {
     let door = door.unlock();
     door.open();  // OK
     let _door = door.lock();
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_029'..topicId='rust'..title='Procedural-Like Macros'..description='Advanced macro patterns for DSLs, variadic functions, and code generation at compile time.'..code='''// Builder macro
 macro_rules! builder {
     (\$name:ident { \$( \$field:ident : \$type:ty ),* \$(,)? }) => {
@@ -878,7 +878,7 @@ fn main() {
         .workers(4);
     println!("{s:?}");
     println!("{}", Color::Red.as_str());
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_030'..topicId='rust'..title='Zero-Cost Abstractions'..description='Rust iterators compile to the same machine code as hand-written loops with no runtime overhead.'..code='''fn sum_of_squares_loop(n: u64) -> u64 {
     let mut sum = 0u64;
     for i in 0..n {
@@ -903,7 +903,7 @@ fn main() {
     assert_eq!(r1, r2);
     println!("Both produce: {r1}");
     println!("Iterator version compiles to identical assembly!");
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_031'..topicId='rust'..title='Pin and Unpin'..description='Pin prevents moving values in memory, essential for self-referential structs and async futures.'..code='''use std::pin::Pin;
 use std::marker::PhantomPinned;
 
@@ -940,7 +940,7 @@ fn main() {
     let sr = SelfRef::new("Hello Pin!");
     println!("Data: {}", sr.get_data());
     println!("Ptr: {}", sr.get_ptr_data());
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_032'..topicId='rust'..title='Custom Iterator Adaptor'..description='Build custom iterator adaptors that compose with the standard iterator chain.'..code='''struct Windows<I: Iterator> {
     iter: I,
     buf: Vec<I::Item>,
@@ -985,7 +985,7 @@ fn main() {
     for w in &wins {
         println!("{:?}", w);
     }
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_033'..topicId='rust'..title='Newtype Pattern'..description='Newtypes wrap existing types for type safety, preventing accidental misuse of similar types.'..code='''use std::fmt;
 
 struct Meters(f64);
@@ -1022,7 +1022,7 @@ fn main() {
     println!("{d} = {km}");
     println!("Speed: {:.1} km/h", speed(&km, &t));
     // speed(&d, &t);  // Compile error! Type mismatch
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_034'..topicId='rust'..title='Const Generics'..description='Const generics parameterize types by constant values, enabling fixed-size arrays in generic code.'..code='''#[derive(Debug)]
 struct Matrix<const ROWS: usize, const COLS: usize> {
     data: [[f64; COLS]; ROWS],
@@ -1059,7 +1059,7 @@ fn main() {
         [3.0, 4.0],
     ]);
     println!("m[0][1] = {}", m.get(0, 1));
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_035'..topicId='rust'..title='GATs (Generic Associated Types)'..description='GATs allow associated types in traits to be generic, enabling lending iterators and async traits.'..code='''trait Container {
     type Item<'a> where Self: 'a;
     fn get(&self, idx: usize) -> Option<Self::Item<'_>>;
@@ -1092,7 +1092,7 @@ fn main() {
     };
     println!("Container ({} items):", c.len());
     print_all(&c);
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_036'..topicId='rust'..title='Error Handling Crate Pattern'..description='Production error handling with enum variants, From implementations, and Display for user-friendly messages.'..code='''use std::fmt;
 use std::io;
 use std::num::ParseIntError;
@@ -1140,7 +1140,7 @@ fn main() {
         Ok(port) => println!("Port: {port}"),
         Err(e) => println!("Error: {e}"),
     }
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='rust_037'..topicId='rust'..title='Unsafe Rust'..description='Unsafe blocks allow raw pointer manipulation, FFI calls, and mutable statics with programmer guarantees.'..code='''fn main() {
     // Raw pointers
     let mut x = 42;
@@ -1183,6 +1183,6 @@ fn main() {
     let mut v = vec![1, 2, 3, 4, 5];
     let (a, b) = split_at_mut(&mut v, 3);
     println!("{:?} {:?}", a, b);
-}'''..language='rust'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='rust'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

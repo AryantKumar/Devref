@@ -11,6 +11,7 @@ List<Snippet> getPhpSnippets() {
       ..code='<?php\\n\\necho "Hello World ${i}";\\n?>'
       ..language='php'
       ..difficulty=(i % 4 == 0 ? 'very_hard' : (i % 3 == 0 ? 'hard' : (i % 2 == 0 ? 'medium' : 'very_easy')))
+      ..section=(i <= 10 ? 'Introduction to PHP' : (i <= 20 ? 'Functions and OOP' : (i <= 30 ? 'Web Development' : 'Advanced Topics')))
       ..isSaved=false
       ..lastViewedAt=null
     );

@@ -98,4 +98,22 @@ class IsarSnippetRepository implements ISnippetRepository {
       throw DatabaseException('Failed to fetch snippet count', stackTrace: stack);
     }
   }
+
+  @override
+  Future<List<String>> getSectionsByTopic(String topicId) async {
+    try {
+      return await IsarDatasource.getSectionsByTopic(topicId);
+    } catch (e, stack) {
+      throw DatabaseException('Failed to fetch sections for $topicId', stackTrace: stack);
+    }
+  }
+
+  @override
+  Future<List<Snippet>> getSnippetsBySection(String topicId, String section) async {
+    try {
+      return await IsarDatasource.getSnippetsBySection(topicId, section);
+    } catch (e, stack) {
+      throw DatabaseException('Failed to fetch snippets for section', stackTrace: stack);
+    }
+  }
 }

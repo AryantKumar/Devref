@@ -130,4 +130,26 @@ class IsarDatasource {
     final isar = await instance;
     return isar.snippets.count();
   }
+
+  // ── Sections ──
+  static Future<List<String>> getSectionsByTopic(String topicId) async {
+    final isar = await instance;
+    final snippets = await isar.snippets
+        .filter()
+        .topicIdEqualTo(topicId)
+        .findAll();
+    final sections = snippets.map((s) => s.section).toSet().toList();
+    return sections;
+  }
+
+  static Future<List<Snippet>> getSnippetsBySection(
+      String topicId, String section) async {
+    final isar = await instance;
+    return isar.snippets
+        .filter()
+        .topicIdEqualTo(topicId)
+        .and()
+        .sectionEqualTo(section)
+        .findAll();
+  }
 }

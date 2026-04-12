@@ -1,0 +1,30 @@
+sql_001|Introduction to SQL
+sql_002|Basic Queries
+sql_003|Basic Queries
+sql_004|Filtering Data
+sql_005|Filtering Data
+sql_006|Joins
+sql_007|Joins
+sql_008|Aggregation
+sql_009|Aggregation
+sql_010|Subqueries
+sql_011|Subqueries
+sql_012|Data Modification
+sql_013|Data Modification
+sql_014|Table Management
+sql_015|Table Management
+sql_016|Indexes and Performance
+sql_017|Indexes and Performance
+sql_018|Advanced Queries
+sql_019|Advanced Queries
+sql_020|Advanced Queries
+sql_021|Window Functions
+sql_022|Window Functions
+sql_023|Window Functions
+sql_024|Advanced Queries
+sql_025|Advanced Queries
+sql_026|Advanced Queries
+sql_027|Advanced Queries
+sql_028|Advanced Queries
+sql_029|Advanced Queries
+sql_030|Advanced Queries

@@ -2,7 +2,7 @@ import '../models/snippet.dart';
 
 List<Snippet> getJavaScriptSnippets() {
   return [
-    Snippet()..snippetId='js_001'..topicId='javascript'..title='Hello World'..description='Basic console output in JavaScript.'..code='console.log("Hello, World!");'..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_001'..topicId='javascript'..title='Hello World'..description='Basic console output in JavaScript.'..code='console.log("Hello, World!");'..language='javascript'..difficulty='very_easy'..section='Introduction to JavaScript'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_002'..topicId='javascript'..title='Variables (let, const, var)'..description='let and const are block-scoped; var is function-scoped. const prevents reassignment.'..code='''const name = "JavaScript";
 let version = 2024;
 var legacy = true; // function-scoped
@@ -11,7 +11,7 @@ var legacy = true; // function-scoped
 // name = "JS"; // TypeError
 
 version = 2025; // OK with let
-console.log(`\${name} \${version}`);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(`\${name} \${version}`);'''..language='javascript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_003'..topicId='javascript'..title='Arrow Functions'..description='Arrow functions provide concise syntax for function expressions with lexical this binding.'..code='''const add = (a, b) => a + b;
 const square = x => x * x;
 const greet = name => {
@@ -27,7 +27,7 @@ console.log(greet("JS"));  // Hello, JS!
 const nums = [1, 2, 3, 4, 5];
 const doubled = nums.map(n => n * 2);
 const evens = nums.filter(n => n % 2 === 0);
-console.log(doubled, evens);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(doubled, evens);'''..language='javascript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_004'..topicId='javascript'..title='Template Literals'..description='Template literals enable string interpolation, multi-line strings, and tagged templates.'..code='''const name = "World";
 const age = 25;
 
@@ -49,7 +49,7 @@ function highlight(strings, ...values) {
   return strings.reduce((result, str, i) =>
     result + str + (values[i] ? `**\${values[i]}**` : ""), "");
 }
-console.log(highlight`Hello \${name}, you are \${age}`);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(highlight`Hello \${name}, you are \${age}`);'''..language='javascript'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_005'..topicId='javascript'..title='Destructuring Assignment'..description='Extract values from arrays and objects into distinct variables using destructuring patterns.'..code='''// Array destructuring
 const [a, b, ...rest] = [1, 2, 3, 4, 5];
 console.log(a, b, rest); // 1 2 [3,4,5]
@@ -70,7 +70,7 @@ console.log(street, zip);
 function display({ name, role = "user" }) {
   console.log(`\${name} (\${role})`);
 }
-display({ name: "Bob" });'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+display({ name: "Bob" });'''..language='javascript'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_006'..topicId='javascript'..title='Array Methods (map, filter, reduce)'..description='Core functional array methods for transforming, filtering, and aggregating data.'..code='''const products = [
   { name: "Phone", price: 699, inStock: true },
   { name: "Laptop", price: 1299, inStock: false },
@@ -87,7 +87,7 @@ const anyAvailable = products.some(p => p.inStock);
 console.log("Available:", names);
 console.log("Total:", total);
 console.log("Expensive:", expensive?.name);
-console.log("Any available:", anyAvailable);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log("Any available:", anyAvailable);'''..language='javascript'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_007'..topicId='javascript'..title='Objects and Spread Operator'..description='Create and manipulate objects using shorthand syntax, computed properties, and spread operator.'..code='''const x = 10, y = 20;
 const point = { x, y }; // shorthand
 console.log(point);
@@ -106,7 +106,7 @@ console.log(user);
 const entries = Object.entries(user);
 const keys = Object.keys(user);
 const frozen = Object.freeze({ ...user });
-console.log(entries);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(entries);'''..language='javascript'..difficulty='very_easy'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_008'..topicId='javascript'..title='Classes'..description='ES6 classes provide syntactic sugar over prototypal inheritance with constructor, methods, and extends.'..code='''class Animal {
   constructor(name) {
     this.name = name;
@@ -128,7 +128,7 @@ class Dog extends Animal {
 
 const dog = new Dog("Rex", "Labrador");
 console.log(dog.speak());
-console.log(dog instanceof Animal); // true'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(dog instanceof Animal); // true'''..language='javascript'..difficulty='very_easy'..section='Arrays and Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_009'..topicId='javascript'..title='Optional Chaining & Nullish Coalescing'..description='Safely access deeply nested properties with ?. and provide defaults with ?? operator.'..code='''const user = {
   name: "Alice",
   address: {
@@ -148,7 +148,7 @@ const host = "" ?? "localhost";    // "" (not nullish)
 const count = 0 ?? 42;            // 0 (not nullish)
 const val = undefined ?? "default"; // "default"
 
-console.log(port, host, count, val);'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+console.log(port, host, count, val);'''..language='javascript'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_010'..topicId='javascript'..title='Error Handling (try/catch)'..description='Handle runtime errors with try-catch-finally blocks and custom error types.'..code='''class ValidationError extends Error {
   constructor(field, message) {
     super(message);
@@ -177,9 +177,9 @@ try {
   }
 } finally {
   console.log("Validation complete");
-}'''..language='javascript'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
 
-    // ── Medium (10) ──
+    // â”€â”€ Medium (10) â”€â”€
     Snippet()..snippetId='js_011'..topicId='javascript'..title='Closures'..description='A closure is a function that captures variables from its surrounding lexical scope.'..code='''function createCounter(initial = 0) {
   let count = initial;
   return {
@@ -205,7 +205,7 @@ function createPerson(name) {
     getAge: () => _age,
     birthday: () => { _age++; }
   };
-}'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='medium'..section='Arrays and Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_012'..topicId='javascript'..title='Promises'..description='Promises represent eventual completion or failure of an async operation and enable chaining.'..code='''function fetchUser(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -235,7 +235,7 @@ Promise.all([fetchUser(1), fetchUser(2), fetchUser(3)])
 Promise.allSettled([fetchUser(1), fetchUser(-1)])
   .then(results => results.forEach(r =>
     console.log(r.status, r.value?.name || r.reason?.message)
-  ));'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+  ));'''..language='javascript'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_013'..topicId='javascript'..title='Async/Await'..description='Async/await provides syntactic sugar over Promises for writing asynchronous code that looks synchronous.'..code='''async function fetchData(url) {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP \${response.status}`);
@@ -268,7 +268,7 @@ async function demo() {
     fetchData("/api/user/2"),
     fetchData("/api/posts?userId=2")
   ]);
-}'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='medium'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_014'..topicId='javascript'..title='Map and Set'..description='Map provides key-value storage with any key type; Set stores unique values. Both maintain insertion order.'..code='''// Map
 const userMap = new Map();
 userMap.set("alice", { age: 30, role: "admin" });
@@ -297,7 +297,7 @@ const a = new Set([1, 2, 3]);
 const b = new Set([2, 3, 4]);
 const union = new Set([...a, ...b]);
 const intersection = new Set([...a].filter(x => b.has(x)));
-console.log([...union], [...intersection]);'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log([...union], [...intersection]);'''..language='javascript'..difficulty='medium'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_015'..topicId='javascript'..title='Generators'..description='Generator functions produce sequences of values lazily using yield. They return an iterator.'..code='''function* range(start, end, step = 1) {
   for (let i = start; i < end; i += step) {
     yield i;
@@ -329,7 +329,7 @@ function take(gen, n) {
 }
 
 console.log(take(fibonacci(), 10));
-// [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+// [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]'''..language='javascript'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_016'..topicId='javascript'..title='Iterators and Symbol.iterator'..description='Make any object iterable by implementing the Symbol.iterator protocol for use in for...of loops.'..code='''class Range {
   constructor(start, end) {
     this.start = start;
@@ -361,7 +361,7 @@ console.log([...new Range(10, 15)]);
 
 // Destructuring works
 const [first, second] = new Range(100, 200);
-console.log(first, second); // 100 101'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(first, second); // 100 101'''..language='javascript'..difficulty='medium'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_017'..topicId='javascript'..title='Event Emitter Pattern'..description='Implement a publish-subscribe event system with on, off, once, and emit methods.'..code='''class EventEmitter {
   constructor() {
     this.events = new Map();
@@ -402,7 +402,7 @@ const emitter = new EventEmitter();
 emitter.on("data", d => console.log("Data:", d));
 emitter.once("connect", () => console.log("Connected!"));
 emitter.emit("connect");
-emitter.emit("data", { id: 1 });'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+emitter.emit("data", { id: 1 });'''..language='javascript'..difficulty='medium'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_018'..topicId='javascript'..title='Module Pattern (ESM)'..description='ES Modules provide import/export syntax for organizing code into reusable, encapsulated modules.'..code='''// math.js - Named exports
 export const PI = 3.14159;
 export function add(a, b) { return a + b; }
@@ -430,7 +430,7 @@ async function loadModule(name) {
 
 // Re-export pattern
 // export { add, multiply } from "./math.js";
-// export { default as Logger } from "./logger.js";'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+// export { default as Logger } from "./logger.js";'''..language='javascript'..difficulty='medium'..section='Arrays and Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_019'..topicId='javascript'..title='WeakMap and WeakSet'..description='WeakMap and WeakSet hold weak references, allowing garbage collection of keys when no other references exist.'..code='''// WeakMap for private data
 const privateData = new WeakMap();
 
@@ -464,7 +464,7 @@ function processOnce(obj) {
 
 const item = { id: 1 };
 processOnce(item); // Processing: 1
-processOnce(item); // Already processed: 1'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+processOnce(item); // Already processed: 1'''..language='javascript'..difficulty='medium'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_020'..topicId='javascript'..title='Array and Object Patterns'..description='Advanced patterns: grouping, partitioning, chunking, and deep cloning with modern JavaScript.'..code='''// Group by
 const people = [
   { name: "Alice", dept: "Eng" },
@@ -496,9 +496,9 @@ const [pass, fail] = [1,2,3,4,5,6].reduce(
   ([p, f], n) => n > 3 ? [[...p, n], f] : [p, [...f, n]],
   [[], []]
 );
-console.log(pass, fail);'''..language='javascript'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+console.log(pass, fail);'''..language='javascript'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
 
-    // ── Hard (10) ──
+    // â”€â”€ Hard (10) â”€â”€
     Snippet()..snippetId='js_021'..topicId='javascript'..title='Proxy and Reflect'..description='Proxy intercepts operations on objects (get, set, delete). Reflect provides default behavior methods.'..code='''const validator = {
   set(target, prop, value) {
     if (prop === "age" && typeof value !== "number") {
@@ -529,7 +529,7 @@ user.age = 30;         // OK
 user.name = "Bob";     // OK
 console.log(user.phone); // Warning + undefined
 // user.age = -1;      // RangeError
-// delete user.id;     // Error'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+// delete user.id;     // Error'''..language='javascript'..difficulty='hard'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_022'..topicId='javascript'..title='Event Loop & Microtasks'..description='Understanding the JavaScript event loop, microtask queue (Promises), and macrotask queue (setTimeout).'..code='''console.log("1: Start");
 
 setTimeout(() => console.log("2: setTimeout"), 0);
@@ -557,7 +557,7 @@ console.log("7: End");
 // 1. Synchronous code runs first (1, 7)
 // 2. Microtasks drain completely (3, 5, 4)
 // 3. One macrotask runs (2)
-// 4. rAF runs before paint (6)'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+// 4. rAF runs before paint (6)'''..language='javascript'..difficulty='hard'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_023'..topicId='javascript'..title='Prototype Chain'..description='Deep dive into prototypal inheritance, __proto__, Object.create, and property lookup chain.'..code='''const animal = {
   type: "Animal",
   describe() {
@@ -585,7 +585,7 @@ console.log(myDog.hasOwnProperty("bark"));   // false
 for (const key in myDog) {
   const own = myDog.hasOwnProperty(key) ? "(own)" : "(inherited)";
   console.log(`  \${key}: \${own}`);
-}'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='hard'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_024'..topicId='javascript'..title='Async Iterators'..description='Async iterators enable consuming asynchronous data streams using for-await-of loops.'..code='''async function* fetchPages(baseUrl, maxPages = 5) {
   let page = 1;
   while (page <= maxPages) {
@@ -613,7 +613,7 @@ async function main() {
   console.log(`Total: \${allItems.length} items`);
 }
 
-main();'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+main();'''..language='javascript'..difficulty='hard'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_025'..topicId='javascript'..title='Currying and Partial Application'..description='Transform a multi-argument function into a chain of single-argument functions for flexibility.'..code='''// Manual curry
 const curry = (fn) => {
   const arity = fn.length;
@@ -642,7 +642,7 @@ console.log([1, 2, 3].map(triple)); // [3, 6, 9]
 const log = (level, timestamp, message) =>
   console.log(`[\${level}] \${timestamp}: \${message}`);
 const errorLog = log.bind(null, "ERROR", new Date().toISOString());
-errorLog("Something failed");'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+errorLog("Something failed");'''..language='javascript'..difficulty='hard'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_026'..topicId='javascript'..title='AbortController for Cancellation'..description='Cancel fetch requests and async operations using AbortController and AbortSignal.'..code='''async function fetchWithTimeout(url, timeout = 5000) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -677,7 +677,7 @@ async function raceRequests(urls) {
     controller.abort();
     throw e;
   }
-}'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='hard'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_027'..topicId='javascript'..title='Web Workers'..description='Run CPU-intensive tasks in background threads using Web Workers without blocking the main thread.'..code='''// main.js
 const worker = new Worker("worker.js");
 
@@ -721,7 +721,7 @@ function sieveOfEratosthenes(limit) {
     }
   }
   return [...sieve.entries()].filter(([, v]) => v).map(([i]) => i);
-}'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='hard'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_028'..topicId='javascript'..title='Symbol and Well-Known Symbols'..description='Symbols create unique property keys. Well-known symbols customize object behavior like iteration and conversion.'..code='''const id = Symbol("id");
 const obj = { [id]: 42, name: "test" };
 
@@ -761,7 +761,7 @@ class Money {
 const price = new Money(5, "USD");
 console.log(`Price: \${price}`);  // "5 USD"
 console.log(price + 10);          // 15
-console.log([...price]);           // [1, 1, 1, 1, 1]'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+console.log([...price]);           // [1, 1, 1, 1, 1]'''..language='javascript'..difficulty='hard'..section='Objects and Classes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_029'..topicId='javascript'..title='Private Fields and Static Methods'..description='True private fields with # syntax. Static methods and properties aren\'t accessible from instances.'..code='''class BankAccount {
   #balance;
   #history = [];
@@ -801,7 +801,7 @@ acc.deposit(50);
 acc.withdraw(30);
 console.log(acc.balance); // 120
 console.log(acc.history);
-// acc.#balance; // SyntaxError!'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+// acc.#balance; // SyntaxError!'''..language='javascript'..difficulty='hard'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_030'..topicId='javascript'..title='Memoization'..description='Cache function results to avoid redundant computation for expensive or recursive functions.'..code='''function memoize(fn) {
   const cache = new Map();
   return function (...args) {
@@ -830,9 +830,9 @@ console.timeEnd("fib(40)");
 const fetchUser = memoize(async (id) => {
   const res = await fetch(`/api/users/\${id}`);
   return res.json();
-});'''..language='javascript'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+});'''..language='javascript'..difficulty='hard'..section='Functions'..isSaved=false..lastViewedAt=null,
 
-    // ── Very Hard (10) ──
+    // â”€â”€ Very Hard (10) â”€â”€
     Snippet()..snippetId='js_031'..topicId='javascript'..title='Custom Observable (RxJS-like)'..description='Implement a basic Observable pattern with subscribe, map, filter, and merge operators from scratch.'..code='''class Observable {
   constructor(subscribe) {
     this._subscribe = subscribe;
@@ -883,7 +883,7 @@ const numbers = new Observable(observer => {
 numbers
   .filter(n => n % 2 === 0)
   .map(n => n * 10)
-  .subscribe({ next: v => console.log(v) });'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+  .subscribe({ next: v => console.log(v) });'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_032'..topicId='javascript'..title='Dependency Injection Container'..description='Build a simple IoC container for managing dependencies with singleton and transient lifetimes.'..code='''class Container {
   #registrations = new Map();
   #singletons = new Map();
@@ -931,7 +931,7 @@ container.register("userService", (c) =>
 );
 
 const svc = container.resolve("userService");
-svc.createUser("Alice");'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+svc.createUser("Alice");'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_033'..topicId='javascript'..title='Promise.withResolvers & Advanced Patterns'..description='Advanced Promise patterns including deferred, retry with backoff, and concurrent limiting.'..code='''// Retry with exponential backoff
 async function retryWithBackoff(fn, maxRetries = 3, baseDelay = 100) {
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -977,7 +977,7 @@ const tasks = Array.from({ length: 10 }, (_, i) =>
     return i;
   })
 );
-Promise.all(tasks).then(r => console.log("All done:", r));'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+Promise.all(tasks).then(r => console.log("All done:", r));'''..language='javascript'..difficulty='very_hard'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_034'..topicId='javascript'..title='Reactive State Management'..description='Build a minimal reactive state management system with computed values and subscribers.'..code='''function createStore(initialState) {
   let state = structuredClone(initialState);
   const listeners = new Set();
@@ -1019,7 +1019,7 @@ const store = createStore({ count: 0, items: [] });
 store.addComputed("doubleCount", s => s.count * 2);
 store.subscribe(s => console.log("State:", s));
 store.setState(s => ({ count: s.count + 1 }));
-console.log(store.getComputed("doubleCount")); // 2'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+console.log(store.getComputed("doubleCount")); // 2'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_035'..topicId='javascript'..title='Metaprogramming with Proxy Traps'..description='Use all Proxy handler traps to create a fully observable, validated, and logged object wrapper.'..code='''function createTraced(target, name = "obj") {
   return new Proxy(target, {
     get(target, prop, receiver) {
@@ -1056,7 +1056,7 @@ const data = createTraced({
 
 data.user.name;          // GET obj.user, GET obj.user.name
 data.user.age = 31;      // SET obj.user.age = 31
-"name" in data.user;     // HAS obj.user.name'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+"name" in data.user;     // HAS obj.user.name'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_036'..topicId='javascript'..title='Custom Async Iterator with Backpressure'..description='Implement backpressure-aware async iteration using pull-based data flow.'..code='''class AsyncQueue {
   #queue = [];
   #resolvers = [];
@@ -1108,7 +1108,7 @@ async function main() {
     console.log("Got:", item);
   }
 }
-main();'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+main();'''..language='javascript'..difficulty='very_hard'..section='Async Programming'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_037'..topicId='javascript'..title='Virtual DOM Implementation'..description='Build a minimal virtual DOM with createElement, diff, and patch functions.'..code='''function createElement(type, props = {}, ...children) {
   return { type, props, children: children.flat() };
 }
@@ -1155,7 +1155,7 @@ function diffProps(oldP, newP) {
 
 function diffChildren(oldC, newC) {
   return newC.map((child, i) => diff(oldC[i], child));
-}'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_038'..topicId='javascript'..title='SharedArrayBuffer & Atomics'..description='Share memory between threads using SharedArrayBuffer with atomic operations for thread-safe access.'..code='''// Main thread
 const buffer = new SharedArrayBuffer(1024);
 const view = new Int32Array(buffer);
@@ -1194,7 +1194,7 @@ class AtomicLock {
 // const lock = new AtomicLock(sharedBuffer);
 // lock.lock();
 // // critical section
-// lock.unlock();'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+// lock.unlock();'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_039'..topicId='javascript'..title='FinalizationRegistry & Weak References'..description='Track object garbage collection with FinalizationRegistry and create weak references with WeakRef.'..code='''class ResourceManager {
   #registry;
   #resources = new Map();
@@ -1240,7 +1240,7 @@ let bigData = { data: new Array(10000).fill("x") };
 manager.create("dataset1", bigData);
 console.log("Before:", manager.size);
 bigData = null; // Allow GC
-// After GC runs: "GC collected resource: dataset1"'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+// After GC runs: "GC collected resource: dataset1"'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='js_040'..topicId='javascript'..title='Compile-time Type Guards (JSDoc)'..description='Use JSDoc annotations for TypeScript-like type checking in plain JavaScript with VS Code support.'..code='''/**
  * @typedef {Object} User
  * @property {number} id
@@ -1288,6 +1288,6 @@ async function getUser(id) {
 getUser(1).then(result => {
   if (result.success) console.log(result.data.name);
   else console.error(result.error);
-});'''..language='javascript'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+});'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

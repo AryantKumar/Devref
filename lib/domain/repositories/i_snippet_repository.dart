@@ -12,4 +12,6 @@ abstract class ISnippetRepository {
   Future<List<Snippet>> getRecentlyViewed({int limit = 5});
   Future<void> seedSnippets(List<Snippet> snippets);
   Future<int> snippetCount();
+  Future<List<String>> getSectionsByTopic(String topicId);
+  Future<List<Snippet>> getSnippetsBySection(String topicId, String section);
 }

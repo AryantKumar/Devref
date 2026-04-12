@@ -11,7 +11,7 @@ git config user.email "you@example.com"
 
 # Stage and commit
 git add .
-git commit -m "Initial commit"'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git commit -m "Initial commit"'''..language='bash'..difficulty='very_easy'..section='Introduction to Git'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_002'..topicId='git'..title='Basic Workflow'..description='The daily Git workflow: check status, stage changes, commit, and push.'..code='''# Check status
 git status
 
@@ -25,7 +25,7 @@ git add -A
 git commit -m "feat: add user authentication"
 
 # Push to remote
-git push origin main'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git push origin main'''..language='bash'..difficulty='very_easy'..section='Basic Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_003'..topicId='git'..title='Branching Basics'..description='Create, switch, list, and delete branches for parallel development.'..code='''# Create and switch to new branch
 git checkout -b feature/login
 
@@ -43,7 +43,7 @@ git switch main
 # Delete branch
 git branch -d feature/login        # safe delete
 git branch -D feature/login        # force delete
-git push origin --delete feature/login  # delete remote'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git push origin --delete feature/login  # delete remote'''..language='bash'..difficulty='very_easy'..section='Basic Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_004'..topicId='git'..title='Git Log & History'..description='View commit history with various formatting options.'..code='''# Basic log
 git log
 
@@ -66,7 +66,7 @@ git log --since="2024-01-01" --until="2024-12-31"
 git log --grep="fix"
 
 # Show file changes
-git log --stat'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git log --stat'''..language='bash'..difficulty='very_easy'..section='Basic Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_005'..topicId='git'..title='Git Diff'..description='Compare changes between working directory, staging, and commits.'..code='''# Unstaged changes
 git diff
 
@@ -86,7 +86,7 @@ git diff -- path/to/file.txt
 git diff --stat
 
 # Word-level diff
-git diff --word-diff'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git diff --word-diff'''..language='bash'..difficulty='very_easy'..section='Basic Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_006'..topicId='git'..title='Undoing Changes'..description='Restore files, unstage changes, and undo commits safely.'..code='''# Discard working directory changes
 git restore file.txt
 
@@ -107,7 +107,7 @@ git commit --amend -m "new message"
 
 # Amend last commit with more files
 git add forgotten_file.txt
-git commit --amend --no-edit'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git commit --amend --no-edit'''..language='bash'..difficulty='very_easy'..section='Branching'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_007'..topicId='git'..title='Remote Repositories'..description='Add, manage, and sync with remote repositories.'..code='''# Add remote
 git remote add origin https://github.com/user/repo.git
 
@@ -130,7 +130,7 @@ git push -u origin feature/login
 git remote set-url origin https://new-url.git
 
 # Remove remote
-git remote remove origin'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git remote remove origin'''..language='bash'..difficulty='very_easy'..section='Branching'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_008'..topicId='git'..title='Git Stash'..description='Temporarily save uncommitted changes to switch contexts.'..code='''# Stash changes
 git stash
 
@@ -156,7 +156,7 @@ git stash apply stash@{2}
 git stash drop stash@{0}
 
 # Clear all stashes
-git stash clear'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git stash clear'''..language='bash'..difficulty='very_easy'..section='Branching'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_009'..topicId='git'..title='.gitignore Patterns'..description='Configure which files Git should ignore using glob patterns.'..code='''# .gitignore file
 
 # Compiled files
@@ -191,7 +191,7 @@ Thumbs.db
 
 # Logs
 *.log
-logs/'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+logs/'''..language='bash'..difficulty='very_easy'..section='Branching'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_010'..topicId='git'..title='Cloning & Forking'..description='Copy repositories locally with clone. Fork on GitHub for contributing.'..code='''# Clone repository
 git clone https://github.com/user/repo.git
 
@@ -207,7 +207,7 @@ git clone --depth 1 https://github.com/user/repo.git
 # After forking on GitHub, add upstream
 git remote add upstream https://github.com/original/repo.git
 git fetch upstream
-git merge upstream/main'''..language='bash'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+git merge upstream/main'''..language='bash'..difficulty='very_easy'..section='Remote Repositories'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_011'..topicId='git'..title='Merge Strategies'..description='Combine branches with merge. Handle fast-forward, no-ff, and squash merges.'..code='''# Fast-forward merge (linear history)
 git checkout main
 git merge feature/login
@@ -224,7 +224,7 @@ git merge --abort
 
 # Check if branches are merged
 git branch --merged
-git branch --no-merged'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git branch --no-merged'''..language='bash'..difficulty='medium'..section='Remote Repositories'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_012'..topicId='git'..title='Resolving Merge Conflicts'..description='Handle conflicting changes when merging or rebasing branches.'..code='''# When conflict occurs after merge:
 # 1. See conflicted files
 git status
@@ -249,7 +249,7 @@ git checkout --ours .
 
 # During rebase conflict
 git rebase --continue   # after resolving
-git rebase --abort       # cancel rebase'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git rebase --abort       # cancel rebase'''..language='bash'..difficulty='medium'..section='Undoing Changes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_013'..topicId='git'..title='Git Rebase'..description='Reapply commits on top of another base. Creates linear history.'..code='''# Rebase current branch onto main
 git rebase main
 
@@ -269,7 +269,7 @@ git rebase --onto main feature-base feature-branch
 git pull --rebase origin main
 
 # Configure default pull to rebase
-git config --global pull.rebase true'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git config --global pull.rebase true'''..language='bash'..difficulty='medium'..section='Undoing Changes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_014'..topicId='git'..title='Cherry-Pick'..description='Apply specific commits from one branch to another without merging.'..code='''# Apply a single commit
 git cherry-pick abc123
 
@@ -288,7 +288,7 @@ git cherry-pick --abort       # cancel
 
 # Cherry-pick from another remote
 git fetch upstream
-git cherry-pick upstream/main~3'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git cherry-pick upstream/main~3'''..language='bash'..difficulty='medium'..section='Undoing Changes'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_015'..topicId='git'..title='Tags'..description='Mark specific commits as releases or milestones with lightweight and annotated tags.'..code='''# Create lightweight tag
 git tag v1.0.0
 
@@ -314,7 +314,7 @@ git tag -d v1.0.0
 git push origin --delete v1.0.0
 
 # Checkout tag
-git checkout v1.0.0'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git checkout v1.0.0'''..language='bash'..difficulty='medium'..section='Stashing'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_016'..topicId='git'..title='Git Blame & Bisect'..description='Find who changed what line and binary search for bugs.'..code='''# Blame - show who changed each line
 git blame file.txt
 git blame -L 10,20 file.txt   # specific lines
@@ -334,7 +334,7 @@ git bisect reset   # go back to original HEAD
 
 # Automated bisect with test script
 git bisect start HEAD v1.0.0
-git bisect run ./test.sh'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git bisect run ./test.sh'''..language='bash'..difficulty='medium'..section='Stashing'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_017'..topicId='git'..title='Git Submodules'..description='Include other Git repositories as subdirectories of your project.'..code='''# Add submodule
 git submodule add https://github.com/lib/util.git libs/util
 
@@ -354,7 +354,7 @@ git rm libs/util
 rm -rf .git/modules/libs/util
 
 # Status of submodules
-git submodule status'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git submodule status'''..language='bash'..difficulty='medium'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_018'..topicId='git'..title='Git Aliases'..description='Create shortcuts for frequently used Git commands.'..code='''# Set up aliases
 git config --global alias.co checkout
 git config --global alias.br branch
@@ -374,7 +374,7 @@ git config --global alias.changes "diff --stat"
 git co main
 git lg
 git st
-git undo'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git undo'''..language='bash'..difficulty='medium'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_019'..topicId='git'..title='Conventional Commits'..description='Standardized commit message format for automated changelogs and semantic versioning.'..code='''# Format: <type>(scope): <description>
 
 # Features
@@ -394,7 +394,7 @@ git commit -m "chore: update dependencies"
 git commit -m "perf(query): optimize database joins"
 
 # Breaking change
-git commit -m "feat(api)!: change response format"'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git commit -m "feat(api)!: change response format"'''..language='bash'..difficulty='medium'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_020'..topicId='git'..title='Git Clean & Maintenance'..description='Clean untracked files and optimize repository performance.'..code='''# Preview what would be removed
 git clean -n
 
@@ -420,7 +420,7 @@ git fsck
 git prune
 
 # Check repository size
-git count-objects -vH'''..language='bash'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+git count-objects -vH'''..language='bash'..difficulty='medium'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_021'..topicId='git'..title='Git Worktrees'..description='Work on multiple branches simultaneously without stashing or switching.'..code='''# Create a worktree for another branch
 git worktree add ../project-hotfix hotfix/urgent
 
@@ -441,7 +441,7 @@ git worktree add ../review pr-branch
 cd ../review
 # ... review code ...
 cd ../main-project
-git worktree remove ../review'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git worktree remove ../review'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_022'..topicId='git'..title='Git Reflog'..description='Recovery tool showing all HEAD movements. Recover deleted branches and lost commits.'..code='''# Show reflog
 git reflog
 
@@ -462,7 +462,7 @@ git reflog
 git cherry-pick abc123
 
 # Expire old reflog entries
-git reflog expire --expire=90.days.ago --all'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git reflog expire --expire=90.days.ago --all'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_023'..topicId='git'..title='Git Hooks'..description='Automated scripts that run at specific Git events for enforcement and automation.'..code='''#!/bin/bash
 # .git/hooks/pre-commit
 
@@ -487,7 +487,7 @@ if grep -rn "console.log\\|debugger\\|TODO" --include="*.ts" .; then
   exit 1
 fi
 
-echo "Pre-commit checks passed!"'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+echo "Pre-commit checks passed!"'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_024'..topicId='git'..title='Interactive Staging'..description='Stage specific parts of files (hunks) for precise commits.'..code='''# Interactive staging
 git add -p
 
@@ -511,7 +511,7 @@ git reset -p
 git checkout -p
 
 # Stash specific parts
-git stash push -p -m "partial stash"'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git stash push -p -m "partial stash"'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_025'..topicId='git'..title='Git Rebase Interactive'..description='Rewrite commit history: reorder, squash, edit, split, and drop commits.'..code='''# Interactive rebase last 5 commits
 git rebase -i HEAD~5
 
@@ -537,7 +537,7 @@ git rebase --continue
 
 # Autosquash fixup commits
 git commit --fixup abc123
-git rebase -i --autosquash main'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git rebase -i --autosquash main'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_026'..topicId='git'..title='Git Filter-Branch & BFG'..description='Rewrite entire repository history to remove sensitive data or large files.'..code='''# Remove file from all history (modern way)
 git filter-repo --path secrets.txt --invert-paths
 
@@ -559,7 +559,7 @@ git gc --prune=now --aggressive
 git push --force --all
 git push --force --tags
 
-# Warning: This rewrites ALL commit hashes!'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+# Warning: This rewrites ALL commit hashes!'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_027'..topicId='git'..title='Git Flow Workflow'..description='Branching model with main, develop, feature, release, and hotfix branches.'..code='''# Initialize git flow
 git flow init
 
@@ -583,7 +583,7 @@ git checkout -b feature/login develop
 # ... work ...
 git checkout develop
 git merge --no-ff feature/login
-git branch -d feature/login'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git branch -d feature/login'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_028'..topicId='git'..title='GitHub Pull Request Flow'..description='Fork-and-PR workflow for open source contributions.'..code='''# 1. Fork on GitHub, then clone your fork
 git clone https://github.com/yourusername/project.git
 cd project
@@ -612,7 +612,7 @@ git push origin main
 # 8. Update PR branch if needed
 git checkout fix/typo-readme
 git rebase main
-git push --force-with-lease origin fix/typo-readme'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git push --force-with-lease origin fix/typo-readme'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_029'..topicId='git'..title='Git Sparse Checkout'..description='Check out only specific directories from a large monorepo.'..code='''# Initialize sparse checkout
 git clone --no-checkout https://github.com/big/monorepo.git
 cd monorepo
@@ -633,7 +633,7 @@ git sparse-checkout disable
 # Combine with shallow clone for speed
 git clone --depth 1 --no-checkout https://github.com/big/repo.git
 cd repo
-git sparse-checkout set src/module-a'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git sparse-checkout set src/module-a'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_030'..topicId='git'..title='Git Bundle'..description='Package repository for offline transfer when no network access is available.'..code='''# Create a bundle of entire repo
 git bundle create repo.bundle --all
 
@@ -654,7 +654,7 @@ git bundle list-heads repo.bundle
 
 # Incremental bundles for updates
 git bundle create update-1.bundle --since=2024-01-01
-git bundle create update-2.bundle v1.0..v2.0'''..language='bash'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+git bundle create update-2.bundle v1.0..v2.0'''..language='bash'..difficulty='hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='git_031'..topicId='git'..title='Git Patch Workflow'..description='Create and apply patches for sharing changes via email or files.'..code='''# Create patch from last commit
 git format-patch -1
 
@@ -680,264 +680,21 @@ git apply --check combined.patch
 git am -3 0001-feature.patch
 
 # Reverse a patch
-git apply -R combined.patch'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_032'..topicId='git'..title='Git Subtree'..description='Alternative to submodules. Merge external repos into subdirectories while keeping history.'..code='''# Add subtree
-git subtree add --prefix=libs/util \
-  https://github.com/lib/util.git main --squash
-
-# Pull updates from subtree remote
-git subtree pull --prefix=libs/util \
-  https://github.com/lib/util.git main --squash
-
-# Push changes back to subtree remote
-git subtree push --prefix=libs/util \
-  https://github.com/lib/util.git main
-
-# Split subtree into separate branch
-git subtree split --prefix=libs/util -b util-branch
-
-# Advantages over submodules:
-# - No extra commands for cloners
-# - Code is directly in the repo
-# - No .gitmodules file needed'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_033'..topicId='git'..title='Advanced Git Config'..description='Optimize Git with conditional includes, custom merge drivers, and performance settings.'..code='''# ~/.gitconfig
-
-[user]
-    name = Your Name
-    email = personal@example.com
-
-# Conditional config for work repos
-[includeIf "gitdir:~/work/"]
-    path = ~/.gitconfig-work
-
-[core]
-    autocrlf = input
-    editor = vim
-    pager = delta
-
-[diff]
-    algorithm = histogram
-    colorMoved = default
-
-[merge]
-    conflictstyle = diff3
-    tool = vscode
-
-[pull]
-    rebase = true
-
-[push]
-    autoSetupRemote = true
-    default = current
-
-[init]
-    defaultBranch = main
-
-[rerere]
-    enabled = true
-
-[fetch]
-    prune = true'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_034'..topicId='git'..title='Git Rerere'..description='Reuse Recorded Resolution. Git remembers how you resolved conflicts and auto-resolves next time.'..code='''# Enable rerere
-git config --global rerere.enabled true
-
-# When you resolve a conflict, Git records it
-# Next time same conflict occurs, it auto-resolves!
-
-# See recorded resolutions
-git rerere status
-
-# See diff of what rerere would do
-git rerere diff
-
-# Forget a resolution
-git rerere forget path/to/file
-
-# Manual workflow:
-git merge feature
-# Conflict! Resolve manually...
-git add .
-git commit  # rerere records this resolution
-
-# Later, if same conflict:
-git merge feature2
-# Rerere auto-resolves! Just verify:
-git diff
-git add .
-git commit'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_035'..topicId='git'..title='Git Notes'..description='Attach metadata to commits without changing commit hash. For reviews, CI results, etc.'..code='''# Add note to current commit
-git notes add -m "Reviewed by Alice"
-
-# Add note to specific commit
-git notes add -m "CI passed" abc123
-
-# Show notes
-git log --show-notes
-
-# Edit a note
-git notes edit abc123
-
-# Push notes to remote
-git push origin refs/notes/*
-
-# Fetch notes from remote
-git fetch origin refs/notes/*:refs/notes/*
-
-# Different note namespaces
-git notes --ref=review add -m "LGTM"
-git notes --ref=ci add -m "Build #456 passed"
-
-# List notes
-git notes list
-
-# Remove note
-git notes remove abc123'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_036'..topicId='git'..title='Git Attributes'..description='Per-path settings for diff, merge, export, and line endings.'..code='''# .gitattributes file
-
-# Line endings
-*.txt text eol=lf
-*.bat text eol=crlf
-*.sh text eol=lf
-
-# Binary files
-*.png binary
-*.jpg binary
-*.pdf binary
-
-# Custom diff for certain files
-*.md diff=markdown
-*.csv diff=csv
-
-# Lock files (no merge)
-package-lock.json merge=ours
-yarn.lock merge=ours
-
-# LFS tracking
-*.psd filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text
-
-# Export ignore
-.gitattributes export-ignore
-.gitignore export-ignore
-tests/ export-ignore'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_037'..topicId='git'..title='Git LFS'..description='Large File Storage tracks binary files outside the main repo for better performance.'..code='''# Install Git LFS
-git lfs install
-
-# Track file types
-git lfs track "*.psd"
-git lfs track "*.zip"
-git lfs track "*.mp4"
-git lfs track "assets/**"
-
-# Verify tracking rules
-cat .gitattributes
-
-# Check tracked files
-git lfs ls-files
-
-# Check LFS status
-git lfs status
-
-# Migrate existing files to LFS
-git lfs migrate import --include="*.psd"
-
-# Pull LFS files
-git lfs pull
-
-# Fetch specific files
-git lfs fetch --include="*.psd"
-
-# Show LFS environment
-git lfs env'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_038'..topicId='git'..title='GitHub Actions CI/CD'..description='Automated workflows triggered by Git events for testing, building, and deploying.'..code='''# .github/workflows/ci.yml
-name: CI Pipeline
-
-on:
+git apply -R combined.patch'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_032'..topicId='git'..title='Git Subtree'..description='Alternative to submodules. Merge external repos into subdirectories while keeping history.'..code='''git subtree add --prefix=libs/util \
+  https://github.com/lib/util.git main --squash'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_033'..topicId='git'..title='Advanced Git Config'..description='Optimize Git with conditional includes, custom merge drivers, and performance settings.'..code='''[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_034'..topicId='git'..title='Git Rerere'..description='Reuse Recorded Resolution. Git remembers how you resolved conflicts and auto-resolves next time.'..code='''git config --global rerere.enabled true'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_035'..topicId='git'..title='Git Notes'..description='Attach metadata to commits without changing commit hash. For reviews, CI results, etc.'..code='''git notes add -m "Reviewed by Alice"'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_036'..topicId='git'..title='Git Attributes'..description='Per-path settings for diff, merge, export, and line endings.'..code='''*.txt text eol=lf
+*.png binary'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_037'..topicId='git'..title='Git LFS'..description='Large File Storage tracks binary files outside the main repo for better performance.'..code='''git lfs track "*.psd"'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_038'..topicId='git'..title='GitHub Actions CI/CD'..description='Automated workflows triggered by Git events for testing, building, and deploying.'..code='''on:
   push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run lint
-
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_039'..topicId='git'..title='Git Signing Commits'..description='Cryptographically sign commits with GPG or SSH keys for verification.'..code='''# Generate GPG key
-gpg --full-generate-key
-
-# List keys
-gpg --list-secret-keys --keyid-format=long
-
-# Configure Git to use GPG
-git config --global user.signingkey YOUR_KEY_ID
-git config --global commit.gpgsign true
-
-# Sign a commit
-git commit -S -m "signed commit"
-
-# Sign a tag
-git tag -s v1.0.0 -m "Signed release"
-
-# Verify signed commit
-git verify-commit abc123
-
-# Verify signed tag
-git verify-tag v1.0.0
-
-# SSH signing (Git 2.34+)
-git config --global gpg.format ssh
-git config --global user.signingkey ~/.ssh/id_ed25519.pub
-
-# Show signatures in log
-git log --show-signature'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='git_040'..topicId='git'..title='Advanced Git Debugging'..description='Debug Git issues with trace logging, internal tools, and repository inspection.'..code='''# Enable trace logging
-GIT_TRACE=1 git status
-GIT_TRACE_PERFORMANCE=1 git log
-
-# Debug network issues
-GIT_CURL_VERBOSE=1 git fetch
-GIT_SSH_COMMAND="ssh -vvv" git fetch
-
-# Inspect objects
-git cat-file -t abc123    # type
-git cat-file -p abc123    # content
-git cat-file -s abc123    # size
-
-# List all objects
-git rev-list --all --objects
-
-# Find large objects
-git rev-list --all --objects | \\
-  git cat-file --batch-check | \\
-  sort -k3nr | head -20
-
-# Show dangling objects
-git fsck --unreachable
-
-# Count lines of code per author
-git shortlog -sn --all
-
-# Show file at specific commit
-git show HEAD~3:src/main.ts'''..language='bash'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+    branches: [main]'''..language='bash'..difficulty='very_hard'..section='Remote Repositories'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_039'..topicId='git'..title='Git Signing Commits'..description='Cryptographically sign commits with GPG or SSH keys for verification.'..code='''git config --global commit.gpgsign true'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='git_040'..topicId='git'..title='Advanced Git Debugging'..description='Debug Git issues with trace logging, internal tools, and repository inspection.'..code='''GIT_TRACE=1 git status'''..language='bash'..difficulty='very_hard'..section='Advanced Commands'..isSaved=false..lastViewedAt=null,
   ];
 }
+

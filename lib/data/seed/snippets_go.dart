@@ -6,7 +6,7 @@ List<Snippet> getGoSnippets() {
 import "fmt"
 func main() {
     fmt.Println("Hello, World!")
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Introduction to Go'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_002'..topicId='go'..title='Variables and Types'..description='Go is statically typed with type inference via :=. Basic types: int, float64, string, bool.'..code='''package main
 import "fmt"
 func main() {
@@ -16,7 +16,7 @@ func main() {
     active := true
     fmt.Printf("Name: %s, Age: %d\\n", name, age)
     fmt.Printf("Pi: %.2f, Active: %t\\n", pi, active)
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_003'..topicId='go'..title='Arrays and Slices'..description='Arrays have fixed size. Slices are dynamic views backed by arrays with append, len, and cap.'..code='''package main
 import "fmt"
 func main() {
@@ -28,7 +28,7 @@ func main() {
     fmt.Println("Len:", len(s), "Cap:", cap(s))
     sub := s[1:3]
     fmt.Println("Sub:", sub)
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_004'..topicId='go'..title='If-Else and Switch'..description='Go if statements can include init statements. Switch does not need break and supports multiple matches.'..code='''package main
 import "fmt"
 func main() {
@@ -49,7 +49,7 @@ func main() {
     default:
         fmt.Println("Unknown")
     }
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_005'..topicId='go'..title='For Loops'..description='Go has only one loop keyword: for. It covers traditional, while, range-based, and infinite loops.'..code='''package main
 import "fmt"
 func main() {
@@ -66,7 +66,7 @@ func main() {
         fmt.Println("Count:", count)
         count--
     }
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_006'..topicId='go'..title='Functions'..description='Go functions support multiple return values, named returns, and variadic parameters.'..code='''package main
 import (
     "fmt"
@@ -95,7 +95,7 @@ func main() {
         fmt.Printf("%.2f\\n", result)
     }
     fmt.Println(sum(1, 2, 3, 4, 5))
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_007'..topicId='go'..title='Maps'..description='Maps are hash tables in Go. Use make to create, delete to remove keys, and comma-ok idiom to check existence.'..code='''package main
 import "fmt"
 func main() {
@@ -111,7 +111,7 @@ func main() {
     }
     delete(scores, "Bob")
     fmt.Println("After delete:", scores)
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Structs and Methods'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_008'..topicId='go'..title='Structs'..description='Structs group related data fields. Methods can be defined on struct types with value or pointer receivers.'..code='''package main
 import "fmt"
 type Person struct {
@@ -129,7 +129,7 @@ func main() {
     fmt.Println(p.Greet())
     p.Birthday()
     fmt.Println("After birthday:", p.Age)
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_009'..topicId='go'..title='Pointers'..description='Go pointers hold memory addresses. Use & to get address and * to dereference. No pointer arithmetic.'..code='''package main
 import "fmt"
 func increment(val *int) {
@@ -145,7 +145,7 @@ func main() {
     y := new(int)
     *y = 100
     fmt.Println("New:", *y)
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_010'..topicId='go'..title='Error Handling'..description='Go uses explicit error returns instead of exceptions. Errors are values implementing the error interface.'..code='''package main
 import (
     "errors"
@@ -171,7 +171,7 @@ func main() {
             fmt.Printf("Field: %s, Msg: %s\\n", ve.Field, ve.Message)
         }
     }
-}'''..language='go'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_011'..topicId='go'..title='Interfaces'..description='Go interfaces are satisfied implicitly. Any type implementing all methods satisfies the interface.'..code='''package main
 import (
     "fmt"
@@ -193,7 +193,7 @@ func printShape(s Shape) {
 func main() {
     printShape(Circle{5})
     printShape(Rect{4, 6})
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_012'..topicId='go'..title='Goroutines and Channels'..description='Goroutines are lightweight threads. Channels enable safe communication between goroutines.'..code='''package main
 import (
     "fmt"
@@ -211,7 +211,7 @@ func main() {
     for i := 0; i < 5; i++ {
         fmt.Println(<-ch)
     }
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Interfaces'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_013'..topicId='go'..title='Select Statement'..description='Select multiplexes channel operations, allowing a goroutine to wait on multiple channels.'..code='''package main
 import (
     "fmt"
@@ -238,7 +238,7 @@ func main() {
             fmt.Println("timeout")
         }
     }
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_014'..topicId='go'..title='Defer, Panic, Recover'..description='Defer schedules function calls at return. Panic/recover provide exception-like error handling.'..code='''package main
 import "fmt"
 func safeDiv(a, b int) (result int, err error) {
@@ -266,7 +266,7 @@ func main() {
     } else {
         fmt.Println("Result:", r)
     }
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Structs and Methods'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_015'..topicId='go'..title='Generics (Go 1.18+)'..description='Go generics enable type-parameterized functions and types with type constraints.'..code='''package main
 import (
     "fmt"
@@ -305,7 +305,7 @@ func main() {
     fmt.Println("Popped:", v)
     doubled := Map([]int{1,2,3}, func(n int) int { return n*2 })
     fmt.Println(doubled)
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_016'..topicId='go'..title='JSON Encoding/Decoding'..description='encoding/json marshals structs to JSON and unmarshals JSON to structs using struct tags.'..code='''package main
 import (
     "encoding/json"
@@ -325,7 +325,7 @@ func main() {
     var u2 User
     json.Unmarshal([]byte(jsonStr), &u2)
     fmt.Printf("%+v\\n", u2)
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_017'..topicId='go'..title='HTTP Server'..description='net/http provides a production-ready HTTP server with routing, middleware, and handler functions.'..code='''package main
 import (
     "encoding/json"
@@ -349,7 +349,7 @@ func main() {
     http.HandleFunc("/api", jsonHandler)
     fmt.Println("Server on :8080")
     http.ListenAndServe(":8080", nil)
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Interfaces'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_018'..topicId='go'..title='String Manipulation'..description='strings package provides functions for searching, replacing, splitting, and transforming strings.'..code='''package main
 import (
     "fmt"
@@ -370,7 +370,7 @@ func main() {
         fmt.Fprintf(&b, "%d ", i)
     }
     fmt.Println(b.String())
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Structs and Methods'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_019'..topicId='go'..title='Embedding (Composition)'..description='Go uses struct embedding for composition instead of inheritance. Embedded fields promote their methods.'..code='''package main
 import "fmt"
 type Logger struct{ Prefix string }
@@ -395,7 +395,7 @@ func main() {
     app.Log("Starting")
     result := app.DB.Query("SELECT 1")
     fmt.Println(result)
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Error Handling'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_020'..topicId='go'..title='Testing'..description='Go has a built-in testing framework with go test, table-driven tests, and benchmarks.'..code='''package main
 import (
     "fmt"
@@ -427,7 +427,7 @@ func BenchmarkFib(b *testing.B) {
 func main() {
     fmt.Println("Add:", Add(2, 3))
     fmt.Println("Fib(10):", Fib(10))
-}'''..language='go'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='medium'..section='Interfaces'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_021'..topicId='go'..title='Context Package'..description='context.Context carries deadlines, cancellation signals, and request-scoped values across API boundaries.'..code='''package main
 import (
     "context"
@@ -452,7 +452,7 @@ func main() {
     } else {
         fmt.Println(result)
     }
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_022'..topicId='go'..title='Worker Pool Pattern'..description='Worker pools distribute tasks across a fixed number of goroutines using channels for load balancing.'..code='''package main
 import (
     "fmt"
@@ -482,7 +482,7 @@ func main() {
     for r := range results {
         _ = r
     }
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_023'..topicId='go'..title='Sync Package'..description='sync provides Mutex, RWMutex, Once, WaitGroup, and Map for concurrent programming primitives.'..code='''package main
 import (
     "fmt"
@@ -511,7 +511,7 @@ func main() {
     init := func() { fmt.Println("Init once") }
     once.Do(init)
     once.Do(init) // not called again
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_024'..topicId='go'..title='Reflection'..description='reflect package enables runtime type inspection and dynamic value manipulation.'..code='''package main
 import (
     "fmt"
@@ -537,7 +537,7 @@ func inspect(v interface{}) {
 func main() {
     u := User{"Alice", 30, "alice@test.com"}
     inspect(u)
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Structs and Methods'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_025'..topicId='go'..title='Error Wrapping'..description='Go 1.13+ error wrapping with fmt.Errorf(%w) enables error chains and unwrapping with errors.Is/As.'..code='''package main
 import (
     "errors"
@@ -568,7 +568,7 @@ func main() {
     if errors.As(err, &qe) {
         fmt.Println("Failed query:", qe.Query)
     }
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_026'..topicId='go'..title='Middleware Pattern'..description='HTTP middleware wraps handlers to add cross-cutting concerns like logging, auth, and CORS.'..code='''package main
 import (
     "fmt"
@@ -602,7 +602,7 @@ func main() {
     handler := chain(hello, logging, cors)
     _ = handler
     fmt.Println("Middleware chain ready")
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_027'..topicId='go'..title='Channels Pipeline'..description='Pipeline pattern chains multiple stages of goroutines connected by channels for data processing.'..code='''package main
 import "fmt"
 func generate(nums ...int) <-chan int {
@@ -638,7 +638,7 @@ func main() {
     for n := range evens {
         fmt.Println(n)
     }
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_028'..topicId='go'..title='Rate Limiter'..description='Rate limiting with time.Ticker and buffered channels controls request throughput.'..code='''package main
 import (
     "fmt"
@@ -682,7 +682,7 @@ func main() {
     for i := 0; i < 10; i++ {
         fmt.Printf("Request %d: %t\\n", i, rl.Allow())
     }
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_029'..topicId='go'..title='Fan-Out Fan-In'..description='Fan-out distributes work to multiple goroutines; fan-in merges results back into a single channel.'..code='''package main
 import (
     "fmt"
@@ -725,7 +725,7 @@ func main() {
         fmt.Print(r, " ")
     }
     fmt.Println()
-}'''..language='go'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_030'..topicId='go'..title='Custom Sort Interface'..description='Implement sort.Interface (Len, Less, Swap) for custom sorting logic on any collection.'..code='''package main
 import (
     "fmt"
@@ -754,7 +754,7 @@ func main() {
         return employees[i].Age < employees[j].Age
     })
     fmt.Println("By age:", employees[0].Name)
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_031'..topicId='go'..title='Atomic Operations'..description='sync/atomic provides lock-free thread-safe operations on integers and pointers.'..code='''package main
 import (
     "fmt"
@@ -779,7 +779,7 @@ func main() {
     fmt.Println("Flag:", flag.Load())
     swapped := flag.CompareAndSwap(true, false)
     fmt.Println("Swapped:", swapped, "Value:", flag.Load())
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_032'..topicId='go'..title='Code Generation'..description='go generate runs commands to auto-generate code. Stringer generates String() methods for enums.'..code='''package main
 import "fmt"
 //go:generate stringer -type=Color
@@ -801,7 +801,7 @@ func main() {
     for _, color := range []Color{Red, Green, Blue, Yellow} {
         fmt.Printf("%d -> %s\\n", color, color)
     }
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_033'..topicId='go'..title='Functional Options Pattern'..description='Functional options provide a clean API for configuring structs with optional parameters.'..code='''package main
 import (
     "fmt"
@@ -831,7 +831,7 @@ func main() {
         WithTimeout(60*time.Second),
     )
     fmt.Printf("%+v\\n", s)
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_034'..topicId='go'..title='Plugin System with Interfaces'..description='Build extensible systems using interfaces as plugin contracts with a registry pattern.'..code='''package main
 import "fmt"
 type Plugin interface {
@@ -862,7 +862,7 @@ func main() {
     reg := NewRegistry()
     reg.Register(LogPlugin{})
     reg.Run("logger", map[string]interface{}{"msg": "hello"})
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_035'..topicId='go'..title='Circuit Breaker'..description='Circuit breaker prevents cascading failures by tracking errors and temporarily blocking requests.'..code='''package main
 import (
     "errors"
@@ -917,7 +917,7 @@ func main() {
         err := cb.Execute(func() error { return errors.New("fail") })
         fmt.Printf("Call %d: %v\\n", i, err)
     }
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_036'..topicId='go'..title='Graceful Shutdown'..description='Handle OS signals to gracefully shut down HTTP servers, flushing buffers and closing connections.'..code='''package main
 import (
     "context"
@@ -950,7 +950,7 @@ func main() {
         fmt.Println("Shutdown error:", err)
     }
     fmt.Println("Server stopped")
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_037'..topicId='go'..title='Semaphore Pattern'..description='Use buffered channels as counting semaphores to limit concurrent access to resources.'..code='''package main
 import (
     "fmt"
@@ -980,7 +980,7 @@ func main() {
     }
     wg.Wait()
     fmt.Println("All done")
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_038'..topicId='go'..title='Table-Driven State Machine'..description='Implement state machines using maps of transitions for clean, maintainable control flow.'..code='''package main
 import "fmt"
 type State string
@@ -1026,7 +1026,7 @@ func main() {
     sm.Send(Pause)
     sm.Send(Resume)
     sm.Send(Finish)
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_039'..topicId='go'..title='In-Memory Cache with TTL'..description='Thread-safe cache with time-to-live expiration and automatic cleanup using goroutines.'..code='''package main
 import (
     "fmt"
@@ -1075,7 +1075,7 @@ func main() {
     time.Sleep(3 * time.Second)
     v, ok = cache.Get("key1")
     fmt.Println(v, ok) // expired
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='go_040'..topicId='go'..title='Retry with Exponential Backoff'..description='Retry failed operations with increasing delays, jitter, and maximum attempt limits.'..code='''package main
 import (
     "errors"
@@ -1119,6 +1119,6 @@ func main() {
     } else {
         fmt.Printf("Succeeded on attempt %d\\n", attempt)
     }
-}'''..language='go'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='go'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

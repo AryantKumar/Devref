@@ -47,18 +47,23 @@ const SnippetSchema = CollectionSchema(
       name: r'lastViewedAt',
       type: IsarType.dateTime,
     ),
-    r'snippetId': PropertySchema(
+    r'section': PropertySchema(
       id: 6,
+      name: r'section',
+      type: IsarType.string,
+    ),
+    r'snippetId': PropertySchema(
+      id: 7,
       name: r'snippetId',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'title',
       type: IsarType.string,
     ),
     r'topicId': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'topicId',
       type: IsarType.string,
     )
@@ -107,6 +112,19 @@ const SnippetSchema = CollectionSchema(
           caseSensitive: true,
         )
       ],
+    ),
+    r'section': IndexSchema(
+      id: -7423120261506862699,
+      name: r'section',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'section',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
     )
   },
   links: {},
@@ -127,6 +145,7 @@ int _snippetEstimateSize(
   bytesCount += 3 + object.description.length * 3;
   bytesCount += 3 + object.difficulty.length * 3;
   bytesCount += 3 + object.language.length * 3;
+  bytesCount += 3 + object.section.length * 3;
   bytesCount += 3 + object.snippetId.length * 3;
   bytesCount += 3 + object.title.length * 3;
   bytesCount += 3 + object.topicId.length * 3;
@@ -145,9 +164,10 @@ void _snippetSerialize(
   writer.writeBool(offsets[3], object.isSaved);
   writer.writeString(offsets[4], object.language);
   writer.writeDateTime(offsets[5], object.lastViewedAt);
-  writer.writeString(offsets[6], object.snippetId);
-  writer.writeString(offsets[7], object.title);
-  writer.writeString(offsets[8], object.topicId);
+  writer.writeString(offsets[6], object.section);
+  writer.writeString(offsets[7], object.snippetId);
+  writer.writeString(offsets[8], object.title);
+  writer.writeString(offsets[9], object.topicId);
 }
 
 Snippet _snippetDeserialize(
@@ -164,9 +184,10 @@ Snippet _snippetDeserialize(
   object.isSaved = reader.readBool(offsets[3]);
   object.language = reader.readString(offsets[4]);
   object.lastViewedAt = reader.readDateTimeOrNull(offsets[5]);
-  object.snippetId = reader.readString(offsets[6]);
-  object.title = reader.readString(offsets[7]);
-  object.topicId = reader.readString(offsets[8]);
+  object.section = reader.readString(offsets[6]);
+  object.snippetId = reader.readString(offsets[7]);
+  object.title = reader.readString(offsets[8]);
+  object.topicId = reader.readString(offsets[9]);
   return object;
 }
 
@@ -194,6 +215,8 @@ P _snippetDeserializeProp<P>(
     case 7:
       return (reader.readString(offset)) as P;
     case 8:
+      return (reader.readString(offset)) as P;
+    case 9:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -470,6 +493,51 @@ extension SnippetQueryWhere on QueryBuilder<Snippet, Snippet, QWhereClause> {
               indexName: r'difficulty',
               lower: [],
               upper: [difficulty],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterWhereClause> sectionEqualTo(
+      String section) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'section',
+        value: [section],
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterWhereClause> sectionNotEqualTo(
+      String section) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'section',
+              lower: [],
+              upper: [section],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'section',
+              lower: [section],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'section',
+              lower: [section],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'section',
+              lower: [],
+              upper: [section],
               includeUpper: false,
             ));
       }
@@ -1132,6 +1200,136 @@ extension SnippetQueryFilter
     });
   }
 
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'section',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'section',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'section',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'section',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterFilterCondition> sectionIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'section',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Snippet, Snippet, QAfterFilterCondition> snippetIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1602,6 +1800,18 @@ extension SnippetQuerySortBy on QueryBuilder<Snippet, Snippet, QSortBy> {
     });
   }
 
+  QueryBuilder<Snippet, Snippet, QAfterSortBy> sortBySection() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'section', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterSortBy> sortBySectionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'section', Sort.desc);
+    });
+  }
+
   QueryBuilder<Snippet, Snippet, QAfterSortBy> sortBySnippetId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'snippetId', Sort.asc);
@@ -1725,6 +1935,18 @@ extension SnippetQuerySortThenBy
     });
   }
 
+  QueryBuilder<Snippet, Snippet, QAfterSortBy> thenBySection() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'section', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Snippet, Snippet, QAfterSortBy> thenBySectionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'section', Sort.desc);
+    });
+  }
+
   QueryBuilder<Snippet, Snippet, QAfterSortBy> thenBySnippetId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'snippetId', Sort.asc);
@@ -1804,6 +2026,13 @@ extension SnippetQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Snippet, Snippet, QDistinct> distinctBySection(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'section', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Snippet, Snippet, QDistinct> distinctBySnippetId(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1867,6 +2096,12 @@ extension SnippetQueryProperty
   QueryBuilder<Snippet, DateTime?, QQueryOperations> lastViewedAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastViewedAt');
+    });
+  }
+
+  QueryBuilder<Snippet, String, QQueryOperations> sectionProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'section');
     });
   }
 

@@ -2,13 +2,13 @@ import '../models/snippet.dart';
 
 List<Snippet> getCppSnippets() {
   return [
-    // ── Very Easy (10) ──
+    // â”€â”€ Very Easy (10) â”€â”€
     Snippet()..snippetId='cpp_001'..topicId='cpp'..title='Hello World'..description='The most basic C++ program. Includes iostream for I/O and uses std::cout to print to console.'..code='''#include <iostream>
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Introduction to C++'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_002'..topicId='cpp'..title='Variables and Data Types'..description='C++ is statically typed with primitive types: int, double, char, bool, string, and auto for type inference.'..code='''#include <iostream>
 #include <string>
 
@@ -25,7 +25,7 @@ int main() {
     std::cout << "Price: " << price << "\\n";
     std::cout << "Active: " << std::boolalpha << isActive << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_003'..topicId='cpp'..title='Arrays and Vectors'..description='C-style arrays have fixed size. std::vector is a dynamic array from the STL with automatic memory management.'..code='''#include <iostream>
 #include <vector>
 #include <algorithm>
@@ -47,7 +47,7 @@ int main() {
     }
     std::cout << "\\nSize: " << nums.size() << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_004'..topicId='cpp'..title='If-Else and Switch'..description='Standard conditional branching with if-else chains and switch statements for multi-way decisions.'..code='''#include <iostream>
 #include <string>
 
@@ -72,7 +72,7 @@ int main() {
         default: std::cout << "Other\\n"; break;
     }
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_005'..topicId='cpp'..title='Loops'..description='C++ supports for, while, do-while, and range-based for loops for iterating over collections.'..code='''#include <iostream>
 #include <vector>
 
@@ -95,7 +95,7 @@ int main() {
         std::cout << "Countdown: " << count-- << "\\n";
     }
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_006'..topicId='cpp'..title='Functions'..description='C++ functions support overloading, default parameters, pass-by-reference, and pass-by-value.'..code='''#include <iostream>
 #include <string>
 
@@ -122,7 +122,7 @@ int main() {
 
     std::cout << greet("C++") << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_007'..topicId='cpp'..title='Strings'..description='std::string provides a rich set of methods for string manipulation, searching, and transformation.'..code='''#include <iostream>
 #include <string>
 #include <algorithm>
@@ -148,7 +148,7 @@ int main() {
     std::string full = s + " Welcome!";
     std::cout << full << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_008'..topicId='cpp'..title='Structs and Classes'..description='Classes encapsulate data and behavior with access modifiers (public, private, protected).'..code='''#include <iostream>
 #include <string>
 
@@ -177,7 +177,7 @@ int main() {
     std::cout << p2.getName() << " is "
               << p2.getAge() << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_009'..topicId='cpp'..title='Pointers Basics'..description='Pointers store memory addresses. Use & to get address, * to dereference. Essential for C++ programming.'..code='''#include <iostream>
 
 int main() {
@@ -205,7 +205,7 @@ int main() {
         std::cout << "Null pointer\\n";
     }
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_010'..topicId='cpp'..title='Input/Output'..description='C++ uses cin/cout for console I/O and fstream for file operations with RAII-based resource management.'..code='''#include <iostream>
 #include <fstream>
 #include <string>
@@ -233,9 +233,9 @@ int main() {
     }
     inFile.close();
     return 0;
-}'''..language='cpp'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_easy'..section='Error Handling'..isSaved=false..lastViewedAt=null,
 
-    // ── Medium (10) ──
+    // â”€â”€ Medium (10) â”€â”€
     Snippet()..snippetId='cpp_011'..topicId='cpp'..title='STL Containers'..description='The Standard Template Library provides map, set, unordered_map, stack, queue, and deque containers.'..code='''#include <iostream>
 #include <map>
 #include <set>
@@ -263,8 +263,8 @@ int main() {
     for (const auto& w : words) freq[w]++;
     std::cout << "Freq of a: " << freq["a"] << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='cpp_012'..topicId='cpp'..title='Templates'..description='Templates enable generic programming — writing code that works with any type, resolved at compile time.'..code='''#include <iostream>
+}'''..language='cpp'..difficulty='medium'..section='Pointers and Memory'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='cpp_012'..topicId='cpp'..title='Templates'..description='Templates enable generic programming â€” writing code that works with any type, resolved at compile time.'..code='''#include <iostream>
 #include <vector>
 #include <string>
 
@@ -306,7 +306,7 @@ int main() {
 
     print("Hello", 42, 3.14, true);
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_013'..topicId='cpp'..title='Inheritance and Polymorphism'..description='C++ supports single and multiple inheritance with virtual functions for runtime polymorphism.'..code='''#include <iostream>
 #include <vector>
 #include <memory>
@@ -345,7 +345,7 @@ int main() {
                   << s->area() << "\\n";
     }
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_014'..topicId='cpp'..title='Smart Pointers'..description='Smart pointers (unique_ptr, shared_ptr, weak_ptr) provide automatic memory management with RAII.'..code='''#include <iostream>
 #include <memory>
 
@@ -360,13 +360,13 @@ public:
 };
 
 int main() {
-    // unique_ptr — exclusive ownership
+    // unique_ptr â€” exclusive ownership
     auto u1 = std::make_unique<Resource>("Unique");
     u1->use();
     // auto u2 = u1;  // ERROR: can not copy
     auto u2 = std::move(u1);  // OK: transfer ownership
 
-    // shared_ptr — shared ownership
+    // shared_ptr â€” shared ownership
     auto s1 = std::make_shared<Resource>("Shared");
     {
         auto s2 = s1;  // ref count = 2
@@ -374,13 +374,13 @@ int main() {
     }  // s2 destroyed, ref count = 1
     std::cout << "Count: " << s1.use_count() << "\\n";
 
-    // weak_ptr — non-owning observer
+    // weak_ptr â€” non-owning observer
     std::weak_ptr<Resource> w = s1;
     if (auto locked = w.lock()) {
         locked->use();
     }
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_015'..topicId='cpp'..title='Lambda Expressions'..description='C++ lambdas create anonymous functions with capture clauses for enclosing scope variables.'..code='''#include <iostream>
 #include <vector>
 #include <algorithm>
@@ -416,7 +416,7 @@ int main() {
     std::cout << multiply(3, 4) << "\\n";
     std::cout << multiply(2.5, 4.0) << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_016'..topicId='cpp'..title='Exception Handling'..description='C++ exceptions with try-catch blocks and custom exception classes derived from std::exception.'..code='''#include <iostream>
 #include <stdexcept>
 #include <string>
@@ -447,7 +447,7 @@ int main() {
         std::cerr << "Unknown error\\n";
     }
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_017'..topicId='cpp'..title='Operator Overloading'..description='C++ allows overloading operators to define custom behavior for user-defined types.'..code='''#include <iostream>
 
 class Vector2D {
@@ -481,7 +481,7 @@ int main() {
     std::cout << "a * 3 = " << d << "\\n";
     std::cout << "a == b: " << (a == b) << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_018'..topicId='cpp'..title='Iterators and Algorithms'..description='STL iterators provide a uniform interface for traversing containers. Algorithms work with iterator ranges.'..code='''#include <iostream>
 #include <vector>
 #include <algorithm>
@@ -516,8 +516,8 @@ int main() {
     for (int n : squared) std::cout << n << " ";
     std::cout << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='cpp_019'..topicId='cpp'..title='RAII Pattern'..description='Resource Acquisition Is Initialization — tie resource lifetime to object lifetime for exception safety.'..code='''#include <iostream>
+}'''..language='cpp'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='cpp_019'..topicId='cpp'..title='RAII Pattern'..description='Resource Acquisition Is Initialization â€” tie resource lifetime to object lifetime for exception safety.'..code='''#include <iostream>
 #include <fstream>
 #include <mutex>
 #include <string>
@@ -559,7 +559,7 @@ int main() {
     }
     safeOperation();
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Pointers and Memory'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_020'..topicId='cpp'..title='Enums and Constants'..description='Scoped enums (enum class) provide type-safe enumerations. constexpr enables compile-time computation.'..code='''#include <iostream>
 #include <string>
 
@@ -576,7 +576,7 @@ std::string colorToString(Color c) {
     }
 }
 
-// constexpr — compile-time computation
+// constexpr â€” compile-time computation
 constexpr int factorial(int n) {
     return n <= 1 ? 1 : n * factorial(n - 1);
 }
@@ -594,9 +594,9 @@ int main() {
     constexpr double area = circleArea(5);
     std::cout << "Area: " << area << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='medium'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
 
-    // ── Hard (10) ──
+    // â”€â”€ Hard (10) â”€â”€
     Snippet()..snippetId='cpp_021'..topicId='cpp'..title='Move Semantics'..description='Move semantics transfer resources from temporary objects efficiently, avoiding unnecessary copies.'..code='''#include <iostream>
 #include <string>
 #include <vector>
@@ -633,7 +633,7 @@ int main() {
     std::cout << "b2 size: " << b2.getSize() << "\\n";
     std::cout << "b1 size: " << b1.getSize() << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Pointers and Memory'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_022'..topicId='cpp'..title='Multithreading'..description='C++11 threading with std::thread, mutex, lock_guard, and condition variables for synchronization.'..code='''#include <iostream>
 #include <thread>
 #include <mutex>
@@ -665,7 +665,7 @@ int main() {
     });
     t.join();
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Templates'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_023'..topicId='cpp'..title='std::optional and std::variant'..description='Optional represents a value that may or may not exist. Variant is a type-safe union.'..code='''#include <iostream>
 #include <optional>
 #include <variant>
@@ -703,7 +703,7 @@ int main() {
     printJson(v1);
     printJson(v2);
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Templates'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_024'..topicId='cpp'..title='Design Pattern: Observer'..description='Observer pattern notifies multiple subscribers when state changes, using templates and function objects.'..code='''#include <iostream>
 #include <vector>
 #include <functional>
@@ -740,7 +740,7 @@ int main() {
     });
     btn.click();
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Classes and Objects'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_025'..topicId='cpp'..title='Concepts (C++20)'..description='Concepts constrain template parameters with readable requirements, replacing SFINAE.'..code='''#include <iostream>
 #include <concepts>
 #include <string>
@@ -780,7 +780,7 @@ int main() {
     std::cout << clamp(3.14, 0.0, 5.0) << "\\n";
     describe(42);
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Templates'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_026'..topicId='cpp'..title='Coroutines (C++20)'..description='C++20 coroutines enable lazy generators and async tasks using co_yield, co_return, and co_await.'..code='''#include <iostream>
 #include <coroutine>
 #include <optional>
@@ -832,7 +832,7 @@ int main() {
     }
     std::cout << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_027'..topicId='cpp'..title='std::ranges (C++20)'..description='Ranges provide composable, lazy views for working with sequences using pipe syntax.'..code='''#include <iostream>
 #include <vector>
 #include <ranges>
@@ -867,7 +867,7 @@ int main() {
     }
     std::cout << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_028'..topicId='cpp'..title='CRTP Pattern'..description='Curiously Recurring Template Pattern enables static polymorphism without virtual function overhead.'..code='''#include <iostream>
 #include <string>
 
@@ -875,7 +875,7 @@ template<typename Derived>
 class Serializable {
 public:
     std::string serialize() {
-        // Static dispatch — no virtual table
+        // Static dispatch â€” no virtual table
         return static_cast<Derived*>(this)->toJson();
     }
     void print() {
@@ -912,9 +912,9 @@ int main() {
     u.print();
     p.print();
     return 0;
-}'''..language='cpp'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='hard'..section='Collections'..isSaved=false..lastViewedAt=null,
 
-    // ── Very Hard (10) ──
+    // â”€â”€ Very Hard (10) â”€â”€
     Snippet()..snippetId='cpp_029'..topicId='cpp'..title='Type Erasure'..description='Type erasure hides concrete types behind a uniform interface, enabling runtime polymorphism without inheritance.'..code='''#include <iostream>
 #include <memory>
 #include <vector>
@@ -950,8 +950,8 @@ int main() {
         item.print();
     }
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='cpp_030'..topicId='cpp'..title='Custom Allocator'..description='Custom allocators control memory allocation strategy for STL containers — pool, arena, or stack allocation.'..code='''#include <iostream>
+}'''..language='cpp'..difficulty='very_hard'..section='Templates'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='cpp_030'..topicId='cpp'..title='Custom Allocator'..description='Custom allocators control memory allocation strategy for STL containers â€” pool, arena, or stack allocation.'..code='''#include <iostream>
 #include <vector>
 #include <cstdlib>
 
@@ -989,7 +989,7 @@ int main() {
     for (int n : nums) std::cout << n << " ";
     std::cout << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_031'..topicId='cpp'..title='Compile-Time Computation'..description='constexpr and template metaprogramming enable complex computations at compile time.'..code='''#include <iostream>
 #include <array>
 
@@ -1025,7 +1025,7 @@ int main() {
                   << table[i] << "\\n";
     }
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_032'..topicId='cpp'..title='Thread Pool'..description='A thread pool manages worker threads and a task queue for efficient concurrent task execution.'..code='''#include <iostream>
 #include <thread>
 #include <mutex>
@@ -1090,7 +1090,7 @@ int main() {
     auto f2 = pool.submit([] { return 3.14; });
     std::cout << f1.get() << " " << f2.get() << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_033'..topicId='cpp'..title='Expression Templates'..description='Expression templates defer computation to avoid temporaries in mathematical expressions.'..code='''#include <iostream>
 #include <vector>
 #include <cassert>
@@ -1152,7 +1152,7 @@ int main() {
         std::cout << result[i] << " ";  // 12 15 18
     std::cout << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_034'..topicId='cpp'..title='Compile-Time String Processing'..description='Using constexpr and template metaprogramming for compile-time string hashing and validation.'..code='''#include <iostream>
 #include <string_view>
 #include <array>
@@ -1199,7 +1199,7 @@ int main() {
     std::cout << handleCommand("stop") << "\\n";
     std::cout << handleCommand("foo") << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_035'..topicId='cpp'..title='std::any and std::function'..description='std::any holds any type-erased value. std::function wraps any callable with a given signature.'..code='''#include <iostream>
 #include <any>
 #include <functional>
@@ -1241,7 +1241,7 @@ int main() {
     bus.emit("click", std::make_pair(100, 200));
     bus.emit("message", std::string("Hello!"));
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_036'..topicId='cpp'..title='Policy-Based Design'..description='Policy classes configure behavior at compile time through template parameters for maximum flexibility.'..code='''#include <iostream>
 #include <string>
 #include <mutex>
@@ -1294,7 +1294,7 @@ int main() {
     Cache<NullLog> silent;
     silent.put("y", 100);
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_037'..topicId='cpp'..title='Fold Expressions'..description='C++17 fold expressions simplify variadic template operations with concise syntax for parameter packs.'..code='''#include <iostream>
 #include <string>
 #include <vector>
@@ -1345,8 +1345,8 @@ int main() {
 
     static_assert(allIntegral<int, long, short>());
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='cpp_038'..topicId='cpp'..title='Modules (C++20)'..description='Modules replace headers with faster, encapsulated compilation units that avoid preprocessor issues.'..code='''// ── math_utils.cppm (module interface) ──
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='cpp_038'..topicId='cpp'..title='Modules (C++20)'..description='Modules replace headers with faster, encapsulated compilation units that avoid preprocessor issues.'..code='''// â”€â”€ math_utils.cppm (module interface) â”€â”€
 // export module math_utils;
 //
 // export namespace math {
@@ -1365,7 +1365,7 @@ int main() {
 //     }
 // }
 
-// ── main.cpp ──
+// â”€â”€ main.cpp â”€â”€
 // import math_utils;
 #include <iostream>
 
@@ -1386,7 +1386,7 @@ int main() {
     std::cout << "Area: " << math::circleArea(5) << "\\n";
     std::cout << "5! = " << math::factorial(5) << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_039'..topicId='cpp'..title='Structured Bindings'..description='C++17 structured bindings allow decomposing objects into named variables for cleaner code.'..code='''#include <iostream>
 #include <map>
 #include <tuple>
@@ -1426,7 +1426,7 @@ int main() {
     std::cout << "Min: " << lo
               << " Max: " << hi << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='cpp_040'..topicId='cpp'..title='Memory-Mapped I/O with mmap'..description='Memory-mapped files provide efficient large file access by mapping file contents directly into virtual memory.'..code='''#include <iostream>
 #include <cstring>
 #include <fstream>
@@ -1475,6 +1475,6 @@ int main() {
     std::cout << "First 20 bytes: "
               << mf.view(0, 20) << "\\n";
     return 0;
-}'''..language='cpp'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='cpp'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

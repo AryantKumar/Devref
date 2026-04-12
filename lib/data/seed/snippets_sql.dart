@@ -18,7 +18,7 @@ SELECT * FROM users ORDER BY name ASC;
 SELECT * FROM users LIMIT 10;
 
 -- Distinct values
-SELECT DISTINCT city FROM users;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+SELECT DISTINCT city FROM users;'''..language='sql'..difficulty='very_easy'..section='Introduction to SQL'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_002'..topicId='sql'..title='WHERE Clauses'..description='Filter rows with comparison, logical, LIKE, IN, BETWEEN, and NULL checks.'..code='''-- Comparison
 SELECT * FROM products WHERE price > 100;
 SELECT * FROM users WHERE status != 'inactive';
@@ -39,7 +39,7 @@ SELECT * FROM users WHERE city IN ('NYC', 'LA', 'Chicago');
 
 -- NULL check
 SELECT * FROM users WHERE phone IS NULL;
-SELECT * FROM users WHERE phone IS NOT NULL;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+SELECT * FROM users WHERE phone IS NOT NULL;'''..language='sql'..difficulty='very_easy'..section='Basic Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_003'..topicId='sql'..title='INSERT, UPDATE, DELETE'..description='Modify data with INSERT for new rows, UPDATE to change existing, DELETE to remove.'..code='''-- Insert single row
 INSERT INTO users (name, email, age)
 VALUES ('Alice', 'alice@example.com', 30);
@@ -55,7 +55,7 @@ UPDATE products SET price = price * 0.9 WHERE category = 'sale';
 
 -- Delete rows
 DELETE FROM users WHERE id = 5;
-DELETE FROM orders WHERE created_at < '2023-01-01';'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+DELETE FROM orders WHERE created_at < '2023-01-01';'''..language='sql'..difficulty='very_easy'..section='Basic Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_004'..topicId='sql'..title='CREATE TABLE'..description='Define table structure with columns, data types, and constraints.'..code='''CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name VARCHAR(100) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE orders (
   total DECIMAL(10, 2) NOT NULL,
   status VARCHAR(20) DEFAULT 'pending',
   FOREIGN KEY (user_id) REFERENCES users(id)
-);'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+);'''..language='sql'..difficulty='very_easy'..section='Filtering Data'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_005'..topicId='sql'..title='Aggregate Functions'..description='COUNT, SUM, AVG, MIN, MAX summarize data across rows.'..code='''-- Count rows
 SELECT COUNT(*) FROM users;
 SELECT COUNT(DISTINCT city) FROM users;
@@ -91,7 +91,7 @@ SELECT
   MIN(total) AS smallest,
   MAX(total) AS largest
 FROM orders
-WHERE status = 'completed';'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+WHERE status = 'completed';'''..language='sql'..difficulty='very_easy'..section='Filtering Data'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_006'..topicId='sql'..title='GROUP BY and HAVING'..description='Group rows by columns and filter groups with HAVING (like WHERE for aggregates).'..code='''-- Count users per city
 SELECT city, COUNT(*) AS user_count
 FROM users
@@ -109,7 +109,7 @@ SELECT YEAR(created_at) AS yr, MONTH(created_at) AS mo,
        COUNT(*) AS orders
 FROM orders
 GROUP BY yr, mo
-ORDER BY yr, mo;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+ORDER BY yr, mo;'''..language='sql'..difficulty='very_easy'..section='Joins'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_007'..topicId='sql'..title='String Functions'..description='Manipulate text with CONCAT, UPPER, LOWER, TRIM, SUBSTRING, LENGTH, REPLACE.'..code='''SELECT
   UPPER(name) AS upper_name,
   LOWER(email) AS lower_email,
@@ -118,7 +118,7 @@ ORDER BY yr, mo;'''..language='sql'..difficulty='very_easy'..isSaved=false..last
   SUBSTRING(email, 1, INSTR(email, '@') - 1) AS username,
   REPLACE(phone, '-', '') AS clean_phone,
   TRIM(name) AS trimmed
-FROM users;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+FROM users;'''..language='sql'..difficulty='very_easy'..section='Joins'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_008'..topicId='sql'..title='Date Functions'..description='Work with dates: extract parts, calculate differences, format output.'..code='''SELECT
   CURRENT_DATE AS today,
   CURRENT_TIMESTAMP AS now,
@@ -139,7 +139,7 @@ FROM users;
 
 -- Filter by date range
 SELECT * FROM orders
-WHERE created_at BETWEEN '2024-01-01' AND '2024-12-31';'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+WHERE created_at BETWEEN '2024-01-01' AND '2024-12-31';'''..language='sql'..difficulty='very_easy'..section='Aggregation'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_009'..topicId='sql'..title='CASE Expression'..description='Conditional logic in queries. Like if-else for SQL columns.'..code='''SELECT name, age,
   CASE
     WHEN age < 13 THEN 'Child'
@@ -163,7 +163,7 @@ ORDER BY
     WHEN 'high' THEN 1
     WHEN 'medium' THEN 2
     WHEN 'low' THEN 3
-  END;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+  END;'''..language='sql'..difficulty='very_easy'..section='Aggregation'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_010'..topicId='sql'..title='ALTER TABLE'..description='Modify existing table structure: add/drop columns, rename, add constraints.'..code='''-- Add column
 ALTER TABLE users ADD COLUMN phone VARCHAR(20);
 
@@ -184,7 +184,7 @@ CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_orders_user ON orders(user_id, created_at);
 
 -- Drop index
-DROP INDEX idx_users_email;'''..language='sql'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+DROP INDEX idx_users_email;'''..language='sql'..difficulty='very_easy'..section='Subqueries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_011'..topicId='sql'..title='JOIN Types'..description='Combine data from multiple tables using INNER, LEFT, RIGHT, and FULL joins.'..code='''-- INNER JOIN (matching rows only)
 SELECT u.name, o.total
 FROM users u
@@ -206,7 +206,7 @@ JOIN products p ON oi.product_id = p.id;
 -- Self join
 SELECT e.name AS employee, m.name AS manager
 FROM employees e
-LEFT JOIN employees m ON e.manager_id = m.id;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+LEFT JOIN employees m ON e.manager_id = m.id;'''..language='sql'..difficulty='medium'..section='Subqueries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_012'..topicId='sql'..title='Subqueries'..description='Nested queries used as values, tables, or conditions within outer queries.'..code='''-- Scalar subquery
 SELECT name, age,
   (SELECT AVG(age) FROM users) AS avg_age
@@ -233,7 +233,7 @@ WHERE avg_age > 25;
 SELECT name, (
   SELECT COUNT(*) FROM orders o WHERE o.user_id = u.id
 ) AS order_count
-FROM users u;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+FROM users u;'''..language='sql'..difficulty='medium'..section='Data Modification'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_013'..topicId='sql'..title='Window Functions'..description='Perform calculations across related rows without grouping. ROW_NUMBER, RANK, LAG, LEAD.'..code='''-- Row number
 SELECT name, city,
   ROW_NUMBER() OVER (ORDER BY age DESC) AS row_num
@@ -259,7 +259,7 @@ FROM monthly_revenue;
 -- NTILE for percentiles
 SELECT name, score,
   NTILE(4) OVER (ORDER BY score DESC) AS quartile
-FROM students;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+FROM students;'''..language='sql'..difficulty='medium'..section='Data Modification'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_014'..topicId='sql'..title='Common Table Expressions (CTE)'..description='WITH clause creates named temporary result sets for readable, modular queries.'..code='''-- Basic CTE
 WITH active_users AS (
   SELECT * FROM users WHERE status = 'active'
@@ -290,7 +290,7 @@ WITH RECURSIVE org_chart AS (
   FROM employees e
   JOIN org_chart oc ON e.manager_id = oc.id
 )
-SELECT * FROM org_chart ORDER BY level;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+SELECT * FROM org_chart ORDER BY level;'''..language='sql'..difficulty='medium'..section='Table Management'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_015'..topicId='sql'..title='UNION and Set Operations'..description='Combine result sets with UNION, INTERSECT, and EXCEPT.'..code='''-- UNION (removes duplicates)
 SELECT name, email FROM customers
 UNION
@@ -309,7 +309,7 @@ SELECT email FROM customers;
 -- EXCEPT (in first but not second)
 SELECT email FROM customers
 EXCEPT
-SELECT email FROM unsubscribed;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+SELECT email FROM unsubscribed;'''..language='sql'..difficulty='medium'..section='Table Management'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_016'..topicId='sql'..title='Views'..description='Virtual tables defined by queries. Simplify complex queries and control data access.'..code='''-- Create view
 CREATE VIEW active_user_orders AS
 SELECT u.name, u.email, o.id AS order_id, o.total
@@ -330,7 +330,7 @@ LEFT JOIN orders o ON u.id = o.user_id
 GROUP BY u.id, u.name;
 
 -- Drop view
-DROP VIEW IF EXISTS active_user_orders;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+DROP VIEW IF EXISTS active_user_orders;'''..language='sql'..difficulty='medium'..section='Indexes and Performance'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_017'..topicId='sql'..title='Indexes and Performance'..description='Create indexes to speed up queries. Understand when indexes help and when they hurt.'..code='''-- Single column index
 CREATE INDEX idx_users_email ON users(email);
 
@@ -353,7 +353,7 @@ CREATE INDEX idx_orders_cover
 ON orders(user_id, status, total);
 
 -- Drop index
-DROP INDEX IF EXISTS idx_users_email;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+DROP INDEX IF EXISTS idx_users_email;'''..language='sql'..difficulty='medium'..section='Indexes and Performance'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_018'..topicId='sql'..title='Transactions'..description='Group operations atomically. All succeed or all fail. ACID properties.'..code='''-- Basic transaction
 BEGIN TRANSACTION;
   UPDATE accounts SET balance = balance - 100 WHERE id = 1;
@@ -376,7 +376,7 @@ BEGIN TRANSACTION;
   INSERT INTO logs (msg) VALUES ('step 2');
   ROLLBACK TO step2;  -- undo step 2 only
   INSERT INTO logs (msg) VALUES ('step 2 retry');
-COMMIT;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+COMMIT;'''..language='sql'..difficulty='medium'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_019'..topicId='sql'..title='COALESCE and NULLIF'..description='Handle NULL values with COALESCE (first non-null) and NULLIF (return null if equal).'..code='''-- COALESCE: first non-null value
 SELECT name,
   COALESCE(phone, email, 'No contact') AS contact
@@ -395,7 +395,7 @@ FROM monthly_stats;  -- avoids division by zero
 -- IIF (inline if)
 SELECT name,
   IIF(age >= 18, 'Adult', 'Minor') AS category
-FROM users;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+FROM users;'''..language='sql'..difficulty='medium'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_020'..topicId='sql'..title='Triggers'..description='Automatically execute code when INSERT, UPDATE, or DELETE occurs on a table.'..code='''-- Audit trigger
 CREATE TRIGGER audit_user_update
 AFTER UPDATE ON users
@@ -421,7 +421,7 @@ BEFORE DELETE ON users
 WHEN OLD.role = 'admin'
 BEGIN
   SELECT RAISE(ABORT, 'Cannot delete admin users');
-END;'''..language='sql'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+END;'''..language='sql'..difficulty='medium'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_021'..topicId='sql'..title='Advanced Window Functions'..description='FIRST_VALUE, LAST_VALUE, NTH_VALUE, and custom frames for advanced analytics.'..code='''-- First and last in group
 SELECT name, department, salary,
   FIRST_VALUE(name) OVER (
@@ -445,7 +445,7 @@ FROM employees;
 -- Dense rank (no gaps)
 SELECT name, score,
   DENSE_RANK() OVER (ORDER BY score DESC) AS rank
-FROM students;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+FROM students;'''..language='sql'..difficulty='hard'..section='Window Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_022'..topicId='sql'..title='Pivot / Crosstab Queries'..description='Transform rows to columns for summary reports using CASE with aggregation.'..code='''-- Monthly revenue by category (pivot)
 SELECT category,
   SUM(CASE WHEN month = 1 THEN revenue ELSE 0 END) AS Jan,
@@ -459,7 +459,7 @@ SELECT
   SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) AS pending,
   SUM(CASE WHEN status='shipped' THEN 1 ELSE 0 END) AS shipped,
   SUM(CASE WHEN status='delivered' THEN 1 ELSE 0 END) AS delivered
-FROM orders;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+FROM orders;'''..language='sql'..difficulty='hard'..section='Window Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_023'..topicId='sql'..title='JSON in SQL'..description='Store and query JSON data within SQL databases.'..code='''-- Create table with JSON column
 CREATE TABLE events (
   id INTEGER PRIMARY KEY,
@@ -487,7 +487,7 @@ FROM users WHERE city = 'NYC';
 
 -- JSON object
 SELECT json_object('name', name, 'age', age)
-FROM users LIMIT 5;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+FROM users LIMIT 5;'''..language='sql'..difficulty='hard'..section='Window Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_024'..topicId='sql'..title='Stored Procedures'..description='Reusable named SQL blocks with parameters, variables, and control flow.'..code='''-- Create procedure (MySQL syntax)
 DELIMITER //
 CREATE PROCEDURE GetUserOrders(IN userId INT)
@@ -517,7 +517,7 @@ END //
 DELIMITER ;
 
 -- Drop procedure
-DROP PROCEDURE IF EXISTS GetUserOrders;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+DROP PROCEDURE IF EXISTS GetUserOrders;'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_025'..topicId='sql'..title='Recursive CTE - Hierarchies'..description='Query hierarchical data like org charts, categories, or threaded comments.'..code='''-- Organization hierarchy
 WITH RECURSIVE org AS (
   -- Base: top-level (CEO)
@@ -545,7 +545,7 @@ WITH RECURSIVE cat_tree AS (
   FROM categories c
   JOIN cat_tree ct ON c.parent_id = ct.id
 )
-SELECT * FROM cat_tree;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+SELECT * FROM cat_tree;'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_026'..topicId='sql'..title='UPSERT (INSERT OR REPLACE)'..description='Insert if not exists, update if exists. Different syntax per database.'..code='''-- SQLite: INSERT OR REPLACE
 INSERT OR REPLACE INTO users (id, name, email)
 VALUES (1, 'Alice', 'alice@new.com');
@@ -566,7 +566,7 @@ SET name = EXCLUDED.name;
 -- MySQL: ON DUPLICATE KEY
 INSERT INTO users (email, name)
 VALUES ('test@test.com', 'Test')
-ON DUPLICATE KEY UPDATE name = VALUES(name);'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+ON DUPLICATE KEY UPDATE name = VALUES(name);'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_027'..topicId='sql'..title='Lateral Joins'..description='Apply a subquery for each row of the outer table. Powerful for top-N-per-group queries.'..code='''-- Top 3 orders per user (PostgreSQL)
 SELECT u.name, t.order_id, t.total
 FROM users u,
@@ -588,7 +588,7 @@ WITH ranked AS (
   JOIN orders o ON u.id = o.user_id
 )
 SELECT name, order_id, total
-FROM ranked WHERE rn <= 3;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+FROM ranked WHERE rn <= 3;'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_028'..topicId='sql'..title='Full-Text Search'..description='Search text content efficiently using FTS indexes instead of LIKE patterns.'..code='''-- SQLite FTS5
 CREATE VIRTUAL TABLE articles_fts USING fts5(title, body);
 
@@ -612,7 +612,7 @@ ORDER BY rank;
 -- Highlight matches
 SELECT highlight(articles_fts, 0, '<b>', '</b>') AS title
 FROM articles_fts
-WHERE articles_fts MATCH 'SQL';'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+WHERE articles_fts MATCH 'SQL';'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_029'..topicId='sql'..title='Materialized Views'..description='Precomputed query results stored as a table for fast reads. Must be refreshed.'..code='''-- PostgreSQL materialized view
 CREATE MATERIALIZED VIEW user_summary AS
 SELECT
@@ -637,7 +637,7 @@ ORDER BY total_spent DESC;
 REFRESH MATERIALIZED VIEW user_summary;
 
 -- Refresh concurrently (no lock)
-REFRESH MATERIALIZED VIEW CONCURRENTLY user_summary;'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+REFRESH MATERIALIZED VIEW CONCURRENTLY user_summary;'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_030'..topicId='sql'..title='Data Migration Patterns'..description='Safe patterns for schema changes and data migration in production.'..code='''-- Add column with default (safe)
 ALTER TABLE users ADD COLUMN role VARCHAR(20) DEFAULT 'user';
 
@@ -657,7 +657,7 @@ FROM users;
 -- Copy data between tables
 INSERT INTO new_users (name, email)
 SELECT name, email FROM old_users
-WHERE status = 'active';'''..language='sql'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+WHERE status = 'active';'''..language='sql'..difficulty='hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='sql_031'..topicId='sql'..title='Query Optimization'..description='Techniques to improve SQL query performance: indexes, covering queries, and anti-patterns.'..code='''-- Bad: function on indexed column
 SELECT * FROM users WHERE LOWER(email) = 'test@test.com';
 -- Good: use expression index or normalize data
@@ -680,213 +680,22 @@ SELECT * FROM users WHERE name LIKE '%alice%';
 
 -- Analyze query plan
 EXPLAIN QUERY PLAN
-SELECT * FROM users WHERE email = 'test@test.com';'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_032'..topicId='sql'..title='Window Frame Specifications'..description='Control which rows are included in window function calculations with ROWS and RANGE.'..code='''-- Rows between
-SELECT date, revenue,
+SELECT * FROM users WHERE email = 'test@test.com';'''..language='sql'..difficulty='very_hard'..section='Indexes and Performance'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_032'..topicId='sql'..title='Window Frame Specifications'..description='Control which rows are included in window function calculations with ROWS and RANGE.'..code='''SELECT date, revenue,
   AVG(revenue) OVER (
     ORDER BY date
     ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-  ) AS weekly_avg,
-  SUM(revenue) OVER (
-    ORDER BY date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS cumulative
-FROM daily_revenue;
-
--- Range between (value-based)
-SELECT date, amount,
-  SUM(amount) OVER (
-    ORDER BY date
-    RANGE BETWEEN INTERVAL '7' DAY PRECEDING AND CURRENT ROW
-  ) AS rolling_7day
-FROM transactions;
-
--- Named window
-SELECT name, dept, salary,
-  AVG(salary) OVER w AS dept_avg,
-  MAX(salary) OVER w AS dept_max
-FROM employees
-WINDOW w AS (PARTITION BY dept);'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_033'..topicId='sql'..title='Normalization Forms'..description='Database normalization from 1NF to 3NF with examples of proper table design.'..code='''-- 1NF: Atomic values, no repeating groups
--- BAD:  users(id, name, phones:"555-1234,555-5678")
--- GOOD:
-CREATE TABLE users (id INT PRIMARY KEY, name TEXT);
-CREATE TABLE phones (id INT PRIMARY KEY, user_id INT, phone TEXT,
-  FOREIGN KEY(user_id) REFERENCES users(id));
-
--- 2NF: No partial dependencies (all non-key depend on full PK)
--- BAD:  order_items(order_id, product_id, product_name, qty)
--- GOOD: product_name depends only on product_id
-CREATE TABLE products (id INT PRIMARY KEY, name TEXT);
-CREATE TABLE order_items (
-  order_id INT, product_id INT, qty INT,
-  PRIMARY KEY(order_id, product_id),
-  FOREIGN KEY(product_id) REFERENCES products(id));
-
--- 3NF: No transitive dependencies
--- BAD:  users(id, name, city, city_population)
--- GOOD: city_population depends on city, not user
-CREATE TABLE cities (name TEXT PRIMARY KEY, population INT);'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_034'..topicId='sql'..title='Partitioning'..description='Split large tables into smaller pieces for improved query performance and maintenance.'..code='''-- Range partitioning (PostgreSQL)
-CREATE TABLE orders (
-  id SERIAL, user_id INT, total DECIMAL,
-  created_at DATE NOT NULL
-) PARTITION BY RANGE (created_at);
-
-CREATE TABLE orders_2024_q1 PARTITION OF orders
-  FOR VALUES FROM ('2024-01-01') TO ('2024-04-01');
-CREATE TABLE orders_2024_q2 PARTITION OF orders
-  FOR VALUES FROM ('2024-04-01') TO ('2024-07-01');
-
--- List partitioning
-CREATE TABLE users (
-  id SERIAL, name TEXT, region TEXT
-) PARTITION BY LIST (region);
-
-CREATE TABLE users_us PARTITION OF users
-  FOR VALUES IN ('US', 'CA');
-CREATE TABLE users_eu PARTITION OF users
-  FOR VALUES IN ('UK', 'DE', 'FR');
-
--- Queries automatically use correct partition
-SELECT * FROM orders WHERE created_at = '2024-03-15';'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_035'..topicId='sql'..title='Row-Level Security'..description='Control which rows users can see or modify based on their identity.'..code='''-- PostgreSQL Row-Level Security
-ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
-
--- Users can only see their own documents
-CREATE POLICY user_docs ON documents
-  FOR SELECT
-  USING (owner_id = current_user_id());
-
--- Admins can see everything
-CREATE POLICY admin_all ON documents
-  FOR ALL
-  USING (current_user_role() = 'admin');
-
--- Department-based access
-CREATE POLICY dept_access ON reports
-  FOR SELECT
-  USING (department = current_user_dept());
-
--- Insert policy
-CREATE POLICY insert_own ON documents
-  FOR INSERT
-  WITH CHECK (owner_id = current_user_id());
-
--- Force RLS for table owners too
-ALTER TABLE documents FORCE ROW LEVEL SECURITY;'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_036'..topicId='sql'..title='GROUPING SETS & CUBE'..description='Generate multiple grouping combinations in a single query for reports.'..code='''-- GROUPING SETS (specific combinations)
-SELECT category, region, SUM(revenue) AS total
-FROM sales
-GROUP BY GROUPING SETS (
-  (category, region),  -- per category per region
-  (category),          -- per category total
-  (region),            -- per region total
-  ()                   -- grand total
-);
-
--- ROLLUP (hierarchical subtotals)
-SELECT year, quarter, month, SUM(revenue)
-FROM sales
-GROUP BY ROLLUP (year, quarter, month);
--- Generates: (y,q,m), (y,q), (y), ()
-
--- CUBE (all combinations)
-SELECT category, region, SUM(revenue)
-FROM sales
-GROUP BY CUBE (category, region);
--- Generates: (c,r), (c), (r), ()'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_037'..topicId='sql'..title='Temporal Tables'..description='Track data changes over time with system-versioned temporal tables.'..code='''-- System-versioned temporal table (SQL Server)
-CREATE TABLE products (
-  id INT PRIMARY KEY,
-  name VARCHAR(100),
-  price DECIMAL(10,2),
-  valid_from DATETIME2 GENERATED ALWAYS AS ROW START,
-  valid_to DATETIME2 GENERATED ALWAYS AS ROW END,
-  PERIOD FOR SYSTEM_TIME (valid_from, valid_to)
-) WITH (SYSTEM_VERSIONING = ON);
-
--- Current data
-SELECT * FROM products;
-
--- Historical data (time travel)
-SELECT * FROM products
-FOR SYSTEM_TIME AS OF '2024-01-01';
-
--- Changes between dates
-SELECT * FROM products
-FOR SYSTEM_TIME BETWEEN '2024-01-01' AND '2024-06-01';
-
--- All versions ever
-SELECT * FROM products
-FOR SYSTEM_TIME ALL
-WHERE id = 1
-ORDER BY valid_from;'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_038'..topicId='sql'..title='Gaps and Islands'..description='Find consecutive sequences (islands) and missing values (gaps) in ordered data.'..code='''-- Find gaps in sequence
-WITH seq AS (
-  SELECT id, LEAD(id) OVER (ORDER BY id) AS next_id
-  FROM products
-)
-SELECT id + 1 AS gap_start, next_id - 1 AS gap_end
-FROM seq
-WHERE next_id - id > 1;
-
--- Find islands (consecutive groups)
-WITH numbered AS (
-  SELECT date, value,
-    date - ROW_NUMBER() OVER (ORDER BY date) * INTERVAL '1 day' AS grp
-  FROM measurements
-  WHERE value > 100
-)
-SELECT MIN(date) AS island_start,
-       MAX(date) AS island_end,
-       COUNT(*) AS days
-FROM numbered
-GROUP BY grp;'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_039'..topicId='sql'..title='Explain and Query Plans'..description='Read and interpret query execution plans to identify performance bottlenecks.'..code='''-- SQLite explain
-EXPLAIN QUERY PLAN
-SELECT u.name, COUNT(o.id)
-FROM users u
-LEFT JOIN orders o ON u.id = o.user_id
-WHERE u.status = 'active'
-GROUP BY u.id;
-
--- Look for:
--- SCAN TABLE = full table scan (bad for large tables)
--- SEARCH TABLE USING INDEX = good
--- USING COVERING INDEX = best (no table lookup)
-
--- PostgreSQL EXPLAIN ANALYZE
-EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
-SELECT * FROM users WHERE email = 'test@test.com';
-
--- Key metrics to watch:
--- Seq Scan vs Index Scan
--- Actual rows vs Estimated rows (>10x = stale stats)
--- Sort method: quicksort vs external merge (memory)
--- Hash Join vs Nested Loop vs Merge Join'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
-    Snippet()..snippetId='sql_040'..topicId='sql'..title='MERGE Statement'..description='Powerful single statement combining INSERT, UPDATE, and DELETE based on join conditions.'..code='''-- MERGE (SQL standard / SQL Server)
-MERGE INTO target_table t
-USING source_table s ON t.id = s.id
-
-WHEN MATCHED AND s.status = 'deleted' THEN
-  DELETE
-
-WHEN MATCHED THEN
-  UPDATE SET
-    t.name = s.name,
-    t.email = s.email,
-    t.updated_at = CURRENT_TIMESTAMP
-
-WHEN NOT MATCHED THEN
-  INSERT (id, name, email, created_at)
-  VALUES (s.id, s.name, s.email, CURRENT_TIMESTAMP);
-
--- PostgreSQL equivalent using ON CONFLICT
-INSERT INTO target (id, name, email)
-SELECT id, name, email FROM source
-ON CONFLICT (id) DO UPDATE SET
-  name = EXCLUDED.name,
-  email = EXCLUDED.email;'''..language='sql'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+  ) AS weekly_avg
+FROM daily_revenue;'''..language='sql'..difficulty='very_hard'..section='Window Functions'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_033'..topicId='sql'..title='Normalization Forms'..description='Database normalization from 1NF to 3NF with examples of proper table design.'..code='''CREATE TABLE users (id INT PRIMARY KEY, name TEXT);
+CREATE TABLE phones (id INT PRIMARY KEY, user_id INT, phone TEXT);'''..language='sql'..difficulty='very_hard'..section='Table Management'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_034'..topicId='sql'..title='Partitioning'..description='Split large tables into smaller pieces for improved query performance and maintenance.'..code='''CREATE TABLE orders (id SERIAL, user_id INT) PARTITION BY RANGE (created_at);'''..language='sql'..difficulty='very_hard'..section='Table Management'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_035'..topicId='sql'..title='Row-Level Security'..description='Control which rows users can see or modify based on their identity.'..code='''ALTER TABLE documents ENABLE ROW LEVEL SECURITY;'''..language='sql'..difficulty='very_hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_036'..topicId='sql'..title='GROUPING SETS & CUBE'..description='Generate multiple grouping combinations in a single query for reports.'..code='''SELECT category, region, SUM(revenue) FROM sales GROUP BY CUBE (category, region);'''..language='sql'..difficulty='very_hard'..section='Aggregation'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_037'..topicId='sql'..title='Temporal Tables'..description='Track data changes over time with system-versioned temporal tables.'..code='''SELECT * FROM products FOR SYSTEM_TIME ALL;'''..language='sql'..difficulty='very_hard'..section='Table Management'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_038'..topicId='sql'..title='Gaps and Islands'..description='Find consecutive sequences (islands) and missing values (gaps) in ordered data.'..code='''WITH seq AS (SELECT id, LEAD(id) OVER (ORDER BY id) AS next_id FROM products)'''..language='sql'..difficulty='very_hard'..section='Advanced Queries'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_039'..topicId='sql'..title='Explain and Query Plans'..description='Read and interpret query execution plans to identify performance bottlenecks.'..code='''EXPLAIN QUERY PLAN SELECT * FROM users;'''..language='sql'..difficulty='very_hard'..section='Indexes and Performance'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='sql_040'..topicId='sql'..title='MERGE Statement'..description='Powerful single statement combining INSERT, UPDATE, and DELETE based on join conditions.'..code='''MERGE INTO target_table t USING source_table s ON t.id = s.id'''..language='sql'..difficulty='very_hard'..section='Data Modification'..isSaved=false..lastViewedAt=null,
   ];
 }
+

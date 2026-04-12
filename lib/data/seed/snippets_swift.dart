@@ -6,7 +6,7 @@ List<Snippet> getSwiftSnippets() {
 
 let name = "Swift"
 var version = 5
-print("\\(name) \\(version)")'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print("\\(name) \\(version)")'''..language='swift'..difficulty='very_easy'..section='Introduction to Swift'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_002'..topicId='swift'..title='Variables and Constants'..description='Use let for constants and var for variables. Swift is type-safe with type inference.'..code='''let name: String = "Swift"
 var age: Int = 10
 let pi = 3.14159           // inferred Double
@@ -18,7 +18,7 @@ optional = "hello"
 print(optional ?? "default")
 
 let (x, y) = (10, 20)     // tuple destructuring
-print("\\(name) \\(age) \\(pi) \\(x),\\(y)")'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print("\\(name) \\(age) \\(pi) \\(x),\\(y)")'''..language='swift'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_003'..topicId='swift'..title='Control Flow'..description='Swift supports if-else, guard, switch with pattern matching, for-in, while, and repeat-while loops.'..code='''let score = 85
 
 // If-else
@@ -44,7 +44,7 @@ default:       print("OK")
 
 // For-in
 for i in 1...5 { print(i, terminator: " ") }
-print()'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print()'''..language='swift'..difficulty='very_easy'..section='Data Types and Variables'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_004'..topicId='swift'..title='Functions'..description='Swift functions support argument labels, default values, variadic params, and multiple return values.'..code='''func greet(_ name: String, with greeting: String = "Hello") -> String {
     return "\\(greeting), \\(name)!"
 }
@@ -68,7 +68,7 @@ if let result = minMax(array: [3, 1, 4, 1, 5]) {
     print("Min: \\(result.min), Max: \\(result.max)")
 }
 print(sum(1, 2, 3, 4, 5))
-print(sorted)'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print(sorted)'''..language='swift'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_005'..topicId='swift'..title='Optionals'..description='Optionals handle the absence of a value. Use if-let, guard-let, optional chaining, and nil coalescing.'..code='''var name: String? = "Alice"
 
 // Optional binding
@@ -97,7 +97,7 @@ print("Length: \\(length ?? 0)")
 
 // Map on optionals
 let upper = name.map { \$0.uppercased() }
-print(upper ?? "nil")'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print(upper ?? "nil")'''..language='swift'..difficulty='very_easy'..section='Conditional Expressions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_006'..topicId='swift'..title='Arrays and Dictionaries'..description='Swift collections are generic and type-safe. Arrays, Dictionaries, and Sets have rich APIs.'..code='''var fruits = ["Apple", "Banana", "Cherry"]
 fruits.append("Date")
 fruits.insert("Avocado", at: 1)
@@ -122,7 +122,7 @@ print("Intersect:", colors.intersection(more))
 let doubled = [1, 2, 3, 4, 5].map { \$0 * 2 }
 let evens = [1, 2, 3, 4, 5].filter { \$0 % 2 == 0 }
 let sum = [1, 2, 3, 4, 5].reduce(0, +)
-print(doubled, evens, sum)'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print(doubled, evens, sum)'''..language='swift'..difficulty='very_easy'..section='Optionals'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_007'..topicId='swift'..title='Structs and Classes'..description='Structs are value types (copied). Classes are reference types (shared). Structs are preferred in Swift.'..code='''struct Point {
     var x: Double
     var y: Double
@@ -151,7 +151,7 @@ print("Distance:", p1.distance(to: p2))
 
 let car = Vehicle(make: "Tesla")
 car.accelerate(by: 60)
-print("\\(car.make): \\(car.speed) mph")'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print("\\(car.make): \\(car.speed) mph")'''..language='swift'..difficulty='very_easy'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_008'..topicId='swift'..title='Enums with Associated Values'..description='Swift enums can carry associated values, computed properties, and methods. Powerful with pattern matching.'..code='''enum NetworkResult {
     case success(data: Data, statusCode: Int)
     case failure(error: String, retryable: Bool)
@@ -177,7 +177,7 @@ print(result.statusMessage)
 
 if case .success(let data, let code) = result {
     print("Got \\(data.count) bytes, status \\(code)")
-}'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_easy'..section='Classes and Structs'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_009'..topicId='swift'..title='String Manipulation'..description='Swift strings are Unicode-correct with rich APIs for searching, transforming, and iterating.'..code='''let s = "Hello, World!"
 print(s.count)
 print(s.uppercased())
@@ -204,7 +204,7 @@ print(msg)
 
 // Character iteration
 for char in "Hello" { print(char, terminator: " ") }
-print()'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print()'''..language='swift'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_010'..topicId='swift'..title='Error Handling'..description='Swift uses throws/try/catch for error handling with typed errors and do-catch blocks.'..code='''enum AppError: Error {
     case notFound(String)
     case validation(field: String, message: String)
@@ -234,7 +234,7 @@ do {
 
 // try? returns optional
 let maybe = try? findUser(id: 999)
-print(maybe ?? "nil")'''..language='swift'..difficulty='very_easy'..isSaved=false..lastViewedAt=null,
+print(maybe ?? "nil")'''..language='swift'..difficulty='very_easy'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_011'..topicId='swift'..title='Protocols'..description='Protocols define contracts. Types conform to protocols. Protocol extensions provide default implementations.'..code='''protocol Drawable {
     func draw() -> String
     var area: Double { get }
@@ -263,7 +263,7 @@ extension Drawable {
 }
 
 let shapes: [Drawable] = [Circle(radius: 5), Rectangle(width: 4, height: 6)]
-shapes.forEach { print(\$0.describe()) }'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+shapes.forEach { print(\$0.describe()) }'''..language='swift'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_012'..topicId='swift'..title='Generics'..description='Swift generics enable type-safe reusable code with type constraints and associated types.'..code='''func findMax<T: Comparable>(_ array: [T]) -> T? {
     guard !array.isEmpty else { return nil }
     return array.max()
@@ -289,7 +289,7 @@ print("Pop:", stack.pop() ?? 0)
 print("Peek:", stack.peek ?? 0)
 
 print(findMax([3, 1, 4, 1, 5]) ?? 0)
-print(sorted(["cherry", "apple", "banana"]))'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print(sorted(["cherry", "apple", "banana"]))'''..language='swift'..difficulty='medium'..section='Protocols'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_013'..topicId='swift'..title='Closures and Higher-Order Functions'..description='Closures are self-contained blocks of functionality. They capture and store references to variables.'..code='''// Trailing closure syntax
 let numbers = [5, 3, 8, 1, 9, 2]
 let sorted = numbers.sorted { \$0 < \$1 }
@@ -319,7 +319,7 @@ func delayed(_ action: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         action()
     }
-}'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_014'..topicId='swift'..title='Extensions'..description='Extensions add new functionality to existing types including computed properties, methods, and conformance.'..code='''extension Int {
     var isEven: Bool { self % 2 == 0 }
     var squared: Int { self * self }
@@ -346,7 +346,7 @@ print(5.squared)           // 25
 3.times { print("Go \\(\$0)") }
 print("test@mail.com".isEmail)
 print("Hello World".truncated(to: 5))
-print([1, 2, 3, 4, 5].sum)'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print([1, 2, 3, 4, 5].sum)'''..language='swift'..difficulty='medium'..section='Classes and Structs'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_015'..topicId='swift'..title='Property Wrappers'..description='Property wrappers encapsulate property access patterns like clamping, validation, or lazy init.'..code='''@propertyWrapper
 struct Clamped {
     var wrappedValue: Int {
@@ -381,7 +381,7 @@ print(player.name)     // "Alice"
 player.health = 150
 print(player.health)   // 100
 player.health = -10
-print(player.health)   // 0'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print(player.health)   // 0'''..language='swift'..difficulty='medium'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_016'..topicId='swift'..title='Async/Await and Structured Concurrency'..description='Swift async/await provides structured concurrency with async let, TaskGroup, and actors.'..code='''func fetchUser(id: Int) async throws -> String {
     try await Task.sleep(nanoseconds: 100_000_000)
     return "User_\\(id)"
@@ -418,7 +418,7 @@ func fetchMultiple(ids: [Int]) async throws -> [String] {
         }
         return results
     }
-}'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='medium'..section='Functions'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_017'..topicId='swift'..title='Result Type'..description='Result type encapsulates success or failure. Combine with map, flatMap for functional error handling.'..code='''enum APIError: Error {
     case notFound, serverError(Int), invalidData
 }
@@ -445,7 +445,7 @@ case .failure(let error): print("Error: \\(error)")
 
 // Convert to optional
 let optionalData = try? fetchData(from: "test").get()
-print(optionalData ?? "nil")'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print(optionalData ?? "nil")'''..language='swift'..difficulty='medium'..section='Protocols'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_018'..topicId='swift'..title='Codable'..description='Codable protocol enables automatic JSON encoding and decoding with customizable key mappings.'..code='''struct User: Codable {
     let id: Int
     let name: String
@@ -474,7 +474,7 @@ let json = """
 let decoder = JSONDecoder()
 decoder.dateDecodingStrategy = .iso8601
 let decoded = try! decoder.decode(User.self, from: json)
-print(decoded.name, decoded.createdAt)'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print(decoded.name, decoded.createdAt)'''..language='swift'..difficulty='medium'..section='Classes and Structs'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_019'..topicId='swift'..title='Memory Management (ARC)'..description='Swift uses Automatic Reference Counting. Use weak and unowned to break retain cycles.'..code='''class Person {
     let name: String
     var apartment: Apartment?
@@ -506,7 +506,7 @@ class Timer {
     lazy var increment: () -> Void = { [weak self] in
         self?.tick += 1
     }
-}'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='medium'..section='Optionals'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_020'..topicId='swift'..title='KeyPaths'..description='KeyPaths provide type-safe references to properties for dynamic access without reflection.'..code='''struct Person {
     var name: String
     var age: Int
@@ -539,7 +539,7 @@ let people = [
     Person(name: "Alice", age: 30, address: Address(city: "NYC", zip: "")),
 ]
 let sorted = people.sorted(by: sortBy(\\.name))
-print(sorted.map { \$0.name })'''..language='swift'..difficulty='medium'..isSaved=false..lastViewedAt=null,
+print(sorted.map { \$0.name })'''..language='swift'..difficulty='medium'..section='Protocols'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_021'..topicId='swift'..title='Actors'..description='Actors provide data-race safety by isolating mutable state and serializing access.'..code='''actor BankAccount {
     let id: String
     private(set) var balance: Double
@@ -577,7 +577,7 @@ func main() async {
     } catch {
         print("Error: \\(error)")
     }
-}'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_022'..topicId='swift'..title='Opaque Types (some)'..description='Opaque return types hide concrete types behind protocols while preserving type identity.'..code='''protocol Shape {
     func area() -> Double
     func describe() -> String
@@ -611,7 +611,7 @@ func doubled(_ shape: some Shape) -> String {
 
 let s = makeShape(round: true)
 print(s.describe())
-print("Area:", s.area())'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+print("Area:", s.area())'''..language='swift'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_023'..topicId='swift'..title='Result Builders'..description='Result builders enable DSL-like syntax for building complex values declaratively.'..code='''@resultBuilder
 struct HTMLBuilder {
     static func buildBlock(_ components: String...) -> String {
@@ -640,7 +640,7 @@ let html = div {
     p("Welcome to Swift")
     p("Result builders are powerful")
 }
-print(html)'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+print(html)'''..language='swift'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_024'..topicId='swift'..title='Protocol-Oriented Programming'..description='Swift favors protocols over inheritance. Protocol extensions provide shared default implementations.'..code='''protocol Identifiable {
     associatedtype ID: Hashable
     var id: ID { get }
@@ -681,7 +681,7 @@ protocol Repository {
 }
 
 print(User.entityName)  // "User"
-print(Post.entityName)  // "Post"'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+print(Post.entityName)  // "Post"'''..language='swift'..difficulty='hard'..section='Classes and Structs'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_025'..topicId='swift'..title='Combine Framework'..description='Combine provides declarative reactive programming with Publishers, Subscribers, and Operators.'..code='''import Combine
 
 // Publisher and subscriber
@@ -713,7 +713,7 @@ func asyncOperation() -> Future<String, Error> {
             promise(.success("Done!"))
         }
     }
-}'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_026'..topicId='swift'..title='Existential Types'..description='any keyword makes protocol types explicit. Primary associated types constrain existential containers.'..code='''protocol Collection {
     associatedtype Element
     var count: Int { get }
@@ -744,7 +744,7 @@ func printContainer(_ c: any Container<Int>) {
 }
 
 let box = IntBox(items: [1, 2, 3])
-printContainer(box)'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+printContainer(box)'''..language='swift'..difficulty='hard'..section='Classes and Structs'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_027'..topicId='swift'..title='Macros (Swift 5.9)'..description='Swift macros generate code at compile time. Freestanding and attached macros reduce boilerplate.'..code='''// Freestanding expression macro
 // #stringify generates tuple of (value, code-string)
 let (result, code) = #stringify(2 + 3)
@@ -781,7 +781,7 @@ class Item {
 let user = UserModel()
 user.name = "Alice"
 user.age = 30
-print(user.isValid)'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+print(user.isValid)'''..language='swift'..difficulty='hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_028'..topicId='swift'..title='Dependency Injection'..description='Protocol-based DI for testable and modular Swift code with property wrapper injection.'..code='''protocol NetworkService {
     func fetch(url: String) async throws -> Data
 }
@@ -819,7 +819,7 @@ class UserRepository {
         }
         return try await network.fetch(url: "/users/\\(id)")
     }
-}'''..language='swift'..difficulty='hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='hard'..section='Collections'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_029'..topicId='swift'..title='Distributed Actors'..description='Distributed actors enable transparent remote communication with location-independent code.'..code='''// Distributed actor system (Swift 5.7+)
 // distributed actor ChatRoom {
 //     distributed func sendMessage(_ text: String) async throws
@@ -855,7 +855,7 @@ func demo() async {
     await room.send(from: "Alice", text: "Hello!")
     let msgs = await room.recentMessages(count: 5)
     msgs.forEach { print("\\(\$0.user): \\(\$0.text)") }
-}'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_hard'..section='Generics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_030'..topicId='swift'..title='Advanced Pattern Matching'..description='Swift pattern matching with where clauses, tuple patterns, enum case patterns, and custom operators.'..code='''enum Expr {
     case num(Double)
     case add(Expr, Expr)
@@ -890,7 +890,7 @@ func simplify(_ expr: Expr) -> Expr {
 let expr = Expr.add(.mul(.num(2), .num(3)), .neg(.neg(.num(4))))
 print("Result:", evaluate(expr))
 let simplified = simplify(.add(.num(0), .mul(.num(1), .num(5))))
-print("Simplified:", evaluate(simplified))'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print("Simplified:", evaluate(simplified))'''..language='swift'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_031'..topicId='swift'..title='Custom Operators'..description='Define custom operators with precedence groups for domain-specific syntax and mathematical notation.'..code='''// Custom operator for pipe/chain
 precedencegroup PipePrecedence {
     associativity: left
@@ -916,8 +916,8 @@ func **(base: Double, exp: Double) -> Double {
 print(2.0 ** 10.0)  // 1024
 
 // Nil-throwing operator
-prefix operator ¿
-prefix func ¿<T>(_ optional: T?) throws -> T {
+prefix operator Â¿
+prefix func Â¿<T>(_ optional: T?) throws -> T {
     guard let value = optional else {
         throw NSError(domain: "nil", code: 0)
     }
@@ -925,7 +925,7 @@ prefix func ¿<T>(_ optional: T?) throws -> T {
 }
 
 let val: Int? = 42
-print(try! ¿val)'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print(try! Â¿val)'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_032'..topicId='swift'..title='AsyncSequence'..description='AsyncSequence enables async iteration over values produced over time, like network streams.'..code='''struct AsyncCounter: AsyncSequence {
     typealias Element = Int
     let limit: Int
@@ -960,7 +960,7 @@ func demo() async {
     for await n in evens {
         print("Even:", n)
     }
-}'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_033'..topicId='swift'..title='Type Erasure'..description='Type erasure creates wrapper types that hide concrete types behind a protocol interface.'..code='''protocol AnyPublisher {
     associatedtype Output
     func subscribe(_ handler: @escaping (Output) -> Void)
@@ -998,7 +998,7 @@ let publishers: [ErasedPublisher<String>] = [
 ]
 publishers.forEach { p in
     p.subscribe { print(\$0) }
-}'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_hard'..section='Concurrency'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_034'..topicId='swift'..title='Phantom Types in Swift'..description='Phantom types carry type-level information without runtime overhead for compile-time safety.'..code='''enum Locked {}
 enum Unlocked {}
 
@@ -1032,7 +1032,7 @@ let door = Door<Locked>.create(name: "Front")
 // door.open()  // Compile error!
 let unlocked = door.unlock()
 unlocked.open()  // OK
-let relocked = unlocked.lock()'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+let relocked = unlocked.lock()'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_035'..topicId='swift'..title='Dynamic Member Lookup'..description='@dynamicMemberLookup enables dot-syntax access to dynamic properties for DSLs and JSON wrappers.'..code='''@dynamicMemberLookup
 struct JSON {
     let data: Any
@@ -1070,7 +1070,7 @@ let json = JSON([
 
 print(json.name.string ?? "nil")
 print(json.age.int ?? 0)
-print(json.address.city.string ?? "nil")'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print(json.address.city.string ?? "nil")'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_036'..topicId='swift'..title='Generic Where Clauses'..description='Conditional conformance and generic where clauses enable precise type constraints.'..code='''// Conditional conformance
 extension Array: CustomStringConvertible where Element: CustomStringConvertible {
     public var description: String {
@@ -1102,7 +1102,7 @@ extension Array {
 struct Person { let name: String; let age: Int }
 let people = [Person(name: "Charlie", age: 25), Person(name: "Alice", age: 30)]
 let sorted = people.sorted(by: \\.name)
-print(sorted.map { \$0.name })'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print(sorted.map { \$0.name })'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_037'..topicId='swift'..title='Sendable and Transferable'..description='Sendable protocol marks types safe to transfer across concurrency domains.'..code='''// Sendable types
 struct Point: Sendable {
     let x: Double
@@ -1142,7 +1142,7 @@ func demo() async {
     await store.set("point", value: Point(x: 1, y: 2))
     let val = await store.get("point")
     print(val ?? "nil")
-}'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_038'..topicId='swift'..title='Custom Collections'..description='Conform to Collection protocol for custom sequences with index-based access and iteration.'..code='''struct CircularBuffer<Element>: Collection {
     private var storage: [Element?]
     private var head = 0
@@ -1175,7 +1175,7 @@ buffer.append(1); buffer.append(2); buffer.append(3)
 buffer.append(4)  // overwrites 1
 for item in buffer { print(item, terminator: " ") }
 print()  // 2 3 4
-print("Count:", buffer.count)'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print("Count:", buffer.count)'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_039'..topicId='swift'..title='Copy-on-Write (COW)'..description='Implement copy-on-write semantics for value types that wrap reference types for efficient copying.'..code='''final class StorageRef<T> {
     var value: T
     init(_ value: T) { self.value = value }
@@ -1215,7 +1215,7 @@ var a = COWArray([1, 2, 3])
 var b = a           // No copy yet (shared reference)
 b.append(4)         // Copy happens here
 print("a:", a.count) // 3
-print("b:", b.count) // 4'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+print("b:", b.count) // 4'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
     Snippet()..snippetId='swift_040'..topicId='swift'..title='Regex Builder (Swift 5.7)'..description='Swift Regex provides type-safe, composable regex patterns with a builder DSL.'..code='''import RegexBuilder
 
 // Traditional regex
@@ -1249,6 +1249,6 @@ let log = "[ERROR] Connection timeout"
 if let match = log.firstMatch(of: logRegex) {
     print("Level:", match.1)
     print("Message:", match.2)
-}'''..language='swift'..difficulty='very_hard'..isSaved=false..lastViewedAt=null,
+}'''..language='swift'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
   ];
 }

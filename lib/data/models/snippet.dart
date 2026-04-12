@@ -20,6 +20,9 @@ class Snippet {
   @Index()
   late String difficulty;
 
+  @Index()
+  String section = '';
+
   late bool isSaved;
   late DateTime? lastViewedAt;
 }

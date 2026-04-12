@@ -4,6 +4,7 @@ import '../../presentation/shell/app_shell.dart';
 import '../../presentation/home/home_screen.dart';
 import '../../presentation/browse/browse_screen.dart';
 import '../../presentation/browse/topic_detail_screen.dart';
+import '../../presentation/browse/section_detail_screen.dart';
 import '../../presentation/roadmap/roadmap_screen.dart';
 import '../../presentation/roadmap/roadmap_detail_screen.dart';
 import '../../presentation/quiz/quiz_screen.dart';
@@ -98,6 +99,26 @@ final appRouter = GoRouter(
         final topicId = state.pathParameters['topicId']!;
         return CustomTransitionPage(
           child: TopicDetailScreen(topicId: topicId),
+          transitionsBuilder: (context, animation, _, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+                parent: animation, curve: Curves.easeOutCubic)),
+            child: child,
+          ),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/browse/:topicId/section',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        final topicId = state.pathParameters['topicId']!;
+        final section = state.extra as String;
+        return CustomTransitionPage(
+          child: SectionDetailScreen(topicId: topicId, section: section),
           transitionsBuilder: (context, animation, _, child) =>
               SlideTransition(
             position: Tween<Offset>(
