@@ -1,0 +1,41 @@
+import 'package:flutter/painting.dart';
+import 'app_colors.dart';
+
+/// Custom syntax highlighting theme for flutter_highlight
+/// matching the spec colors exactly.
+const codeThemeData = {
+  'root': TextStyle(backgroundColor: AppColors.codeBackground, color: AppColors.codeText),
+  'keyword': TextStyle(color: AppColors.synKeyword),
+  'built_in': TextStyle(color: AppColors.synType),
+  'type': TextStyle(color: AppColors.synType),
+  'literal': TextStyle(color: AppColors.synNumber),
+  'number': TextStyle(color: AppColors.synNumber),
+  'string': TextStyle(color: AppColors.synString),
+  'symbol': TextStyle(color: AppColors.synString),
+  'regexp': TextStyle(color: AppColors.synString),
+  'subst': TextStyle(color: AppColors.synVariable),
+  'title': TextStyle(color: AppColors.synFunction),
+  'class': TextStyle(color: AppColors.synType),
+  'function': TextStyle(color: AppColors.synFunction),
+  'comment': TextStyle(color: AppColors.synComment, fontStyle: FontStyle.italic),
+  'doctag': TextStyle(color: AppColors.synComment),
+  'variable': TextStyle(color: AppColors.synVariable),
+  'params': TextStyle(color: AppColors.synVariable),
+  'attr': TextStyle(color: AppColors.synVariable),
+  'attribute': TextStyle(color: AppColors.synVariable),
+  'meta': TextStyle(color: AppColors.synKeyword),
+  'meta-keyword': TextStyle(color: AppColors.synKeyword),
+  'meta-string': TextStyle(color: AppColors.synString),
+  'section': TextStyle(color: AppColors.synFunction),
+  'tag': TextStyle(color: AppColors.synKeyword),
+  'name': TextStyle(color: AppColors.synKeyword),
+  'selector-tag': TextStyle(color: AppColors.synKeyword),
+  'selector-id': TextStyle(color: AppColors.synFunction),
+  'selector-class': TextStyle(color: AppColors.synType),
+  'template-tag': TextStyle(color: AppColors.synKeyword),
+  'template-variable': TextStyle(color: AppColors.synVariable),
+  'deletion': TextStyle(color: AppColors.synKeyword),
+  'addition': TextStyle(color: AppColors.synType),
+  'emphasis': TextStyle(fontStyle: FontStyle.italic),
+  'strong': TextStyle(fontWeight: FontWeight.bold),
+};
