@@ -166,7 +166,16 @@ This means even retrying the same topic gives a different quiz every time.
 
 ---
 
-## 💾 Data Layer & Local Database
+### Technical Highlights
+- **Clean Architecture:** Fully decoupled architecture using `ISnippetRepository` and `ITopicRepository` to isolate local database logic from the UI.
+- **Offline-First:** Seamless functionality without internet, utilizing high-performance Isar NoSQL for instant querying.
+- **State Management:** Fully reactive declarative UI built cleanly using Riverpod 2.0+ `Notifier`s and dependency injection.
+- **Micro-animations & Shimmers:** Premium enterprise-grade user experience featuring skeleton loading.
+- **Multi-threaded Data Parsing:** Optimized JSON-to-database heavy lifting via background Isolates.
+
+## Tech Stack
+- **Framework::** Flutter
+- **State Management:** Riverpod (`Notifier` & `Provider`)
 
 ### Isar NoSQL Database
 **File:** [`isar_datasource.dart`](lib/data/datasources/isar_datasource.dart)
