@@ -11,6 +11,7 @@ import '../shared/difficulty_badge.dart';
 import '../shared/topic_icon.dart';
 import '../shared/toggle_switch.dart';
 import '../shared/custom_error_widget.dart';
+import '../shared/skeleton_topic_card.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -130,8 +131,20 @@ class HomeScreen extends ConsumerWidget {
                 ),
               );
             },
-            loading: () => const SliverToBoxAdapter(
-              child: Center(child: Padding(padding: EdgeInsets.all(40), child: CircularProgressIndicator())),
+            loading: () => SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 1.1,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => const SkeletonTopicCard(),
+                  childCount: 6,
+                ),
+              ),
             ),
             error: (e, _) => SliverToBoxAdapter(child: CustomErrorWidget(message: e.toString())),
           ),

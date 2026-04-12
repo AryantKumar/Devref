@@ -5,6 +5,8 @@ import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../../data/models/topic.dart';
 import '../shared/topic_icon.dart';
+import '../shared/skeleton_topic_card.dart';
+import '../shared/custom_error_widget.dart';
 
 class BrowseScreen extends ConsumerWidget {
   const BrowseScreen({super.key});
@@ -53,10 +55,22 @@ class BrowseScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
+            loading: () => SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 1.1,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => const SkeletonTopicCard(),
+                  childCount: 8,
+                ),
+              ),
             ),
-            error: (e, _) => SliverToBoxAdapter(child: Center(child: Text('Error: $e'))),
+            error: (e, _) => SliverToBoxAdapter(child: CustomErrorWidget(message: e.toString())),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
