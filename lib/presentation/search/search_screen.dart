@@ -6,6 +6,7 @@ import '../../domain/providers/providers.dart';
 import '../../data/models/snippet.dart';
 import '../shared/snippet_card.dart';
 import '../shared/topic_icon.dart';
+import '../shared/custom_error_widget.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -51,7 +52,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         icon: const Icon(Icons.clear, size: 20),
                         onPressed: () {
                           _controller.clear();
-                          ref.read(searchQueryProvider.notifier).state = '';
+                          ref.read(searchQueryProvider.notifier).setQuery('');
                         },
                       ),
                     IconButton(
@@ -67,7 +68,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ),
               ),
               onChanged: (value) {
-                ref.read(searchQueryProvider.notifier).state = value;
+                ref.read(searchQueryProvider.notifier).setQuery(value);
               },
             ),
           ),
@@ -193,7 +194,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 );
               },
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, _) => Center(child: Text('Error: $e')),
+              error: (e, _) => CustomErrorWidget(message: e.toString()),
             ),
           ),
         ],
