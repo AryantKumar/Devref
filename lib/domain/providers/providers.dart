@@ -50,8 +50,17 @@ final snippetByIdProvider =
   return ref.watch(snippetRepositoryProvider).getSnippetById(snippetId);
 });
 
-// ── Search ──
-final searchQueryProvider = StateProvider<String>((ref) => '');
+// ── Search State Notifier ──
+class SearchNotifier extends Notifier<String> {
+  @override
+  String build() => '';
+
+  void setQuery(String query) {
+    state = query;
+  }
+}
+
+final searchQueryProvider = NotifierProvider<SearchNotifier, String>(SearchNotifier.new);
 
 final searchResultsProvider =
     FutureProvider.autoDispose<List<Snippet>>((ref) async {
