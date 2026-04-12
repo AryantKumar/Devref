@@ -10,6 +10,7 @@ import '../../data/roadmap_data.dart';
 import '../shared/difficulty_badge.dart';
 import '../shared/topic_icon.dart';
 import '../shared/toggle_switch.dart';
+import '../shared/custom_error_widget.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -132,7 +133,7 @@ class HomeScreen extends ConsumerWidget {
             loading: () => const SliverToBoxAdapter(
               child: Center(child: Padding(padding: EdgeInsets.all(40), child: CircularProgressIndicator())),
             ),
-            error: (e, _) => SliverToBoxAdapter(child: Center(child: Text('Error: $e'))),
+            error: (e, _) => SliverToBoxAdapter(child: CustomErrorWidget(message: e.toString())),
           ),
 
           // Roadmaps Header
