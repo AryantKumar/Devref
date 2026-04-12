@@ -19,7 +19,31 @@ import 'snippets_linux.dart';
 import 'snippets_sql.dart';
 import 'snippets_php.dart';
 import 'snippets_csharp.dart';
+import 'package:flutter/foundation.dart';
 import 'snippets_ruby.dart';
+
+List<dynamic> _gatherSnippets(dynamic _) {
+  return <dynamic>[
+    ...getKotlinSnippets(),
+    ...getPythonSnippets(),
+    ...getJavaScriptSnippets(),
+    ...getJavaSnippets(),
+    ...getDartSnippets(),
+    ...getCppSnippets(),
+    ...getGoSnippets(),
+    ...getRustSnippets(),
+    ...getTypeScriptSnippets(),
+    ...getSwiftSnippets(),
+    ...getDsaSnippets(),
+    ...getGitSnippets(),
+    ...getLinuxSnippets(),
+    ...getSqlSnippets(),
+    ...getPhpSnippets(),
+    ...getCsharpSnippets(),
+    ...getRubySnippets(),
+  ];
+}
+
 class SeedManager {
   static const _seedKey = 'seeded_v5';
 
@@ -41,27 +65,8 @@ class SeedManager {
       await isar.topics.putAll(allTopics);
     });
 
-    // Bulk insert ALL snippets in one transaction
-    final allSnippets = <dynamic>[
-      ...getKotlinSnippets(),
-      ...getPythonSnippets(),
-      ...getJavaScriptSnippets(),
-      ...getJavaSnippets(),
-      ...getDartSnippets(),
-      ...getCppSnippets(),
-      ...getGoSnippets(),
-      ...getRustSnippets(),
-      ...getTypeScriptSnippets(),
-      ...getSwiftSnippets(),
-      ...getDsaSnippets(),
-      ...getGitSnippets(),
-      ...getLinuxSnippets(),
-      ...getSqlSnippets(),
-      ...getPhpSnippets(),
-      ...getCsharpSnippets(),
-      ...getRubySnippets(),
-      // TODO: Add more languages here
-    ];
+    // Bulk insert ALL snippets in one transaction offloaded to an Isolate
+    final allSnippets = await compute(_gatherSnippets, null);
     await isar.writeTxn(() async {
       await isar.snippets.putAll(allSnippets.cast());
     });
