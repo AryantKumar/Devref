@@ -1,4 +1,4 @@
-# DevRef — Your Pocket Code Reference 📱💻
+# DevRef — Your Pocket Code Reference 📱💻 
 
 > A fully **offline-first**, beautifully crafted Flutter application housing **677+ code snippets** across **17 programming languages**, interactive quizzes with randomised question generation, curated career roadmaps, and a robust bookmark & search system — all powered by a local NoSQL database with zero network dependencies.
 

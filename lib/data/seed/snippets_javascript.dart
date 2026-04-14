@@ -1289,5 +1289,204 @@ getUser(1).then(result => {
   if (result.success) console.log(result.data.name);
   else console.error(result.error);
 });'''..language='javascript'..difficulty='very_hard'..section='Advanced Topics'..isSaved=false..lastViewedAt=null,
+
+    // —— Professional & Modern APIs (10) ——
+    Snippet()..snippetId='js_041'..topicId='javascript'..title='Intl.NumberFormat'..description='Format numbers and currencies based on locale and options.'..code='''// Currency formatting
+const amount = 123456.78;
+const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+const eur = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" });
+
+console.log(usd.format(amount)); // "$123,456.78"
+console.log(eur.format(amount)); // "123.456,78 €"
+
+// Unit formatting
+const weight = new Intl.NumberFormat("en-US", {
+  style: "unit",
+  unit: "kilogram",
+  unitDisplay: "long"
+});
+console.log(weight.format(5.5)); // "5.5 kilograms"
+
+// Compact notation
+const views = new Intl.NumberFormat("en-US", { notation: "compact" });
+console.log(views.format(1200000)); // "1.2M"'''..language='javascript'..difficulty='medium'..section='Standard Library'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_042'..topicId='javascript'..title='Intl.RelativeTimeFormat'..description='Format time differences into human-readable strings like "2 days ago".'..code='''const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+
+console.log(rtf.format(-1, "day"));    // "yesterday"
+console.log(rtf.format(1, "day"));     // "tomorrow"
+console.log(rtf.format(-3, "week"));   // "3 weeks ago"
+console.log(rtf.format(10, "second")); // "in 10 seconds"
+
+// Practical usage
+function getRelativeTime(epoch) {
+  const diff = epoch - Date.now();
+  const days = Math.round(diff / (1000 * 60 * 60 * 24));
+  return rtf.format(days, "day");
+}
+
+console.log(getRelativeTime(Date.now() - 432000000)); // "5 days ago"'''..language='javascript'..difficulty='medium'..section='Standard Library'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_043'..topicId='javascript'..title='Intersection Observer'..description='Efficiently detect when elements enter or exit the viewport for lazy-loading or animations.'..code='''const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log("Element visible:", entry.target.id);
+      entry.target.classList.add("fade-in");
+      // Stop observing after firing once
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 }); // 50% visibility trigger
+
+// Observe images
+document.querySelectorAll("img[data-src]").forEach(img => {
+  observer.observe(img);
+});
+
+// Polyfill-like detection
+if (!("IntersectionObserver" in window)) {
+  console.log("IntersectionObserver not supported");
+}'''..language='javascript'..difficulty='medium'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_044'..topicId='javascript'..title='BroadcastChannel API'..description='Simple tab-to-tab or window-to-window communication on the same origin.'..code='''// Tab 1
+const channel = new BroadcastChannel("auth_events");
+
+function login() {
+  channel.postMessage({ type: "LOGIN", user: "Alice" });
+}
+
+// Tab 2
+const receiver = new BroadcastChannel("auth_events");
+receiver.onmessage = (event) => {
+  if (event.data.type === "LOGIN") {
+    console.log("User logged in on another tab:", event.data.user);
+    // Sync UI or reload state
+    location.reload();
+  }
+};
+
+// Cleanup
+// channel.close();'''..language='javascript'..difficulty='medium'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_045'..topicId='javascript'..title='Resize Observer'..description='Monitor size changes of specific DOM elements, independent of viewport resize.'..code='''const textarea = document.querySelector("textarea");
+const output = document.querySelector(".size-info");
+
+const resizeObserver = new ResizeObserver(entries => {
+  for (const entry of entries) {
+    const { width, height } = entry.contentRect;
+    output.textContent = `Size: \${Math.round(width)}x\${Math.round(height)}`;
+    
+    if (width < 300) {
+      entry.target.classList.add("compact");
+    } else {
+      entry.target.classList.remove("compact");
+    }
+  }
+});
+
+resizeObserver.observe(textarea);'''..language='javascript'..difficulty='medium'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_046'..topicId='javascript'..title='URLSearchParams'..description='Easy manipulation of URL query parameters without manual string parsing.'..code='''const url = new URL("https://api.example.com/search?q=js&page=1&tags=web,node");
+
+// Get params
+console.log(url.searchParams.get("q")); // "js"
+console.log(url.searchParams.has("page")); // true
+
+// Modify params
+url.searchParams.set("page", "2");
+url.searchParams.append("tags", "react");
+url.searchParams.delete("q");
+
+console.log(url.toString());
+// "https://api.example.com/search?page=2&tags=web%2Cnode&tags=react"
+
+// Iterate
+for (const [key, value] of url.searchParams) {
+  console.log(`\${key}: \${value}`);
+}'''..language='javascript'..difficulty='easy'..section='Standard Library'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_047'..topicId='javascript'..title='Web Crypto API (Hashing)'..description='Generate secure SHA-256 hashes using the browser native SubtleCrypto API.'..code='''async function hashString(message) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(message);
+  
+  // Hash the data
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  
+  // Convert buffer to hex string
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+    
+  return hashHex;
+}
+
+hashString("hello world").then(h => console.log("SHA-256:", h));'''..language='javascript'..difficulty='hard'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_048'..topicId='javascript'..title='Permissions API'..description='Query the status of user-granted permissions for features like geolocation or notification.'..code='''async function checkLocationPermission() {
+  try {
+    const result = await navigator.permissions.query({ name: "geolocation" });
+    
+    console.log("Status:", result.state); // "granted", "denied", or "prompt"
+    
+    result.onchange = () => {
+      console.log("Permission changed to:", result.state);
+    };
+    
+    if (result.state === "granted") {
+      // safe to call navigator.geolocation
+    }
+  } catch (error) {
+    console.error("Permissions API not supported:", error);
+  }
+}
+
+checkLocationPermission();'''..language='javascript'..difficulty='medium'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_049'..topicId='javascript'..title='Performance API'..description='Measure script execution time and resource loading performance with high precision.'..code='''// Mark start
+performance.mark("task-start");
+
+// Simulate heavy task
+for (let i = 0; i < 1000000; i++) { Math.sqrt(i); }
+
+// Mark end
+performance.mark("task-end");
+
+// Measure between marks
+performance.measure("Heavy Task", "task-start", "task-end");
+
+const measure = performance.getEntriesByName("Heavy Task")[0];
+console.log(`Task duration: \${measure.duration.toFixed(2)}ms`);
+
+// Clear measurements
+performance.clearMarks();
+performance.clearMeasures();
+
+// Resource timing
+const resources = performance.getEntriesByType("resource");
+console.log(`Scripts loaded: \${resources.filter(r => r.initiatorType === "script").length}`);'''..language='javascript'..difficulty='medium'..section='Web APIs'..isSaved=false..lastViewedAt=null,
+    Snippet()..snippetId='js_050'..topicId='javascript'..title='Custom Elements'..description='Create custom HTML tags with lifecycle callbacks and encapsulated logic.'..code='''class UserProfile extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    const name = this.getAttribute("name") || "Guest";
+    this.shadowRoot.innerHTML = `
+      <style>
+        div { padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+        span { font-weight: bold; color: #3572A5; }
+      </style>
+      <div>
+        Hello, <span>\${name}</span>!
+      </div>
+    `;
+  }
+
+  static get observedAttributes() { return ["name"]; }
+  
+  attributeChangedCallback(name, oldVal, newVal) {
+    if (name === "name" && this.shadowRoot.innerHTML) {
+      this.connectedCallback();
+    }
+  }
+}
+
+customElements.define("user-profile", UserProfile);
+// Usage: <user-profile name="Alice"></user-profile>'''..language='javascript'..difficulty='hard'..section='Web Components'..isSaved=false..lastViewedAt=null,
   ];
 }
+

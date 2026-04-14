@@ -47,7 +47,7 @@ List<dynamic> _gatherSnippets(dynamic _) {
 }
 
 class SeedManager {
-  static const String _seedKey = 'seeded_v6';
+  static const String _seedKey = 'seeded_v7';
 
   static Future<void> seedIfNeeded() async {
     final prefs = await SharedPreferences.getInstance();

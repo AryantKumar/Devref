@@ -19,7 +19,7 @@ List<Topic> getTopicSeeds() {
       ..name = 'JavaScript'
       ..iconPath = 'assets/languages/javascript.png'
       ..colorHex = '#F1E05A'
-      ..snippetCount = 40,
+      ..snippetCount = 50,
     Topic()
       ..topicId = 'java'
       ..name = 'Java'
