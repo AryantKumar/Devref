@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/roadmap_data.dart';
 import '../shared/glass_card.dart';
 
-class RoadmapScreen extends StatelessWidget {
+class RoadmapScreen extends ConsumerStatefulWidget {
   const RoadmapScreen({super.key});
 
   @override
+  ConsumerState<RoadmapScreen> createState() => _RoadmapScreenState();
+}
+
+class _RoadmapScreenState extends ConsumerState<RoadmapScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Filter roadmaps based on search query
+    final filteredRoadmaps = roadmaps.where((roadmap) {
+      final query = _searchQuery.toLowerCase();
+      return roadmap.title.toLowerCase().contains(query) ||
+          roadmap.description.toLowerCase().contains(query) ||
+          roadmap.subtitle.toLowerCase().contains(query);
+    }).toList();
+
     return Scaffold(
       backgroundColor: AppColors.darkBackground,
       body: SafeArea(
@@ -22,8 +45,6 @@ class RoadmapScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
                 child: Row(
                   children: [
-                    const Icon(Icons.search, color: Colors.white, size: 24),
-                    const SizedBox(width: 16),
                     Text(
                       'Roadmaps',
                       style: GoogleFonts.spaceGrotesk(
@@ -33,24 +54,13 @@ class RoadmapScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: const DecorationImage(
-                          image: NetworkImage('https://i.pravatar.cc/150?u=aryant'),
-                          fit: BoxFit.cover,
-                        ),
-                        border: Border.all(color: Colors.white.withOpacity(0.1)),
-                      ),
-                    ),
+                    // Circle profile picture removed as per request
                   ],
                 ),
               ),
             ),
 
-            // ── Search & Filters ──
+            // ── Search Section ──
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -58,53 +68,40 @@ class RoadmapScreen extends StatelessWidget {
                   children: [
                     // Search Bar
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.white.withOpacity(0.05)),
                       ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.search, size: 20, color: Colors.white.withOpacity(0.3)),
-                          const SizedBox(width: 12),
-                          Text(
-                            'Search learning paths...',
-                            style: GoogleFonts.inter(
-                              color: Colors.white.withOpacity(0.3),
-                              fontSize: 14,
-                            ),
+                      child: TextField(
+                        controller: _searchController,
+                        onChanged: (value) {
+                          setState(() {
+                            _searchQuery = value;
+                          });
+                        },
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          hintText: 'Search roadmaps (e.g. Web Development)',
+                          hintStyle: GoogleFonts.inter(
+                            color: Colors.white.withOpacity(0.3),
+                            fontSize: 14,
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    // Filters
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      child: Row(
-                        children: [
-                          _FilterChip(label: 'Beginner', isSelected: true),
-                          _FilterChip(label: '6-12 months'),
-                          _FilterChip(label: 'Mobile'),
-                          _FilterChip(label: 'Backend'),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Row(
-                              children: [
-                                Container(width: 1, height: 20, color: Colors.white12),
-                                const SizedBox(width: 12),
-                                Icon(Icons.tune_rounded, size: 16, color: Colors.white54),
-                                const SizedBox(width: 6),
-                                Text(
-                                  'All Filters',
-                                  style: GoogleFonts.inter(fontSize: 12, color: Colors.white54),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          prefixIcon: Icon(Icons.search, size: 20, color: Colors.white.withOpacity(0.3)),
+                          border: InputBorder.none,
+                          suffixIcon: _searchQuery.isNotEmpty 
+                            ? IconButton(
+                                icon: const Icon(Icons.clear, size: 18, color: Colors.white54),
+                                onPressed: () {
+                                  _searchController.clear();
+                                  setState(() {
+                                    _searchQuery = '';
+                                  });
+                                },
+                              )
+                            : null,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -114,88 +111,79 @@ class RoadmapScreen extends StatelessWidget {
             ),
 
             // ── Roadmap Cards List ──
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final roadmap = roadmaps[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: _RoadmapCard(roadmap: roadmap),
-                    );
-                  },
-                  childCount: roadmaps.length > 4 ? 4 : roadmaps.length, // Shown limit like in image
+            if (filteredRoadmaps.isEmpty)
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.search_off_rounded, size: 64, color: Colors.white12),
+                      const SizedBox(height: 16),
+                      Text(
+                        'No roadmaps found for "$_searchQuery"',
+                        style: GoogleFonts.inter(color: Colors.white38),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            else
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final roadmap = filteredRoadmaps[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: _RoadmapCard(roadmap: roadmap),
+                      );
+                    },
+                    childCount: filteredRoadmaps.length,
+                  ),
                 ),
               ),
-            ),
 
             // ── Personalized Section ──
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-                child: Row(
-                  children: [
-                    Icon(Icons.auto_awesome_rounded, size: 20, color: Colors.cyanAccent),
-                    const SizedBox(width: 12),
-                    Text(
-                      'Personalized for You',
-                      style: GoogleFonts.spaceGrotesk(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+            if (_searchQuery.isEmpty) ...[
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+                  child: Row(
+                    children: [
+                      Icon(Icons.auto_awesome_rounded, size: 20, color: Colors.cyanAccent),
+                      const SizedBox(width: 12),
+                      Text(
+                        'Personalized for You',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    // Premium Track (Systems Design)
-                    _PremiumTrackCard(),
-                    const SizedBox(height: 16),
-                    // Career Boost
-                    _CareerBoostCard(),
-                    const SizedBox(height: 100),
-                  ],
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    children: [
+                      // Premium Track (Systems Design)
+                      _PremiumTrackCard(),
+                      const SizedBox(height: 16),
+                      // Career Boost
+                      _CareerBoostCard(),
+                      const SizedBox(height: 100),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FilterChip extends StatelessWidget {
-  final String label;
-  final bool isSelected;
-  const _FilterChip({required this.label, this.isSelected = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: isSelected ? Colors.cyan.withOpacity(0.12) : Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: isSelected ? Colors.cyan.withOpacity(0.3) : Colors.white.withOpacity(0.05),
-        ),
-      ),
-      child: Text(
-        label,
-        style: GoogleFonts.inter(
-          fontSize: 12,
-          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          color: isSelected ? Colors.cyanAccent : Colors.white70,
         ),
       ),
     );
@@ -300,47 +288,7 @@ class _RoadmapCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Stacked avatars (mock)
-                          SizedBox(
-                            width: 80,
-                            height: 24,
-                            child: Stack(
-                              children: [
-                                _SmallAvatar(offset: 0, url: 'https://i.pravatar.cc/150?u=1'),
-                                _SmallAvatar(offset: 16, url: 'https://i.pravatar.cc/150?u=2'),
-                                Positioned(
-                                  left: 32,
-                                  child: Container(
-                                    width: 24,
-                                    height: 24,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white12,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: AppColors.darkBackground, width: 2),
-                                    ),
-                                    child: const Center(
-                                      child: Text('+12', style: TextStyle(fontSize: 8, color: Colors.white70)),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // Arrow circle button
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.05),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.white54),
-                          ),
-                        ],
-                      ),
+                      // Avatars and +12 photos removed as per request
                     ],
                   ),
                 ),
@@ -524,3 +472,4 @@ class _CareerBoostCard extends StatelessWidget {
     );
   }
 }
+

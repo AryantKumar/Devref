@@ -7,7 +7,6 @@ import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../../data/models/snippet.dart';
 import '../shared/code_block_widget.dart';
-import '../shared/difficulty_badge.dart';
 import '../shared/glass_card.dart';
 import '../shared/mastery_progress_bar.dart';
 
@@ -20,6 +19,7 @@ class QuizPlayScreen extends ConsumerStatefulWidget {
 }
 
 class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
+  final PageController _pageController = PageController();
   List<Snippet> _questions = [];
   int _currentIndex = 0;
   int _score = 0;
@@ -42,6 +42,12 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
     _loadQuestions();
   }
 
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   Future<void> _loadQuestions() async {
     final snippets = await ref.read(topicSnippetsProvider(widget.topicId).future);
     final rng = Random();
@@ -49,9 +55,7 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
     _questions = shuffled.take(10).toList();
 
     for (var q in _questions) {
-      // Correct answer from snippet description/title
       final correct = q.title;
-      // Wrong options from other snippets
       final others = snippets.where((s) => s.snippetId != q.snippetId).toList()..shuffle(rng);
       final wrongs = others.take(3).map((s) => s.title).toList();
 
@@ -81,6 +85,10 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
 
   void _nextQuestion() {
     if (_currentIndex < _questions.length - 1) {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOutCubic,
+      );
       setState(() {
         _currentIndex++;
         _selectedOption = null;
@@ -96,9 +104,6 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
     if (_loading) {
       return const Scaffold(
         backgroundColor: AppColors.darkBackground,
@@ -106,34 +111,54 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
       );
     }
 
-    final q = _questions[_currentIndex];
-    final qTemplate = _questionTemplates[_currentIndex % _questionTemplates.length];
-
     return Scaffold(
       backgroundColor: AppColors.darkBackground,
       body: SafeArea(
         child: Column(
           children: [
             _buildSessionHeader(context),
+            const SizedBox(height: 12),
+            _buildTopProgressBar(),
+            const SizedBox(height: 12),
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 12),
-                    _buildProgressBar(),
-                    const SizedBox(height: 24),
-                    _buildQuestionCard(context, q, qTemplate),
-                    const SizedBox(height: 32),
-                    _buildOptionsList(context),
-                    if (_answered) _buildExplanation(context, q),
-                    const SizedBox(height: 100),
-                  ],
-                ),
+              child: PageView.builder(
+                controller: _pageController,
+                physics: const NeverScrollableScrollPhysics(), // Force button navigation
+                itemCount: _questions.length,
+                itemBuilder: (context, index) {
+                  final q = _questions[index];
+                  final qTemplate = _questionTemplates[index % _questionTemplates.length];
+                  return _buildQuestionView(context, q, qTemplate);
+                },
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTopProgressBar() {
+    final progress = (_currentIndex + 1) / _questions.length;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: MasteryProgressBar(
+        progress: progress,
+        color: AppColors.neonGlowPurple,
+      ),
+    );
+  }
+
+  Widget _buildQuestionView(BuildContext context, Snippet q, String template) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
+      child: Column(
+        children: [
+          _buildQuestionCard(context, q, template),
+          const SizedBox(height: 32),
+          _buildOptionsList(context),
+          if (_answered) _buildExplanation(context, q),
+        ],
       ),
     );
   }
@@ -154,15 +179,16 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'CURRENT SESSION',
+                'DIAGNOSTIC_MODE',
                 style: GoogleFonts.jetBrainsMono(
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
                   color: Colors.white24,
+                  letterSpacing: 1.0,
                 ),
               ),
               Text(
-                'Lvl 42 Architect',
+                'Level ${_currentIndex + 1} Access',
                 style: GoogleFonts.spaceGrotesk(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -172,51 +198,28 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
             ],
           ),
           const SizedBox(width: 16),
-          _buildStatIndicator('+450', AppColors.xpRewardGold, 'XP REWARD'),
-          const SizedBox(width: 12),
-          _buildStatIndicator('x5', AppColors.neonGlowPurple, 'STREAK'),
+          _buildStatIndicator('+45 XP', AppColors.xpRewardGold),
         ],
       ),
     );
   }
 
-  Widget _buildStatIndicator(String value, Color color, String label) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.jetBrainsMono(
-            fontSize: 7,
-            fontWeight: FontWeight.w700,
-            color: Colors.white24,
-          ),
+  Widget _buildStatIndicator(String value, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withOpacity(0.2)),
+      ),
+      child: Text(
+        value,
+        style: GoogleFonts.jetBrainsMono(
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+          color: color,
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: color.withOpacity(0.2)),
-          ),
-          child: Text(
-            value,
-            style: GoogleFonts.jetBrainsMono(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildProgressBar() {
-    final progress = (_currentIndex + 1) / _questions.length;
-    return MasteryProgressBar(
-      progress: progress,
-      color: AppColors.neonGlowPurple,
+      ),
     );
   }
 
@@ -229,6 +232,7 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Browser-like top bar
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
             child: Row(

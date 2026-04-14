@@ -73,6 +73,19 @@ class _SnippetDetailScreenState extends ConsumerState<SnippetDetailScreen> {
         icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 18),
         onPressed: () => Navigator.pop(context),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(
+            snippet.isSaved ? Icons.bookmark_rounded : Icons.bookmark_outline_rounded,
+            color: snippet.isSaved ? AppColors.neonGlowPurple : Colors.white,
+          ),
+          onPressed: () async {
+            await IsarDatasource.toggleSave(snippet.snippetId);
+            ref.invalidate(snippetByIdProvider(snippet.snippetId));
+            ref.invalidate(savedSnippetsProvider);
+          },
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.only(left: 64, bottom: 20),
         title: Text(

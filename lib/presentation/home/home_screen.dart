@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +15,36 @@ import '../shared/glass_card.dart';
 import '../shared/skeleton_topic_card.dart';
 import '../shared/custom_error_widget.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  Timer? _greetingTimer;
+  late String _currentGreeting;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentGreeting = _getGreeting();
+    _greetingTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      final newGreeting = _getGreeting();
+      if (newGreeting != _currentGreeting) {
+        setState(() {
+          _currentGreeting = newGreeting;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _greetingTimer?.cancel();
+    super.dispose();
+  }
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
@@ -24,20 +53,31 @@ class HomeScreen extends ConsumerWidget {
     return 'Good Evening';
   }
 
+  Future<void> _onRefresh() async {
+    ref.invalidate(allTopicsProvider);
+    ref.invalidate(recentSnippetsProvider);
+    await Future.delayed(const Duration(milliseconds: 700));
+    setState(() {});
+  }
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final topicsAsync = ref.watch(allTopicsProvider);
     final recentAsync = ref.watch(recentSnippetsProvider);
     final themeState = ref.watch(themeProvider);
     final theme = Theme.of(context);
-    final greeting = _getGreeting();
+    final greeting = _currentGreeting;
 
     return Scaffold(
       body: Stack(
         children: [
           // Main Scrollable Content
-          CustomScrollView(
-            physics: const BouncingScrollPhysics(),
+          RefreshIndicator(
+            onRefresh: _onRefresh,
+            color: AppColors.neuralPrimary,
+            backgroundColor: const Color(0xFF141518),
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
             slivers: [
               // ── Header (Glassmorphic) ──
               _buildHeader(context, ref, themeState),
@@ -54,7 +94,7 @@ class HomeScreen extends ConsumerWidget {
                           children: [
                             TextSpan(text: '$greeting, ', style: theme.textTheme.headlineMedium),
                             TextSpan(
-                              text: 'Aryant',
+                              text: 'Developer',
                               style: theme.textTheme.headlineMedium?.copyWith(color: AppColors.neuralPrimary),
                             ),
                           ],
@@ -62,7 +102,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Ready to architect your next breakthrough?',
+                        'Precision tools for modern Developers',
                         style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.darkTextMuted),
                       ),
                     ],
@@ -172,17 +212,10 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
 
-              // ── Feature Promo Banner ──
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 32, 24, 120),
-                  child: _buildPromoBanner(),
-                ),
-              ),
-            ],
-          ),
-
-          // ── Contextual FAB ──
+          ],
+        ),
+      ),
+      // ── Contextual FAB ──
           Positioned(
             bottom: 100,
             right: 24,
@@ -271,7 +304,7 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   const SizedBox(width: 12),
                   IconButton(
-                    onPressed: () => context.go('/search'),
+                    onPressed: () => context.push('/search'),
                     icon: const Icon(Icons.search_rounded, color: Colors.white70, size: 22),
                   ),
                 ],
@@ -287,7 +320,7 @@ class HomeScreen extends ConsumerWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(24, 32, 24, 40),
       child: GestureDetector(
-        onTap: () => context.go('/search'),
+        onTap: () => context.push('/search'),
         child: GlassCard(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           color: AppColors.neuralSurfaceContainerHigh.withOpacity(0.4),
@@ -295,15 +328,14 @@ class HomeScreen extends ConsumerWidget {
           borderColor: Colors.white.withOpacity(0.05),
           child: Row(
             children: [
-              const Icon(Icons.terminal_rounded, color: Colors.white54, size: 20),
+              const Icon(Icons.search_rounded, color: Colors.white38, size: 20),
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
-                  'Search documentation...',
+                  'Search modules...',
                   style: GoogleFonts.inter(color: Colors.white38, fontSize: 14),
                 ),
               ),
-              const Icon(Icons.mic_none_rounded, color: AppColors.neuralPrimary, size: 20),
             ],
           ),
         ),
@@ -311,72 +343,6 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPromoBanner() {
-    return Container(
-      height: 180,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        image: const DecorationImage(
-          image: NetworkImage('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop'),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
-        ),
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'BETA_FEATURE_LIVE',
-                  style: GoogleFonts.jetBrainsMono(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2,
-                    color: AppColors.neuralTertiary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Neural Code Search',
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Query documentation using natural language.',
-                  style: GoogleFonts.inter(fontSize: 13, color: Colors.white70),
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: AppColors.neuralPrimary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Text(
-                    'Try Now',
-                    style: GoogleFonts.spaceGrotesk(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.neuralOnPrimaryContainer,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildFAB() {
     return Container(

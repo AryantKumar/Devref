@@ -6,8 +6,6 @@ import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../../data/models/topic.dart';
 import '../shared/topic_icon.dart';
-import '../shared/skeleton_topic_card.dart';
-import '../shared/custom_error_widget.dart';
 import '../shared/glass_card.dart';
 import '../shared/mastery_progress_bar.dart';
 
@@ -17,153 +15,172 @@ class BrowseScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final topicsAsync = ref.watch(allTopicsProvider);
-    final theme = Theme.of(context);
 
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   Text(
-                    'Explore Intelligence',
-                    style: theme.textTheme.headlineLarge?.copyWith(fontSize: 28),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'CURATED MODULES FOR MODERN ARCHITECTS',
-                    style: GoogleFonts.jetBrainsMono(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.neonGlowCyan.withOpacity(0.7),
-                      letterSpacing: 1.5,
+    return Scaffold(
+      backgroundColor: const Color(0xFF0F1014),
+      body: SafeArea(
+        child: topicsAsync.when(
+          data: (topics) {
+            final webTopics = topics.where((t) => ['javascript', 'typescript', 'react', 'html', 'css', 'vue', 'angular'].contains(t.topicId)).toList();
+            final backendTopics = topics.where((t) => ['go', 'python', 'java', 'ruby', 'php', 'c', 'cpp', 'csharp', 'rust', 'nodejs'].contains(t.topicId)).toList();
+            final mobileTopics = topics.where((t) => ['dart', 'kotlin', 'swift', 'flutter', 'react_native'].contains(t.topicId)).toList();
+            final otherTopics = topics.where((t) => !webTopics.contains(t) && !backendTopics.contains(t) && !mobileTopics.contains(t)).toList();
+
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                // ── Modern Header ──
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 48, 24, 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Explore Intelligence',
+                          style: GoogleFonts.spaceGrotesk(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'CURATED MODULES FOR MODERN ARCHITECTS',
+                          style: GoogleFonts.jetBrainsMono(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.cyan.withOpacity(0.8),
+                            letterSpacing: 1.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
+
+                // ── Web Ecosystem Section ──
+                if (webTopics.isNotEmpty) ...[
+                  _buildSectionHeader('WEB ECOSYSTEM', '${webTopics.length} MODULES'),
+                  _buildGrid(webTopics),
                 ],
-              ),
-            ),
-          ),
-          topicsAsync.when(
-            data: (topics) {
-              // Grouping logic (Hardcoded for design match)
-              final webTopics = topics.where((t) => ['javascript', 'typescript', 'html', 'css'].contains(t.topicId.toLowerCase())).toList();
-              final backendTopics = topics.where((t) => ['python', 'sql', 'go', 'linux', 'cpp', 'java'].contains(t.topicId.toLowerCase())).toList();
-              final mobileTopics = topics.where((t) => ['swift', 'dart', 'kotlin', 'flutter'].contains(t.topicId.toLowerCase())).toList();
-              
-              return SliverList(
-                delegate: SliverChildListDelegate([
-                  if (webTopics.isNotEmpty) ...[
-                    _buildSectionHeader(context, 'WEB ECOSYSTEM', webTopics.length),
-                    _buildTopicGrid(webTopics),
-                  ],
-                  if (backendTopics.isNotEmpty) ...[
-                    _buildSectionHeader(context, 'INFRASTRUCTURE & BACKEND', backendTopics.length),
-                    _buildTopicGrid(backendTopics),
-                  ],
-                  if (mobileTopics.isNotEmpty) ...[
-                    _buildSectionHeader(context, 'MOBILE DEVELOPMENT', mobileTopics.length),
-                    _buildTopicGrid(mobileTopics),
-                  ],
-                  const SizedBox(height: 100),
-                ]),
-              );
-            },
-            loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-            error: (e, _) => SliverToBoxAdapter(child: CustomErrorWidget(message: e.toString())),
-          ),
-        ],
+
+                // ── Infrastructure & Backend Section ──
+                if (backendTopics.isNotEmpty) ...[
+                  _buildSectionHeader('INFRASTRUCTURE & BACKEND', '${backendTopics.length} MODULES'),
+                  _buildGrid(backendTopics),
+                ],
+
+                // ── Mobile Development Section ──
+                if (mobileTopics.isNotEmpty) ...[
+                  _buildSectionHeader('MOBILE DEVELOPMENT', '${mobileTopics.length} MODULES'),
+                  _buildGrid(mobileTopics),
+                ],
+
+                // ── Data & Utilities Section ──
+                if (otherTopics.isNotEmpty) ...[
+                  _buildSectionHeader('DATA & UTILITIES', '${otherTopics.length} MODULES'),
+                  _buildGrid(otherTopics),
+                ],
+
+                const SliverToBoxAdapter(child: SizedBox(height: 120)),
+              ],
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, _) => Center(child: Text('Error: $e')),
+        ),
       ),
     );
   }
 
-  Widget _buildSectionHeader(BuildContext context, String title, int count) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.spaceGrotesk(
-              fontSize: 12,
-              fontWeight: FontWeight.w800,
-              color: Colors.white.withOpacity(0.4),
-              letterSpacing: 1.0,
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.05),
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-            ),
-            child: Text(
-              '$count MODULES',
-              style: GoogleFonts.jetBrainsMono(
-                fontSize: 9,
+  Widget _buildSectionHeader(String title, String badge) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.white70,
+                color: Colors.white54,
+                letterSpacing: 1.0,
               ),
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: Colors.white.withOpacity(0.05)),
+              ),
+              child: Text(
+                badge,
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white54,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildTopicGrid(List<Topic> topics) {
-    return Padding(
+  Widget _buildGrid(List<Topic> sectionTopics) {
+    return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+      sliver: SliverGrid(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 16,
           crossAxisSpacing: 16,
           childAspectRatio: 1.1,
         ),
-        itemCount: topics.length,
-        itemBuilder: (context, index) => _BrowseTopicCard(topic: topics[index]),
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => _GridTopicCard(topic: sectionTopics[index]),
+          childCount: sectionTopics.length,
+        ),
       ),
     );
   }
 }
 
-class _BrowseTopicCard extends StatelessWidget {
+class _GridTopicCard extends StatelessWidget {
   final Topic topic;
-  const _BrowseTopicCard({required this.topic});
+  const _GridTopicCard({required this.topic});
 
   @override
   Widget build(BuildContext context) {
     final color = AppColors.topicColor(topic.topicId);
-
-    // Mock progress for design match
-    double progress = 0.0;
+    
+    // Mock progress based on topic for UI fidelity
+    double progress = 0.40;
     if (topic.topicId == 'typescript') progress = 0.92;
     if (topic.topicId == 'javascript') progress = 0.74;
-    if (topic.topicId == 'html') progress = 0.98;
-    if (topic.topicId == 'css') progress = 0.81;
     if (topic.topicId == 'python') progress = 0.65;
     if (topic.topicId == 'go') progress = 0.42;
 
     return GestureDetector(
-      behavior: HitTestBehavior.opaque,
       onTap: () => context.push('/browse/${topic.topicId}'),
-      child: GlassCard(
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF141518),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white.withOpacity(0.03)),
+        ),
         padding: const EdgeInsets.all(16),
-        color: AppColors.neuralSurfaceContainerHigh.withOpacity(0.4),
-        borderRadius: 14,
-        borderColor: Colors.white.withOpacity(0.05),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TopicIcon(topic: topic, size: 28),
-            const Spacer(),
+            const SizedBox(height: 16),
             Text(
               topic.name,
               style: GoogleFonts.spaceGrotesk(
@@ -171,10 +188,12 @@ class _BrowseTopicCard extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
             MasteryProgressBar(
-              progress: progress > 0 ? progress : (topic.snippetCount / 100).clamp(0.1, 0.9),
+              progress: progress,
               color: color,
               label: 'MASTERY',
             ),
@@ -184,3 +203,4 @@ class _BrowseTopicCard extends StatelessWidget {
     );
   }
 }
+

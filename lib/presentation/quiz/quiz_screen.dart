@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../../data/models/topic.dart';
 import '../shared/topic_icon.dart';
+import '../shared/glass_card.dart';
 
 class QuizScreen extends ConsumerWidget {
   const QuizScreen({super.key});
@@ -12,94 +14,144 @@ class QuizScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final topicsAsync = ref.watch(allTopicsProvider);
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      backgroundColor: AppColors.darkBackground,
+      appBar: _buildSyntheticHeader(context, ref),
+      body: topicsAsync.when(
+        data: (topics) => ListView.builder(
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 120),
+          itemCount: topics.length,
+          itemBuilder: (context, index) => _DiagnosticQuizCard(topic: topics[index]),
+        ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, _) => Center(child: Text('Error: $e', style: const TextStyle(color: Colors.white70))),
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildSyntheticHeader(BuildContext context, WidgetRef ref) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      toolbarHeight: 160,
+      flexibleSpace: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Synthetic Top Bar
+              Row(
                 children: [
-                  Text('Quiz', style: theme.textTheme.headlineLarge),
-                  const SizedBox(height: 4),
+                  const Icon(Icons.terminal_rounded, size: 16, color: AppColors.neonGlowCyan),
+                  const SizedBox(width: 8),
                   Text(
-                    'Test your knowledge',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                    'DEVREF_QUIZ',
+                    style: GoogleFonts.jetBrainsMono(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white.withOpacity(0.9),
+                      letterSpacing: 1.0,
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
-          topicsAsync.when(
-            data: (topics) => SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 1.1,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => _QuizTopicCard(topic: topics[index]),
-                  childCount: topics.length,
-                  addRepaintBoundaries: true,
+              const SizedBox(height: 32),
+              Text(
+                'Quiz Catalogue',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
                 ),
               ),
-            ),
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
-            ),
-            error: (e, _) => SliverToBoxAdapter(child: Center(child: Text('Error: $e'))),
+              const SizedBox(height: 4),
+              Text(
+                'Challenge your knowledge. Begin below.',
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white24,
+                  letterSpacing: 1.0,
+                ),
+              ),
+            ],
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 100)),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _QuizTopicCard extends StatelessWidget {
+class _DiagnosticQuizCard extends StatelessWidget {
   final Topic topic;
-  const _QuizTopicCard({required this.topic});
+  const _DiagnosticQuizCard({required this.topic});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final color = AppColors.topicColor(topic.topicId);
 
-    return GestureDetector(
-      onTap: () => context.push('/quiz/${topic.topicId}/play'),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.darkCard : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TopicIcon(topic: topic, size: 48),
-            const SizedBox(height: 12),
-            Text(topic.name, style: theme.textTheme.titleMedium, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
-            const SizedBox(height: 4),
-            Text(
-              '${topic.snippetCount} questions',
-              style: theme.textTheme.bodySmall?.copyWith(color: color),
-              maxLines: 1, overflow: TextOverflow.ellipsis,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: GestureDetector(
+        onTap: () => context.push('/quiz/${topic.topicId}/play'),
+        child: GlassCard(
+          padding: EdgeInsets.zero,
+          color: AppColors.neuralSurfaceContainerHigh.withOpacity(0.4),
+          borderRadius: 12,
+          borderColor: Colors.white.withOpacity(0.05),
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                // Left Accent Bar
+                Container(
+                  width: 4,
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                // Icon
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: color.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: TopicIcon(topic: topic, size: 24),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                // Text info
+                Expanded(
+                  child: Text(
+                    topic.name,
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.white.withOpacity(0.1),
+                ),
+                const SizedBox(width: 16),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+

@@ -32,8 +32,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return SafeArea(
-      child: Column(
+    return WillPopScope(
+      onWillPop: () async {
+        if (context.canPop()) {
+          return true;
+        } else {
+          context.go('/');
+          return false;
+        }
+      },
+      child: Scaffold(
+      backgroundColor: AppColors.darkBackground,
+      body: SafeArea(
+        child: Column(
         children: [
           // Search Bar
           Padding(
@@ -43,7 +54,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               autofocus: false,
               decoration: InputDecoration(
                 hintText: 'Search snippets...',
-                prefixIcon: const Icon(Icons.search),
+                prefixIcon: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    if (context.canPop()) {
+                      context.pop();
+                    } else {
+                      context.go('/');
+                    }
+                  },
+                ),
                 suffixIcon: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -199,6 +219,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
         ],
       ),
-    );
+    )));
   }
 }

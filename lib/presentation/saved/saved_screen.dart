@@ -63,7 +63,8 @@ class SavedScreen extends ConsumerWidget {
                 // Flatten grouped data for ListView.builder performance
                 final grouped = <String, List<dynamic>>{};
                 for (var s in snippets) {
-                  grouped.putIfAbsent(s.topicId, () => []).add(s);
+                  final groupKey = '${s.topicId} / ${s.section}';
+                  grouped.putIfAbsent(groupKey, () => []).add(s);
                 }
 
                 final flatList = <dynamic>[];
