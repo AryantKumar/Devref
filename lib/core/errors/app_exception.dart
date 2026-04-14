@@ -9,16 +9,13 @@ sealed class AppException implements Exception {
 }
 
 class DatabaseException extends AppException {
-  const DatabaseException(String message, {StackTrace? stackTrace})
-      : super(message, stackTrace: stackTrace);
+  const DatabaseException(super.message, {super.stackTrace});
 }
 
 class ItemNotFoundException extends AppException {
-  const ItemNotFoundException(String message, {StackTrace? stackTrace})
-      : super(message, stackTrace: stackTrace);
+  const ItemNotFoundException(super.message, {super.stackTrace});
 }
 
 class UnknownException extends AppException {
-  const UnknownException(String message, {StackTrace? stackTrace})
-      : super(message, stackTrace: stackTrace);
+  const UnknownException(super.message, {super.stackTrace});
 }

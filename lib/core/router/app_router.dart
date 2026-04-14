@@ -116,7 +116,7 @@ final appRouter = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       pageBuilder: (context, state) {
         final topicId = state.pathParameters['topicId']!;
-        final section = state.extra as String;
+        final section = state.extra is String ? state.extra as String : 'General';
         return CustomTransitionPage(
           child: SectionDetailScreen(topicId: topicId, section: section),
           transitionsBuilder: (context, animation, _, child) =>

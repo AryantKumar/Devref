@@ -27,11 +27,11 @@ class AppShell extends StatelessWidget {
                 child: DockingBar(
                   currentIndex: navigationShell.currentIndex,
                   icons: const [
-                    Icons.home_rounded,
+                    Icons.dashboard_rounded,
                     Icons.grid_view_rounded,
-                    Icons.quiz_rounded,
+                    Icons.psychology_rounded,
                     Icons.bookmark_rounded,
-                    Icons.route_rounded,
+                    Icons.alt_route_rounded,
                   ],
                   onTap: (index) {
                     navigationShell.goBranch(

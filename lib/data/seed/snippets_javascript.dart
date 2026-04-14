@@ -1296,7 +1296,7 @@ const amount = 123456.78;
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 const eur = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" });
 
-console.log(usd.format(amount)); // "$123,456.78"
+console.log(usd.format(amount)); // "\$123,456.78"
 console.log(eur.format(amount)); // "123.456,78 €"
 
 // Unit formatting

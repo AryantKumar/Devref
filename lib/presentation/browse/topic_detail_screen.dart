@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../shared/topic_icon.dart';
 import '../shared/custom_error_widget.dart';
+import '../shared/glass_card.dart';
 import '../../data/models/topic.dart';
 
 class TopicDetailScreen extends ConsumerWidget {
@@ -20,82 +22,170 @@ class TopicDetailScreen extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(
-        title: topicAsync.when(
-          data: (topic) => Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (topic != null) TopicIcon(topic: topic, size: 24),
-              if (topic != null) const SizedBox(width: 12),
-              Text.rich(
-                TextSpan(children: [
-                  TextSpan(
-                    text: topic?.name ?? '',
-                    style: GoogleFonts.inter(fontWeight: FontWeight.w700),
-                  ),
-                  TextSpan(
-                    text: ' cheatsheet',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ]),
-              ),
-            ],
-          ),
-          loading: () => const Text('Loading...'),
-          error: (_, __) => const Text('Error'),
-        ),
-      ),
-      body: sectionsAsync.when(
-        data: (sections) {
-          if (sections.isEmpty) {
-            return const Center(child: Text('No sections found'));
-          }
+      backgroundColor: AppColors.darkBackground,
+      body: topicAsync.when(
+        data: (topic) {
+          if (topic == null) return const CustomErrorWidget(message: 'Topic data unavailable');
+          final color = AppColors.topicColor(topic.topicId);
+          
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                sliver: SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 24, left: 4),
-                    child: Text(
-                      'A quick reference cheatsheet that includes usage, examples, and more.',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+              // ── Futuristic SliverAppBar ──
+              SliverAppBar(
+                expandedHeight: 200,
+                pinned: true,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: BackButton(color: Colors.white.withOpacity(0.8)),
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  background: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Gradient Background
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              color.withOpacity(0.2),
+                              AppColors.darkBackground,
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                      // Abstract Pattern/Circle
+                      Positioned(
+                        top: -50,
+                        right: -50,
+                        child: Container(
+                          width: 250,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: color.withOpacity(0.05),
+                          ),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
+                            child: Container(color: Colors.transparent),
+                          ),
+                        ),
+                      ),
+                      // Topic Info Header
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: color.withOpacity(0.15),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: color.withOpacity(0.3)),
+                                  ),
+                                  child: TopicIcon(topic: topic, size: 42),
+                                ),
+                                const SizedBox(width: 20),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'INTELLIGENCE_LAYER',
+                                        style: GoogleFonts.jetBrainsMono(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w700,
+                                          color: color,
+                                          letterSpacing: 2,
+                                        ),
+                                      ),
+                                      Text(
+                                        topic.name,
+                                        style: GoogleFonts.spaceGrotesk(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
-                    childAspectRatio: 1.1, // Near-square cards
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final section = sections[index];
-                      final topic = topicAsync.value;
-                      return _SectionCard(
-                        sectionName: section,
-                        topic: topic,
-                        isDark: isDark,
-                        onTap: () => context.push(
-                          '/browse/$topicId/section',
-                          extra: section,
+
+              // ── Summary Description ──
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'This module provides critical syntax patterns, architectural boilerplate, and professional-grade implementation strategies for ${topic.name}.',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: AppColors.darkTextMuted,
                         ),
-                      );
-                    },
-                    childCount: sections.length,
+                      ),
+                      const SizedBox(height: 32),
+                      Text(
+                        'CORE MODULES',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 2,
+                          color: AppColors.neuralPrimary.withOpacity(0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
+
+              // ── Section Grid ──
+              sectionsAsync.when(
+                data: (sections) => SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 100),
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: 1.1,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final section = sections[index];
+                        return _SectionCard(
+                          sectionName: section,
+                          topic: topic,
+                          color: color,
+                          onTap: () => context.push(
+                            '/browse/$topicId/section',
+                            extra: section,
+                          ),
+                        );
+                      },
+                      childCount: sections.length,
+                    ),
+                  ),
+                ),
+                loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+                error: (e, _) => SliverToBoxAdapter(child: CustomErrorWidget(message: e.toString())),
               ),
             ],
           );
@@ -109,69 +199,59 @@ class TopicDetailScreen extends ConsumerWidget {
 
 class _SectionCard extends StatelessWidget {
   final String sectionName;
-  final Topic? topic;
-  final bool isDark;
+  final Topic topic;
+  final Color color;
   final VoidCallback onTap;
 
   const _SectionCard({
     required this.sectionName,
-    this.topic,
-    required this.isDark,
+    required this.topic,
+    required this.color,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: isDark ? AppColors.darkCard : AppColors.lightCard,
-      borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: (isDark ? AppColors.darkBorder : AppColors.lightBorder)
-                  .withOpacity(0.5),
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (topic != null)
-                    TopicIcon(topic: topic!, size: 30) // Larger icon for grid
-                  else
-                    Icon(
-                      Icons.layers_rounded,
-                      size: 26,
-                      color: isDark ? AppColors.darkAccent : AppColors.lightAccent,
-                    ),
-                  Icon(
-                    Icons.chevron_right_rounded,
-                    size: 20,
-                    color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: GlassCard(
+        padding: const EdgeInsets.all(16),
+        color: AppColors.neuralSurfaceContainerHigh.withOpacity(0.4),
+        borderRadius: 16,
+        accentColor: color,
+        accentWidth: 1.5,
+        borderColor: Colors.white.withOpacity(0.05),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.1),
+                    shape: BoxShape.circle,
                   ),
-                ],
-              ),
-              Text(
-                sectionName,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  height: 1.2,
-                  fontWeight: FontWeight.w700,
-                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  child: Icon(Icons.code_rounded, size: 16, color: color),
                 ),
+                Icon(Icons.arrow_forward_rounded, size: 14, color: Colors.white24),
+              ],
+            ),
+            Text(
+              sectionName,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.white.withOpacity(0.9),
+                height: 1.2,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

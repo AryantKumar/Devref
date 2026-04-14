@@ -2,11 +2,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/providers/providers.dart';
 import '../../data/models/snippet.dart';
 import '../shared/code_block_widget.dart';
 import '../shared/difficulty_badge.dart';
+import '../shared/glass_card.dart';
+import '../shared/mastery_progress_bar.dart';
 
 class QuizPlayScreen extends ConsumerStatefulWidget {
   final String topicId;
@@ -97,136 +100,359 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
     final isDark = theme.brightness == Brightness.dark;
 
     if (_loading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(
+        backgroundColor: AppColors.darkBackground,
+        body: Center(child: CircularProgressIndicator()),
+      );
     }
 
     final q = _questions[_currentIndex];
     final qTemplate = _questionTemplates[_currentIndex % _questionTemplates.length];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Question ${_currentIndex + 1}/${_questions.length}'),
-        actions: [
+      backgroundColor: AppColors.darkBackground,
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildSessionHeader(context),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 12),
+                    _buildProgressBar(),
+                    const SizedBox(height: 24),
+                    _buildQuestionCard(context, q, qTemplate),
+                    const SizedBox(height: 32),
+                    _buildOptionsList(context),
+                    if (_answered) _buildExplanation(context, q),
+                    const SizedBox(height: 100),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSessionHeader(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(24, 20, 24, 12),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.close_rounded, color: Colors.white54),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          ),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'CURRENT SESSION',
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white24,
+                ),
+              ),
+              Text(
+                'Lvl 42 Architect',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.neonGlowCyan,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(width: 16),
+          _buildStatIndicator('+450', AppColors.xpRewardGold, 'XP REWARD'),
+          const SizedBox(width: 12),
+          _buildStatIndicator('x5', AppColors.neonGlowPurple, 'STREAK'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatIndicator(String value, Color color, String label) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.jetBrainsMono(
+            fontSize: 7,
+            fontWeight: FontWeight.w700,
+            color: Colors.white24,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: color.withOpacity(0.2)),
+          ),
+          child: Text(
+            value,
+            style: GoogleFonts.jetBrainsMono(
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProgressBar() {
+    final progress = (_currentIndex + 1) / _questions.length;
+    return MasteryProgressBar(
+      progress: progress,
+      color: AppColors.neonGlowPurple,
+    );
+  }
+
+  Widget _buildQuestionCard(BuildContext context, Snippet q, String template) {
+    return GlassCard(
+      padding: EdgeInsets.zero,
+      color: const Color(0xFF0F172A).withOpacity(0.5),
+      borderRadius: 16,
+      borderColor: Colors.white.withOpacity(0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Center(
-              child: Text('Score: $_score', style: theme.textTheme.titleMedium),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+            child: Row(
+              children: [
+                _buildDot(const Color(0xFFFF5F56)),
+                const SizedBox(width: 8),
+                _buildDot(const Color(0xFFFFBD2E)),
+                const SizedBox(width: 8),
+                _buildDot(const Color(0xFF27C93F)),
+                const Spacer(),
+                Text(
+                  'BRAIN_DUMP.sh',
+                  style: GoogleFonts.jetBrainsMono(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white24,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1, color: Colors.white12),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  template,
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    height: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CodeBlockWidget(code: q.code, language: q.language),
+              ],
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Progress
-            LinearProgressIndicator(
-              value: (_currentIndex + 1) / _questions.length,
-              backgroundColor: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-              color: isDark ? AppColors.darkAccent : AppColors.lightAccent,
-            ),
-            const SizedBox(height: 16),
+    );
+  }
 
-            // Difficulty badge
-            DifficultyBadge(difficulty: q.difficulty),
-            const SizedBox(height: 12),
+  Widget _buildDot(Color color) {
+    return Container(
+      width: 8,
+      height: 8,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+  }
 
-            // Code block
-            CodeBlockWidget(code: q.code, language: q.language),
-            const SizedBox(height: 16),
+  Widget _buildOptionsList(BuildContext context) {
+    return Column(
+      children: List.generate(_options[_currentIndex].length, (i) {
+        final option = _options[_currentIndex][i];
+        final isSelected = _selectedOption == i;
+        final isCorrect = i == _correctIndices[_currentIndex];
+        
+        Color borderColor = Colors.white.withOpacity(0.05);
+        Color backgroundColor = Colors.white.withOpacity(0.02);
+        Color textColor = Colors.white70;
 
-            // Question
-            Text(qTemplate, style: theme.textTheme.titleLarge),
-            const SizedBox(height: 16),
+        if (isSelected) {
+          borderColor = AppColors.neonGlowCyan;
+          backgroundColor = AppColors.neonGlowCyan.withOpacity(0.1);
+          textColor = AppColors.neonGlowCyan;
+        }
 
-            // Options
-            ...List.generate(_options[_currentIndex].length, (i) {
-              final isSelected = _selectedOption == i;
-              final isCorrect = i == _correctIndices[_currentIndex];
+        if (_answered) {
+          if (isCorrect) {
+            borderColor = AppColors.successEmerald;
+            backgroundColor = AppColors.successEmerald.withOpacity(0.1);
+            textColor = AppColors.successEmerald;
+          } else if (isSelected) {
+            borderColor = Colors.redAccent;
+            backgroundColor = Colors.redAccent.withOpacity(0.1);
+            textColor = Colors.redAccent;
+          }
+        }
 
-              Color? bgColor;
-              Color? borderColor;
-              if (_answered) {
-                if (isCorrect) {
-                  bgColor = AppColors.diffVeryEasyBg.withValues(alpha: 0.2);
-                  borderColor = AppColors.diffVeryEasyBg;
-                } else if (isSelected) {
-                  bgColor = AppColors.diffVeryHardBg.withValues(alpha: 0.2);
-                  borderColor = AppColors.diffVeryHardBg;
-                }
-              }
-
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: GestureDetector(
-                  onTap: () => _selectOption(i),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: InkWell(
+            onTap: () => _selectOption(i),
+            borderRadius: BorderRadius.circular(100),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: borderColor),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
                     decoration: BoxDecoration(
-                      color: bgColor ?? (isDark ? AppColors.darkCard : AppColors.lightCard),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: borderColor ?? (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                        width: isSelected ? 2 : 1,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: borderColor.withOpacity(0.5)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        String.fromCharCode(65 + i),
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(child: Text(_options[_currentIndex][i], style: theme.textTheme.bodyLarge)),
-                        if (_answered && isCorrect)
-                          const Icon(Icons.check_circle, color: AppColors.diffVeryEasyBg, size: 20),
-                        if (_answered && isSelected && !isCorrect)
-                          const Icon(Icons.cancel, color: AppColors.diffVeryHardBg, size: 20),
-                      ],
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      option,
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: textColor,
+                      ),
                     ),
                   ),
-                ),
-              );
-            }),
+                  if (_answered && isCorrect)
+                    const Icon(Icons.check_circle_rounded, color: AppColors.successEmerald, size: 20),
+                  if (_answered && isSelected && !isCorrect)
+                    const Icon(Icons.cancel_rounded, color: Colors.redAccent, size: 20),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
 
-            // Explanation
-            if (_answered) ...[
+  Widget _buildExplanation(BuildContext context, Snippet q) {
+    final isCorrect = _selectedOption == _correctIndices[_currentIndex];
+
+    return Column(
+      children: [
+        const SizedBox(height: 32),
+        GlassCard(
+          padding: const EdgeInsets.all(24),
+          color: isCorrect ? AppColors.successEmerald.withOpacity(0.05) : Colors.redAccent.withOpacity(0.05),
+          borderColor: isCorrect ? AppColors.successEmerald.withOpacity(0.2) : Colors.redAccent.withOpacity(0.2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    isCorrect ? Icons.auto_awesome_rounded : Icons.info_outline_rounded,
+                    color: isCorrect ? AppColors.successEmerald : Colors.redAccent,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    isCorrect ? 'BRILLIANT, SENIOR!' : 'ALMOST THERE, ARCHITECT',
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: isCorrect ? AppColors.successEmerald : Colors.redAccent,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 12),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: (isDark ? AppColors.darkSurface : AppColors.lightSurface),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Explanation', style: theme.textTheme.titleMedium),
-                    const SizedBox(height: 4),
-                    Text(q.description, style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                    )),
-                  ],
+              Text(
+                isCorrect ? 'You analyzed the logic perfectly. +45 XP earned.' : 'The logic requires a more precise approach. Review below.',
+                style: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 16),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _nextQuestion,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isDark ? AppColors.darkAccent : AppColors.lightAccent,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: Text(_currentIndex < _questions.length - 1 ? 'Next' : 'See Results'),
+              const Divider(color: Colors.white10),
+              const SizedBox(height: 16),
+              Text(
+                'EXPLANATION',
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white24,
+                  letterSpacing: 1.0,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                q.description,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  color: Colors.white70,
+                  height: 1.5,
                 ),
               ),
             ],
-            const SizedBox(height: 40),
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 24),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: _nextQuestion,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isCorrect ? AppColors.neonGlowCyan : Colors.white10,
+              foregroundColor: isCorrect ? Colors.black : Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+            ),
+            child: Text(
+              _currentIndex < _questions.length - 1 ? 'CONTINUE JOURNEY' : 'SEE ARCHITECT SUMMARY',
+              style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.bold, letterSpacing: 1.0),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -4,13 +4,37 @@ class AppColors {
   AppColors._();
 
   // ── Dark Mode ──
-  static const darkBackground = Color(0xFF0D1117);
-  static const darkSurface = Color(0xFF161B22);
-  static const darkCard = Color(0xFF21262D);
-  static const darkBorder = Color(0xFF30363D);
-  static const darkAccent = Color(0xFF58A6FF);
-  static const darkTextPrimary = Color(0xFFE6EDF3);
-  static const darkTextMuted = Color(0xFF8B949E);
+  static const darkBackground = Color(0xFF0A0E13);
+  static const darkSurface = Color(0xFF0A0E13);
+  static const darkCard = Color(0xFF1B2027);
+  static const darkBorder = Color(0xFF44484E);
+  static const darkAccent = Color(0xFF81ECFF);
+  static const darkTextPrimary = Color(0xFFF4F6FE);
+  static const darkTextMuted = Color(0xFFA8ABB2);
+
+  // ── Glassmorphism & Status ──
+  static const glassBackground = Color(0x991B2027);
+  static const glassBorder = Color(0x26F4F6FE);
+  static const neonGlowCyan = Color(0xFF81ECFF);
+  static const neonGlowPurple = Color(0xFFAC89FF);
+  
+  static const successEmerald = Color(0xFF10B981);
+  static const activeElectric = Color(0xFF00E3FD);
+  static const lockedSlate = Color(0xFF475569);
+  static const xpRewardGold = Color(0xFFFFD700);
+
+  // ── Neural Material 3 Palette ──
+  static const neuralPrimary = Color(0xFF81ECFF);
+  static const neuralSecondary = Color(0xFFAC89FF);
+  static const neuralTertiary = Color(0xFFAAFFDC);
+  static const neuralSurface = Color(0xFF0A0E13);
+  static const neuralOnSurface = Color(0xFFF4F6FE);
+  static const neuralSurfaceContainerHigh = Color(0xFF1B2027);
+  static const neuralSurfaceContainerHighest = Color(0xFF21262E);
+  static const neuralOutline = Color(0xFF72767C);
+  static const neuralOutlineVariant = Color(0xFF44484E);
+  static const neuralPrimaryContainer = Color(0xFF00E3FD);
+  static const neuralOnPrimaryContainer = Color(0xFF004D57);
 
   // ── Light Mode ──
   static const lightBackground = Color(0xFFFFFFFF);

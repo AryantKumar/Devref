@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/theme/app_colors.dart';
 
 class DockingBar extends StatefulWidget {
   final int currentIndex;
@@ -17,24 +18,15 @@ class DockingBar extends StatefulWidget {
 }
 
 class _DockingBarState extends State<DockingBar> {
-  late Tween<double> _tween;
-  bool _animationCompleted = false;
 
   @override
   void initState() {
     super.initState();
-    _tween = Tween<double>(begin: 1.0, end: 1.2);
   }
 
   @override
   void didUpdateWidget(DockingBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.currentIndex != widget.currentIndex) {
-      setState(() {
-        _animationCompleted = false;
-        _tween = Tween(begin: 1.0, end: 1.2);
-      });
-    }
   }
 
   @override
@@ -44,83 +36,75 @@ class _DockingBarState extends State<DockingBar> {
 
     return Container(
       clipBehavior: Clip.none,
-      width: MediaQuery.sizeOf(context).width * 0.85,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
-        color: colorScheme.surface.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(24),
+        color: const Color(0xFF0F172A).withValues(alpha: 0.85),
+        borderRadius: BorderRadius.circular(100),
         border: Border.all(
-          color: colorScheme.outlineVariant.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.08),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
+            color: Colors.black.withValues(alpha: 0.4),
+            blurRadius: 40,
+            spreadRadius: 0,
             offset: const Offset(0, 10),
+          ),
+          BoxShadow(
+            color: AppColors.neonGlowCyan.withValues(alpha: 0.05),
+            blurRadius: 20,
+            spreadRadius: -5,
           ),
         ],
       ),
-      child: TweenAnimationBuilder(
-        key: ValueKey(widget.currentIndex),
-        tween: _tween,
-        duration: Duration(milliseconds: _animationCompleted ? 1500 : 250),
-        curve: _animationCompleted ? Curves.elasticOut : Curves.easeOutCubic,
-        onEnd: () {
-          if (!_animationCompleted) {
-            setState(() {
-              _animationCompleted = true;
-              _tween = Tween(begin: 1.5, end: 1.0);
-            });
-          }
-        },
-        builder: (context, value, child) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(widget.icons.length, (i) {
-              final isActive = i == widget.currentIndex;
-              return Expanded(
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () => widget.onTap(i),
-                    child: Transform(
-                      alignment: Alignment.bottomCenter,
-                      transform: Matrix4.identity()
-                        ..scale(isActive ? value : 1.0)
-                        ..translate(0.0, isActive ? 20.0 * (1 - value) : 0.0),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        padding: const EdgeInsets.all(12),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(widget.icons.length, (i) {
+          final isActive = i == widget.currentIndex;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: GestureDetector(
+              onTap: () => widget.onTap(i),
+              child: AnimatedScale(
+                scale: isActive ? 1.25 : 1.0,
+                duration: const Duration(milliseconds: 300),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      widget.icons[i],
+                      size: 24,
+                      color: isActive 
+                          ? AppColors.neonGlowCyan 
+                          : Colors.white.withValues(alpha: 0.4),
+                    ),
+                    if (isActive) ...[
+                      const SizedBox(height: 6),
+                      Container(
+                        width: 4,
+                        height: 4,
                         decoration: BoxDecoration(
-                          color: isActive 
-                              ? colorScheme.primary 
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: isActive ? [
+                          color: AppColors.neonGlowCyan,
+                          shape: BoxShape.circle,
+                          boxShadow: [
                             BoxShadow(
-                              color: colorScheme.primary.withOpacity(0.3),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
+                              color: AppColors.neonGlowCyan.withValues(alpha: 0.8),
+                              blurRadius: 8,
+                              spreadRadius: 2,
                             ),
-                          ] : null,
-                        ),
-                        child: Icon(
-                          widget.icons[i],
-                          size: 24,
-                          color: isActive 
-                              ? colorScheme.onPrimary 
-                              : colorScheme.onSurfaceVariant,
+                          ],
                         ),
                       ),
-                    ),
-                  ),
+                    ] else ...[
+                      const SizedBox(height: 10),
+                    ],
+                  ],
                 ),
-              );
-            }),
+              ),
+            ),
           );
-        },
+        }),
       ),
     );
   }
