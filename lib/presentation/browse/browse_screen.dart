@@ -143,7 +143,9 @@ class BrowseScreen extends ConsumerWidget {
           childAspectRatio: 1.1,
         ),
         delegate: SliverChildBuilderDelegate(
-          (context, index) => _GridTopicCard(topic: sectionTopics[index]),
+          (context, index) {
+            return _GridTopicCard(topic: sectionTopics[index]);
+          },
           childCount: sectionTopics.length,
         ),
       ),
@@ -158,13 +160,6 @@ class _GridTopicCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = AppColors.topicColor(topic.topicId);
-    
-    // Mock progress based on topic for UI fidelity
-    double progress = 0.40;
-    if (topic.topicId == 'typescript') progress = 0.92;
-    if (topic.topicId == 'javascript') progress = 0.74;
-    if (topic.topicId == 'python') progress = 0.65;
-    if (topic.topicId == 'go') progress = 0.42;
 
     return GestureDetector(
       onTap: () => context.push('/browse/${topic.topicId}'),
@@ -191,11 +186,55 @@ class _GridTopicCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 8),
-            MasteryProgressBar(
-              progress: progress,
-              color: color,
-              label: 'MASTERY',
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // ── Snippet Count Chip ──
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: color.withOpacity(0.15)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.terminal_rounded, size: 10, color: color),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${topic.snippetCount} SNIPPETS',
+                        style: GoogleFonts.jetBrainsMono(
+                          fontSize: 9,
+                          fontWeight: FontWeight.w700,
+                          color: color,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                
+                // ── Status Indicator for Deep Libraries ──
+                if (topic.snippetCount >= 60)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      'COMPREHENSIVE',
+                      style: GoogleFonts.spaceGrotesk(
+                        fontSize: 7,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.amber.withOpacity(0.8),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ],
         ),
